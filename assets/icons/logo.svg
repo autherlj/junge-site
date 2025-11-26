@@ -1,0 +1,10 @@
+<svg width="100" height="40" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- 深色背景容器，模拟终端窗口 -->
+  <rect x="0" y="0" width="60" height="40" rx="6" fill="#0f172a"/>
+  
+  <!-- 终端提示符 > -->
+  <text x="10" y="28" font-family="Consolas, Monaco, monospace" font-size="26" fill="#38bdf8" font-weight="bold">&gt;</text>
+  
+  <!-- 光标 _ -->
+  <text x="30" y="28" font-family="Consolas, Monaco, monospace" font-size="26" fill="#38bdf8" font-weight="bold">_</text>
+</svg>
