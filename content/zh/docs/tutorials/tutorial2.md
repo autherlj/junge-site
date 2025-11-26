@@ -1,9 +1,10 @@
 ---
-title: Second blog post
-date: 2018-10-06
+title: Another Tutorial
 description: >
-  A short lead description about this content page. Text here can also be
-  **bold** or _italic_ and can even be split over multiple paragraphs.
+  A short lead description about this content page. It can be **bold** or
+  _italic_ and can be split over multiple paragraphs.
+date: 2017-01-05
+weight: 5
 ---
 
 This is a **placeholder page**. For an example of the kind of content that can

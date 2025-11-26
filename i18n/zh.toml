@@ -1,0 +1,50 @@
+[ui_search]
+other = "搜索..."
+
+[ui_search_results]
+other = "搜索结果"
+
+[ui_copyright]
+other = "版权所有 %s %s"
+
+[ui_feedback_title]
+other = "反馈"
+
+[ui_feedback_yes]
+other = "是的"
+
+[ui_feedback_no]
+other = "不是"
+
+[ui_edit_page]
+other = "编辑此页"
+
+[ui_post_date]
+other = "发布于 %s"
+
+[ui_posts]
+other = "文章"
+
+[community_join]
+other = "加入社区"
+
+[community_introduce]
+other = "这是一个交流技术和生活的地方。"
+
+[community_learn]
+other = "学习"
+
+[community_using]
+other = "了解如何更好地使用和贡献。"
+
+[community_develop]
+other = "开发与贡献"
+
+[community_contribute]
+other = "参与项目开发"
+
+[community_how_to]
+other = "查看"
+
+[community_guideline]
+other = "贡献指南"
