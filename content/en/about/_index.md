@@ -1,9 +1,6 @@
 ﻿---
 title: About Me
 linkTitle: About Me
-menu:
-  main:
-    weight: 10
 ---
 
 <style>
