@@ -67,5 +67,16 @@ other = "本页内容对您有帮助吗？"
 [feedback_positive]
 other = "有帮助"
 
-[feedback_negative]
-other = "没帮助"
+
+[post_posts_in]
+other = "%s 年发布的文章"
+
+
+[ui_pager_prev]
+other = "上一篇"
+
+[ui_pager_next]
+other = "下一篇"
+
+[footer_privacy_policy]
+other = "隐私政策"
