@@ -48,3 +48,24 @@ other = "查看"
 
 [community_guideline]
 other = "贡献指南"
+
+[print_entire_section]
+other = "打印本章"
+
+[ui_read_more]
+other = "阅读更多"
+
+[post_less_than_a_minute_read]
+other = "阅读时间少于 1 分钟"
+
+[feedback_title]
+other = "反馈"
+
+[feedback_question]
+other = "本页内容对您有帮助吗？"
+
+[feedback_positive]
+other = "有帮助"
+
+[feedback_negative]
+other = "没帮助"

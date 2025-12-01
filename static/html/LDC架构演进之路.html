@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDC架构演进之路</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        
+        /* 响应式缩放逻辑 */
+        @media (max-width: 1200px) {
+            .scale-container {
+                zoom: 0.8;
+            }
+        }
+        @media (max-width: 800px) {
+            .scale-container {
+                zoom: 0.6;
+            }
+            .sidebar {
+                width: 240px !important;
+            }
+        }
+
+        .stage {
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(120px) scale(0.85);
+            opacity: 0;
+        }
+        .stage.active {
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+        .connection-line {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawConnection 2s ease-out forwards;
+        }
+        @keyframes drawConnection {
+            to { stroke-dashoffset: 0; }
+        }
+        .data-flow {
+            stroke-dasharray: 8 4;
+            animation: flowData 2s linear infinite;
+        }
+        @keyframes flowData {
+            to { stroke-dashoffset: -12; }
+        }
+        .server-glow {
+            animation: serverGlow 3s ease-in-out infinite;
+        }
+        @keyframes serverGlow {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); 
+            }
+            50% { 
+                transform: scale(1.03); 
+                box-shadow: 0 0 40px rgba(59, 130, 246, 0.7); 
+            }
+        }
+        .crisis-pulse {
+            animation: crisisPulse 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes crisisPulse {
+            from { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); 
+            }
+            to { 
+                transform: scale(1.08);
+                box-shadow: 0 0 50px rgba(239, 68, 68, 0.9); 
+            }
+        }
+        .ldc-zone {
+            transition: all 0.5s ease;
+        }
+        .ldc-zone:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .connection-count {
+            animation: countUp 2s ease-out;
+        }
+        @keyframes countUp {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white scale-container">
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <!-- 左侧导航 -->
+        <div class="sidebar w-full md:w-80 bg-gray-800 bg-opacity-95 backdrop-blur-lg border-b md:border-r border-blue-400 border-opacity-25 p-6 flex flex-col flex-shrink-0 z-10">
+            <div class="mb-8">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            LDC架构
+                        </h1>
+                        <p class="text-xs text-gray-400">逻辑数据中心演进</p>
+                    </div>
+                </div>
+                <div class="text-sm text-gray-300 italic border-l-4 border-blue-400 pl-4">
+                    "瓶颈总是以优雅的方式显现"
+                </div>
+            </div>
+            
+            <div class="space-y-3 mb-8 flex-1">
+                <button onclick="showStage(1)" class="stage-btn w-full p-4 rounded-xl bg-gray-700 bg-opacity-50 hover:bg-opacity-80 border border-purple-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300 text-left group">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-purple-300 font-semibold">传统架构</span>
+                        <span class="text-xs bg-purple-500 px-2 py-1 rounded-full">2012</span>
+                    </div>
+                    <div class="text-xs text-gray-400">单体应用 + 集中数据库</div>
+                </button>
+                
+                <button onclick="showStage(2)" class="stage-btn w-full p-4 rounded-xl bg-gray-700 bg-opacity-50 hover:bg-opacity-80 border border-blue-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300 text-left group">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-blue-300 font-semibold">数据库分片</span>
+                        <span class="text-xs bg-blue-500 px-2 py-1 rounded-full">2013</span>
+                    </div>
+                    <div class="text-xs text-gray-400">按用户维度水平拆分100个分区</div>
+                </button>
+                
+                <button onclick="showStage(3)" class="stage-btn w-full p-4 rounded-xl bg-gray-700 bg-opacity-50 hover:bg-opacity-80 border border-red-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300 text-left group">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-red-300 font-semibold">连接数危机</span>
+                        <span class="text-xs bg-red-500 px-2 py-1 rounded-full">告警</span>
+                    </div>
+                    <div class="text-xs text-gray-400">Oracle连接池耗尽，系统扩容受阻</div>
+                </button>
+                
+                <button onclick="showStage(4)" class="stage-btn w-full p-4 rounded-xl bg-gray-700 bg-opacity-50 hover:bg-opacity-80 border border-green-400 border-opacity-30 hover:border-opacity-60 transition-all duration-300 text-left group">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-green-300 font-semibold">LDC单元化</span>
+                        <span class="text-xs bg-green-500 px-2 py-1 rounded-full">2014</span>
+                    </div>
+                    <div class="text-xs text-gray-400">CRG架构：Cell化部署方案</div>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-gray-700 bg-opacity-50 rounded-xl p-4">
+                    <div class="text-sm font-medium mb-2 text-gray-300">当前场景</div>
+                    <div id="current-stage" class="text-lg font-bold text-purple-400 mb-1">传统架构</div>
+                    <div id="stage-description" class="text-xs text-gray-400">集中式部署模式</div>
+                </div>
+                
+                <button onclick="toggleAutoDemo()" id="demo-btn" class="w-full gradient-bg hover:opacity-90 px-4 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg">
+                    <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>自动演示</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 主内容区 -->
+        <div class="flex-1 relative overflow-hidden bg-gray-900 bg-opacity-60">
+            <!-- 阶段1：传统架构 -->
+            <div id="stage-1" class="stage absolute inset-0 flex items-center justify-center active">
+                <div class="text-center max-w-4xl">
+                    <div class="mb-12">
+                        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            传统集中式架构
+                        </h2>
+                        <p class="text-gray-300">2012年系统架构</p>
+                    </div>
+                    
+                    <!-- 应用层 -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold mb-4 text-purple-300">应用集群</h3>
+                        <div class="flex justify-center space-x-4">
+                            <div class="w-24 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg server-glow flex items-center justify-center">
+                                <span class="text-sm font-bold">支付服务</span>
+                            </div>
+                            <div class="w-24 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg server-glow flex items-center justify-center" style="animation-delay: 0.5s">
+                                <span class="text-sm font-bold">账务服务</span>
+                            </div>
+                            <div class="w-24 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-lg server-glow flex items-center justify-center" style="animation-delay: 1s">
+                                <span class="text-sm font-bold">风控服务</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 连接线 -->
+                    <svg width="100%" height="80" class="mb-8">
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+                            </marker>
+                        </defs>
+                        <line class="connection-line" x1="30%" y1="20" x2="30%" y2="60" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)"/>
+                        <line class="connection-line" x1="50%" y1="20" x2="50%" y2="60" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)" style="animation-delay: 0.3s"/>
+                        <line class="connection-line" x1="70%" y1="20" x2="70%" y2="60" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)" style="animation-delay: 0.6s"/>
+                    </svg>
+                    
+                    <!-- 数据库层 -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-4 text-blue-300">核心数据库</h3>
+                        <div class="w-80 h-32 mx-auto bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl shadow-2xl flex items-center justify-center border border-gray-500">
+                            <div class="text-center">
+                                <div class="text-xl font-bold mb-2">Oracle RAC</div>
+                                <div class="text-sm opacity-80">集中式存储</div>
+                                <div class="text-xs opacity-60 mt-1">用户、交易、账务数据</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex justify-center">
+                        <div class="bg-purple-600 bg-opacity-20 px-6 py-3 rounded-full border border-purple-400 border-opacity-40">
+                            <span class="text-sm">单体架构 • 集中存储 • 简单可靠</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 阶段2：数据库分片 -->
+            <div id="stage-2" class="stage absolute inset-0 p-8">
+                <div class="h-full flex flex-col">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                            数据库水平分片
+                        </h2>
+                        <p class="text-gray-300">按用户ID尾数分片，解决单库性能瓶颈</p>
+                    </div>
+                    
+                    <!-- 应用层 -->
+                    <div class="flex-1 flex items-center justify-center mb-6">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold mb-4 text-blue-300">应用服务集群</h3>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="w-20 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg server-glow flex items-center justify-center">
+                                    <span class="text-xs font-bold">App-1</span>
+                                </div>
+                                <div class="w-20 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg server-glow flex items-center justify-center" style="animation-delay: 0.2s">
+                                    <span class="text-xs font-bold">App-2</span>
+                                </div>
+                                <div class="w-20 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg server-glow flex items-center justify-center" style="animation-delay: 0.4s">
+                                    <span class="text-xs font-bold">App-3</span>
+                                </div>
+                                <div class="w-20 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg server-glow flex items-center justify-center" style="animation-delay: 0.6s">
+                                    <span class="text-xs font-bold">...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 分片策略说明 -->
+                    <div class="mb-6">
+                        <div class="max-w-2xl mx-auto bg-gray-800 bg-opacity-50 rounded-xl p-4 border border-blue-400 border-opacity-30">
+                            <h4 class="text-center text-sm font-semibold mb-2 text-cyan-300">分片策略</h4>
+                            <div class="text-center text-xs text-gray-300">
+                                用户ID % 100 → 分片路由<br>
+                                <span class="text-cyan-400">用户123456789 → 分片89</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 数据库分片 -->
+                    <div class="flex-1 flex items-center justify-center">
+                        <div class="text-center">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-300">数据库分片集群（100个分片）</h3>
+                            <div class="grid grid-cols-8 gap-3 max-w-3xl">
+                                <div class="w-16 h-12 bg-gray-700 rounded-lg flex flex-col items-center justify-center border border-gray-500">
+                                    <div class="text-xs font-bold">DB00</div>
+                                    <div class="text-xs opacity-60">00-01</div>
+                                </div>
+                                <div class="w-16 h-12 bg-gray-700 rounded-lg flex flex-col items-center justify-center border border-gray-500">
+                                    <div class="text-xs font-bold">DB02</div>
+                                    <div class="text-xs opacity-60">02-03</div>
+                                </div>
+                                <div class="w-16 h-12 bg-gray-700 rounded-lg flex flex-col items-center justify-center border border-gray-500">
+                                    <div class="text-xs font-bold">DB04</div>
+                                    <div class="text-xs opacity-60">04-05</div>
+                                </div>
+                                <div class="w-16 h-12 bg-gray-700 rounded-lg flex flex-col items-center justify-center border border-gray-500">
+                                    <div class="text-xs font-bold">...</div>
+                                    <div class="text-xs opacity-60">...</div>
+                                </div>
+                                <div class="w-16 h-12 bg-gray-700 rounded-lg flex flex-col items-center justify-center border border-gray-500">
+                                    <div class="text-xs font-bold">DB96</div>
+                                    <div class="text-xs opacity-60">96-97</div>
+                                </div>
+                                <div class="w-16 h-12 bg-gray-700 rounded-lg flex flex-col items-center justify-center border border-gray-500">
+                                    <div class="text-xs font-bold">DB98</div>
+                                    <div class="text-xs opacity-60">98-99</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6">
+                        <div class="bg-blue-600 bg-opacity-20 px-6 py-3 rounded-full border border-blue-400 border-opacity-40">
+                            <span class="text-sm">水平扩展 • 性能提升 • 为单元化奠基</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 阶段3：连接数危机 -->
+            <div id="stage-3" class="stage absolute inset-0 p-8">
+                <div class="h-full flex flex-col items-center justify-center">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+                            2013年连接数危机
+                        </h2>
+                        <p class="text-gray-300">Oracle连接池告急，系统扩容受阻</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-12 max-w-5xl w-full">
+                        <!-- 左侧：问题描述 -->
+                        <div class="space-y-6">
+                            <div class="bg-red-600 bg-opacity-20 rounded-xl p-6 border border-red-400 border-opacity-40">
+                                <h3 class="text-xl font-bold text-red-300 mb-4">核心问题</h3>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                                        <div>每台应用服务器需要连接所有100个分片</div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                                        <div>Oracle连接不共享，每个事务独占一个连接</div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0"></div>
+                                        <div>连接数达到数据库上限，无法继续扩容</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-700 bg-opacity-50 rounded-xl p-6">
+                                <h3 class="text-lg font-bold text-gray-200 mb-4">连接数计算</h3>
+                                <div class="space-y-2 text-sm font-mono">
+                                    <div class="text-cyan-400">应用服务器: 50台</div>
+                                    <div class="text-cyan-400">数据库分片: 100个</div>
+                                    <div class="text-cyan-400">每台连接池: 20个</div>
+                                    <div class="border-t border-gray-600 my-2"></div>
+                                    <div class="text-red-400 text-lg font-bold">总连接数: 50 × 100 × 20 = 100,000</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 右侧：架构图示 -->
+                        <div class="space-y-6">
+                            <div class="text-center">
+                                <h3 class="text-lg font-semibold mb-4 text-gray-300">连接拓扑</h3>
+                                
+                                <!-- 应用层 -->
+                                <div class="grid grid-cols-5 gap-2 mb-4">
+                                    <div class="w-12 h-8 bg-blue-500 rounded crisis-pulse flex items-center justify-center">
+                                        <span class="text-xs font-bold">A1</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-blue-500 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.1s">
+                                        <span class="text-xs font-bold">A2</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-blue-500 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.2s">
+                                        <span class="text-xs font-bold">A3</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-blue-500 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.3s">
+                                        <span class="text-xs font-bold">...</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-blue-500 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.4s">
+                                        <span class="text-xs font-bold">A50</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- 连接网格可视化 -->
+                                <svg width="300" height="120" class="mb-4">
+                                    <defs>
+                                        <pattern id="dangerGrid" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+                                            <circle cx="3" cy="3" r="1" fill="#ef4444" opacity="0.6"/>
+                                        </pattern>
+                                    </defs>
+                                    <rect width="100%" height="100%" fill="url(#dangerGrid)"/>
+                                    <!-- 高密度连接线 -->
+                                    <g class="data-flow">
+                                        <line x1="10%" y1="10" x2="20%" y2="110" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+                                        <line x1="30%" y1="10" x2="40%" y2="110" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+                                        <line x1="50%" y1="10" x2="60%" y2="110" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+                                        <line x1="70%" y1="10" x2="80%" y2="110" stroke="#ef4444" stroke-width="2" opacity="0.8"/>
+                                    </g>
+                                </svg>
+                                
+                                <!-- 数据库层 -->
+                                <div class="grid grid-cols-5 gap-2">
+                                    <div class="w-12 h-8 bg-red-600 rounded crisis-pulse flex items-center justify-center">
+                                        <span class="text-xs font-bold">DB1</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-red-600 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.1s">
+                                        <span class="text-xs font-bold">DB2</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-red-600 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.2s">
+                                        <span class="text-xs font-bold">...</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-red-600 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.3s">
+                                        <span class="text-xs font-bold">...</span>
+                                    </div>
+                                    <div class="w-12 h-8 bg-red-600 rounded crisis-pulse flex items-center justify-center" style="animation-delay: 0.4s">
+                                        <span class="text-xs font-bold">100</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-600 bg-opacity-20 rounded-xl p-4 border border-red-400 border-opacity-40 text-center">
+                                <div class="text-red-300 text-sm font-bold mb-2">系统告警</div>
+                                <div class="text-xs text-gray-300">
+                                    ⚠️ 无法新增应用服务器<br>
+                                    ⚠️ 2013双11流量预期无法支撑<br>
+                                    ⚠️ 系统扩展性完全受阻
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full border border-red-400 border-opacity-40">
+                            <span class="text-sm font-bold">连接数危机 • 扩容受阻 • 急需架构革新</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 阶段4：LDC单元化 -->
+            <div id="stage-4" class="stage absolute inset-0 p-6">
+                <div class="h-full flex flex-col">
+                    <div class="text-center mb-6">
+                        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                            LDC单元化架构
+                        </h2>
+                        <p class="text-gray-300">CRG三层架构：彻底解决连接数问题</p>
+                    </div>
+                    
+                    <div class="flex-1 grid grid-cols-3 gap-6">
+                        <!-- RZone -->
+                        <div class="space-y-4">
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-green-300 mb-2">RZone (区域单元)</h3>
+                                <p class="text-xs text-gray-400 mb-4">自包含业务单元，承担20%流量</p>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="ldc-zone bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-4 border border-green-400 border-opacity-30">
+                                    <div class="text-center mb-3">
+                                        <div class="text-sm font-bold">RZone-1</div>
+                                        <div class="text-xs opacity-80">分片 00-19</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 text-xs">
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">支付服务</div>
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">账务服务</div>
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">风控服务</div>
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">会员服务</div>
+                                    </div>
+                                    <div class="mt-2 text-center">
+                                        <div class="text-xs bg-green-800 px-2 py-1 rounded">20个数据分片</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="ldc-zone bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-4 border border-green-400 border-opacity-30">
+                                    <div class="text-center mb-3">
+                                        <div class="text-sm font-bold">RZone-2</div>
+                                        <div class="text-xs opacity-80">分片 20-39</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 text-xs">
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">支付服务</div>
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">账务服务</div>
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">风控服务</div>
+                                        <div class="bg-green-600 bg-opacity-40 px-2 py-1 rounded">会员服务</div>
+                                    </div>
+                                    <div class="mt-2 text-center">
+                                        <div class="text-xs bg-green-800 px-2 py-1 rounded">20个数据分片</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <div class="text-xs text-gray-400">... 共5个RZone ...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CZone -->
+                        <div class="space-y-4">
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-blue-300 mb-2">CZone (城市单元)</h3>
+                                <p class="text-xs text-gray-400 mb-4">本地公共数据，解决延时问题</p>
+                            </div>
+                            
+                            <div class="ldc-zone bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 border border-blue-400 border-opacity-30">
+                                <div class="text-center mb-3">
+                                    <div class="text-sm font-bold">CZone-杭州</div>
+                                    <div class="text-xs opacity-80">本地公共服务</div>
+                                </div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-blue-600 bg-opacity-40 px-2 py-1 rounded text-center">会员基础信息</div>
+                                    <div class="bg-blue-600 bg-opacity-40 px-2 py-1 rounded text-center">商户基础信息</div>
+                                    <div class="bg-blue-600 bg-opacity-40 px-2 py-1 rounded text-center">产品配置信息</div>
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <svg width="80" height="30">
+                                        <line class="data-flow" x1="10" y1="15" x2="70" y2="15" stroke="#60a5fa" stroke-width="2"/>
+                                        <text x="40" y="25" text-anchor="middle" class="text-xs fill-blue-300">双向同步</text>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="ldc-zone bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-4 border border-blue-400 border-opacity-30">
+                                <div class="text-center mb-3">
+                                    <div class="text-sm font-bold">CZone-上海</div>
+                                    <div class="text-xs opacity-80">异地灾备</div>
+                                </div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-blue-600 bg-opacity-40 px-2 py-1 rounded text-center">会员基础信息</div>
+                                    <div class="bg-blue-600 bg-opacity-40 px-2 py-1 rounded text-center">商户基础信息</div>
+                                    <div class="bg-blue-600 bg-opacity-40 px-2 py-1 rounded text-center">产品配置信息</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- GZone -->
+                        <div class="space-y-4">
+                            <div class="text-center">
+                                <h3 class="text-lg font-bold text-purple-300 mb-2">GZone (全局单元)</h3>
+                                <p class="text-xs text-gray-400 mb-4">全局唯一数据和服务</p>
+                            </div>
+                            
+                            <div class="ldc-zone bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl p-4 border border-purple-400 border-opacity-30">
+                                <div class="text-center mb-3">
+                                    <div class="text-sm font-bold">GZone-全局</div>
+                                    <div class="text-xs opacity-80">单点服务</div>
+                                </div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-purple-600 bg-opacity-40 px-2 py-1 rounded text-center">全局序列号</div>
+                                    <div class="bg-purple-600 bg-opacity-40 px-2 py-1 rounded text-center">系统配置</div>
+                                    <div class="bg-purple-600 bg-opacity-40 px-2 py-1 rounded text-center">监控告警</div>
+                                    <div class="bg-purple-600 bg-opacity-40 px-2 py-1 rounded text-center">任务调度</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-600 bg-opacity-20 rounded-lg p-3 border border-purple-400 border-opacity-30">
+                                <div class="text-xs text-center">
+                                    <div class="font-semibold text-purple-300 mb-1">访问频率</div>
+                                    <div class="text-gray-400">低频访问，对延时不敏感</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 关键指标 -->
+                    <div class="mt-6 grid grid-cols-4 gap-4">
+                        <div class="bg-green-600 bg-opacity-20 rounded-lg p-3 text-center border border-green-400 border-opacity-30">
+                            <div class="text-lg font-bold text-green-400 connection-count">1/5</div>
+                            <div class="text-xs text-gray-400">连接数降至原来的</div>
+                        </div>
+                        <div class="bg-blue-600 bg-opacity-20 rounded-lg p-3 text-center border border-blue-400 border-opacity-30">
+                            <div class="text-lg font-bold text-blue-400 connection-count">20ms</div>
+                            <div class="text-xs text-gray-400">异地延时控制在</div>
+                        </div>
+                        <div class="bg-purple-600 bg-opacity-20 rounded-lg p-3 text-center border border-purple-400 border-opacity-30">
+                            <div class="text-lg font-bold text-purple-400 connection-count">5组</div>
+                            <div class="text-xs text-gray-400">RZone灵活扩展</div>
+                        </div>
+                        <div class="bg-gray-600 bg-opacity-20 rounded-lg p-3 text-center border border-gray-400 border-opacity-30">
+                            <div class="text-lg font-bold text-gray-400 connection-count">90%+</div>
+                            <div class="text-xs text-gray-400">本地数据访问比例</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <div class="bg-green-600 bg-opacity-20 px-6 py-3 rounded-full border border-green-400 border-opacity-40">
+                            <span class="text-sm">单元化成功 • 连接数骤降 • 异地容灾 • 弹性扩展</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧信息面板 -->
+        <div class="w-96 bg-gray-800 bg-opacity-95 backdrop-blur-lg border-l border-blue-400 border-opacity-25 p-6">
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-lg font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        架构指标
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="bg-gray-700 bg-opacity-50 rounded-lg p-3">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-300">连接数规模</span>
+                                <span id="connection-level" class="text-sm font-bold text-red-400">极高</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2">
+                                <div id="connection-bar" class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-2 rounded-full transition-all duration-1000" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-700 bg-opacity-50 rounded-lg p-3">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-300">扩展能力</span>
+                                <span id="scalability-level" class="text-sm font-bold text-red-400">受限</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2">
+                                <div id="scalability-bar" class="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-2 rounded-full transition-all duration-1000" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-700 bg-opacity-50 rounded-lg p-3">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-300">容灾能力</span>
+                                <span id="disaster-level" class="text-sm font-bold text-red-400">无</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2">
+                                <div id="disaster-bar" class="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-2 rounded-full transition-all duration-1000" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-700 bg-opacity-50 rounded-lg p-3">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-gray-300">运维复杂度</span>
+                                <span id="complexity-level" class="text-sm font-bold text-green-400">简单</span>
+                            </div>
+                            <div class="w-full bg-gray-600 rounded-full h-2">
+                                <div id="complexity-bar" class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 h-2 rounded-full transition-all duration-1000" style="width: 20%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-lg font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        技术挑战
+                    </h2>
+                    <div id="challenges" class="space-y-2 text-sm max-h-48 overflow-y-auto">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-lg font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        关键收益
+                    </h2>
+                    <div id="benefits" class="space-y-2 text-sm max-h-32 overflow-y-auto">
+                        <!-- 动态填充 -->
+                    </div>
+                </div>
+                
+                <div class="bg-gray-700 bg-opacity-50 rounded-xl p-4 border border-gray-600">
+                    <h3 class="text-sm font-semibold mb-2 text-gray-200">LDC核心原则</h3>
+                    <div class="space-y-1 text-xs text-gray-400">
+                        <div>• RZone封闭原则</div>
+                        <div>• 全链路UID传递</div>
+                        <div>• CRG依赖关系</div>
+                        <div>• 数据按用户分片</div>
+                    </div>
+                </div>
+                
+                <div class="text-center text-xs text-gray-500 bg-gray-700 bg-opacity-30 rounded-lg p-3">
+                    <div class="mb-1">💡 方向键切换 | 空格键自动播放</div>
+                    <div class="text-gray-600">LDC架构演进历程</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentStage = 1;
+        let autoInterval = null;
+        let isAutoPlaying = false;
+        
+        const stageData = {
+            1: {
+                name: "传统架构",
+                description: "集中式部署模式",
+                connection: 20, connectionLevel: "低",
+                scalability: 20, scalabilityLevel: "受限", 
+                disaster: 20, disasterLevel: "无",
+                complexity: 20, complexityLevel: "简单",
+                challenges: [
+                    "单点故障风险",
+                    "扩展性受限",
+                    "无容灾能力",
+                    "技术债务积累"
+                ],
+                benefits: [
+                    "架构简单",
+                    "开发效率高",
+                    "运维成本低"
+                ]
+            },
+            2: {
+                name: "数据库分片",
+                description: "按用户ID尾数分片，解决单库性能瓶颈",
+                connection: 60, connectionLevel: "中等",
+                scalability: 70, scalabilityLevel: "良好",
+                disaster: 30, disasterLevel: "机房级",
+                complexity: 60, complexityLevel: "中等",
+                challenges: [
+                    "跨分片查询复杂",
+                    "分布式事务",
+                    "数据迁移困难",
+                    "连接数开始增长"
+                ],
+                benefits: [
+                    "数据库性能提升",
+                    "支撑更大用户量",
+                    "为单元化奠基"
+                ]
+            },
+            3: {
+                name: "连接数危机",
+                description: "Oracle连接池耗尽，系统扩容受阻",
+                connection: 95, connectionLevel: "告急",
+                scalability: 10, scalabilityLevel: "完全受阻",
+                disaster: 30, disasterLevel: "机房级",
+                complexity: 80, complexityLevel: "复杂",
+                challenges: [
+                    "连接池完全耗尽",
+                    "无法新增服务器",
+                    "2013双11风险",
+                    "系统容量封顶"
+                ],
+                benefits: [
+                    "发现架构瓶颈",
+                    "推动架构升级",
+                    "危机催生创新"
+                ]
+            },
+            4: {
+                name: "LDC单元化",
+                description: "CRG架构：Cell化部署方案",
+                connection: 20, connectionLevel: "极低",
+                scalability: 95, scalabilityLevel: "优秀",
+                disaster: 90, disasterLevel: "异地级",
+                complexity: 90, complexityLevel: "高",
+                challenges: [
+                    "单元间数据一致性",
+                    "全链路改造工程量大",
+                    "异地延时优化",
+                    "历史系统兼容"
+                ],
+                benefits: [
+                    "连接数降至1/5",
+                    "支持异地容灾",
+                    "弹性水平扩展",
+                    "蓝绿发布能力"
+                ]
+            }
+        };
+        
+        function showStage(stage) {
+            if (autoInterval) {
+                clearInterval(autoInterval);
+                autoInterval = null;
+                isAutoPlaying = false;
+                updateDemoButton();
+            }
+            
+            // 隐藏所有阶段
+            document.querySelectorAll('.stage').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 显示当前阶段
+            document.getElementById(`stage-${stage}`).classList.add('active');
+            
+            // 更新按钮状态
+            document.querySelectorAll('.stage-btn').forEach((btn, index) => {
+                btn.classList.remove('ring-2', 'ring-blue-400', 'ring-opacity-50');
+                if (index === stage - 1) {
+                    btn.classList.add('ring-2', 'ring-blue-400', 'ring-opacity-50');
+                }
+            });
+            
+            // 更新信息面板
+            updateInfoPanel(stage);
+            currentStage = stage;
+        }
+        
+        function updateInfoPanel(stage) {
+            const data = stageData[stage];
+            
+            // 更新基本信息
+            document.getElementById('current-stage').textContent = data.name;
+            document.getElementById('stage-description').textContent = data.description;
+            
+            // 更新进度条
+            setTimeout(() => {
+                document.getElementById('connection-bar').style.width = data.connection + '%';
+                document.getElementById('scalability-bar').style.width = data.scalability + '%';
+                document.getElementById('disaster-bar').style.width = data.disaster + '%';
+                document.getElementById('complexity-bar').style.width = data.complexity + '%';
+                
+                document.getElementById('connection-level').textContent = data.connectionLevel;
+                document.getElementById('scalability-level').textContent = data.scalabilityLevel;
+                document.getElementById('disaster-level').textContent = data.disasterLevel;
+                document.getElementById('complexity-level').textContent = data.complexityLevel;
+            }, 200);
+            
+            // 更新挑战列表
+            updateList('challenges', data.challenges, 'border-red-400');
+            updateList('benefits', data.benefits, 'border-green-400');
+        }
+        
+        function updateList(containerId, items, borderClass) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.className = `p-3 bg-gray-700 bg-opacity-30 rounded-lg border-l-4 ${borderClass} opacity-0 translate-x-4 transition-all duration-500`;
+                    div.textContent = item;
+                    container.appendChild(div);
+                    
+                    setTimeout(() => {
+                        div.classList.remove('opacity-0', 'translate-x-4');
+                    }, 50);
+                }, index * 150);
+            });
+        }
+        
+        function toggleAutoDemo() {
+            if (isAutoPlaying) {
+                clearInterval(autoInterval);
+                autoInterval = null;
+                isAutoPlaying = false;
+            } else {
+                let stage = 1;
+                showStage(stage);
+                
+                autoInterval = setInterval(() => {
+                    stage = stage >= 4 ? 1 : stage + 1;
+                    showStage(stage);
+                }, 4500);
+                
+                isAutoPlaying = true;
+            }
+            
+            updateDemoButton();
+        }
+        
+        function updateDemoButton() {
+            const btn = document.getElementById('demo-btn');
+            if (isAutoPlaying) {
+                btn.innerHTML = `
+                    <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>停止演示</span>
+                    </div>
+                `;
+            } else {
+                btn.innerHTML = `
+                    <div class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>自动演示</span>
+                    </div>
+                `;
+            }
+        }
+        
+        // 键盘事件监听
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentStage > 1) {
+                showStage(currentStage - 1);
+            } else if (e.key === 'ArrowRight' && currentStage < 4) {
+                showStage(currentStage + 1);
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoDemo();
+            } else if (e.key >= '1' && e.key <= '4') {
+                showStage(parseInt(e.key));
+            }
+        });
+        
+        // 初始化
+        showStage(1);
+    </script>
+</body>
+</html>

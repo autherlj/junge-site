@@ -14,8 +14,8 @@ title: 隽戈的科技生活馆
     <a class="btn btn-lg btn-primary me-3 mb-4" href="/blog/">
         阅读博客 <i class="fas fa-arrow-alt-circle-right ms-2"></i>
     </a>
-    <a class="btn btn-lg btn-secondary me-3 mb-4" href="https://github.com/google/docsy-example">
-        Github <i class="fab fa-github ms-2 "></i>
+    <a class="btn btn-lg btn-primary me-3 mb-4" href="/lifestyle/">
+        分享生活 <i class="fas fa-arrow-alt-circle-right ms-2 "></i>
     </a>
 </div>
 {{< blocks/link-down color="info" >}} {{< /blocks/cover >}}

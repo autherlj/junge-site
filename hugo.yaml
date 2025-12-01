@@ -52,9 +52,9 @@ languages:
         - name: 博客
           weight: 30
           url: /blog/
-        - name: 交流
+        - name: 生活
           weight: 40
-          url: /community/
+          url: /lifestyle/
   en:
     languageName: English
     contentDir: content/en
@@ -75,9 +75,9 @@ languages:
         - name: Blog
           weight: 30
           url: /blog/
-        - name: Community
+        - name: Lifestyle
           weight: 40
-          url: /community/
+          url: /lifestyle/
 
 markup:
   goldmark:
