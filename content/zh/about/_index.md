@@ -1,9 +1,6 @@
 ﻿---
 title: 关于我
 linkTitle: 关于我
-menu:
-  main:
-    weight: 10
 ---
 
 <style>
