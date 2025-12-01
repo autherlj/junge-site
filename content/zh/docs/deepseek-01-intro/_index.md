@@ -19,21 +19,16 @@ html_class: td-page--no-left
     display: none !important;
 }
 
-/* 1.1 隐藏右侧 TOC 栏 (新增，彻底释放右侧空间) */
-.td-sidebar-toc {
-    display: none !important;
-}
-
-/* 2. 重置主内容区宽度，使其利用左右侧空间 */
+/* 2. 重置主内容区宽度，使其利用左侧空间 */
 @media (min-width: 768px) {
     /* 针对中等屏幕及以上 */
     main {
-        /* 强制 flex-grow 占满剩余空间 */
+        /* 强制 flex-grow 占满剩余空间 (扣除右侧 TOC) */
         flex: 1 0 0% !important; 
         max-width: 100% !important;
         width: auto !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important; /* 移除右侧间距，让PDF全宽 */
+        padding-left: 0 !important; /* 移除左侧原有的内边距 */
+        padding-right: 2rem !important; /* 保持右侧与 TOC 的间距 */
     }
     
     /* 确保内容容器本身也是宽的 */

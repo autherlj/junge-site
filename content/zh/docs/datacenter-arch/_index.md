@@ -1,6 +1,6 @@
 ---
-title: "数据中心架构演进之路"
-linkTitle: "数据中心架构演进之路"
+title: "数据中心-架构演进之路"
+linkTitle: "数据中心-架构演进之路"
 weight: 100
 description: "本书讨论数据中心的演化过程。"
 date: 2025-11-27
