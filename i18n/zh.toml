@@ -69,7 +69,7 @@ other = "有帮助"
 
 
 [post_posts_in]
-other = "%s 年发布的文章"
+other = "发布于"
 
 
 [ui_pager_prev]
@@ -80,3 +80,9 @@ other = "下一篇"
 
 [footer_privacy_policy]
 other = "隐私政策"
+
+[ui_in]
+other = "收录于"
+
+[post_reading_time]
+other = "分钟阅读"
