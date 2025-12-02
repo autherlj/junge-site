@@ -132,7 +132,7 @@ nav[aria-label="breadcrumb"] .breadcrumb {
 }
 
 /* 隐藏不需要的组件 */
-.feedback--link, .td-page-meta {
+.td-page-meta {
     display: none !important;
 }
 </style>

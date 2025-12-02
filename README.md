@@ -1,217 +1,98 @@
-# Docsy Example
+﻿# 隽戈的科技生活馆 | Junge's Tech Life
 
-[Docsy][] is a [Hugo theme module][] for technical documentation sites,
-providing easy site navigation, structure, and more. This **Docsy Example
-Project** uses the Docsy theme component as a hugo module and provides a
-skeleton documentation structure for you to use. You can clone/copy this project
-and edit it with your own content, or use it as an example.
+[![Hugo](https://img.shields.io/badge/Hugo-Extended-blue.svg)](https://gohugo.io/)
+[![Theme](https://img.shields.io/badge/Theme-Docsy-gold.svg)](https://www.docsy.dev/)
+[![License](https://img.shields.io/badge/License-CC%20BY%204.0-green.svg)](https://creativecommons.org/licenses/by/4.0)
 
-In this project, the Docsy theme is pulled in as a Hugo module, together with
-its dependencies:
+这是一个记录技术沉淀与生活瞬间的个人站点。基于 [Hugo](https://gohugo.io) 静态网站生成器构建，采用了高度定制化的 [Docsy](https://www.docsy.dev) 主题，融合了技术文档、博客文章与生活方式展示。
 
-```console
-$ hugo mod graph
-...
-```
+## 🌟 特色功能 (Features)
 
-For Docsy documentation, see [Docsy user guide][].
+- **📚 数字图书馆 (Digital Library)**
+  - 包含独立的统计看板视图，展示藏书量与热门推荐。
+  - 优化的书籍卡片布局，支持状态标记（连载中/已完结）。
 
-This Docsy Example Project is hosted on [Netlify][] at [example.docsy.dev][].
-You can view deploy logs from the [deploy section of the project's Netlify
-dashboard][deploys], or this [alternate dashboard][].
+- **🏙️ 沉浸式架构演示 (Architecture Visualization)**
+  - 特有的 [LDC 架构演进之路](/html/LDC架构演进之路.html) 演示。
+  - 结合 SVG 动画与深度文章，直观展示技术架构演变。
 
-This is not an officially supported Google product. This project is currently
-maintained.
+- **🎨 生活方式 (Lifestyle)**
+  - 独立的 Lifestyle 板块，采用定制化布局。
+  - **摄影**: 瀑布流/网格展示光影瞬间。
+  - **Vlog**: 视频卡片展示生活记录。
+  - **职场**: 杂志风格的职场感悟文章。
 
-## Using the Docsy Example Project as a template
+- **💬 互动社区**
+  - 全站集成 **Giscus** 评论系统，基于 GitHub Discussions，无广告且体验流畅。
+  - 支持在技术文档、博客及生活板块进行讨论。
 
-A simple way to get started is to use this project as a template, which gives
-you a site project that is set up and ready to use. To do this:
+- **🌍 多语言架构**
+  - 原生支持中文 (zh) 与英文 (en) 双语内容切换。
 
-1. Use the dropdown for switching branches/tags to change to the **latest**
-   released tag.
+## 📂 项目结构
 
-2. Click **Use this template**.
+主要内容目录结构如下：
 
-3. Select a name for your new project and click **Create repository from
-   template**.
+`	ext
+content/
+├── zh/                     # 中文内容根目录
+│   ├── blog/              # 技术博客文章
+│   ├── docs/              # 技术书籍与文档库
+│   │   └── datacenter-arch/ # LDC架构演进系列
+│   ├── lifestyle/         # 生活方式板块
+│   │   ├── photography/   # 摄影作品
+│   │   ├── vlog/          # 视频日志
+│   │   └── workplace/     # 职场感悟
+│   └── about/             # 关于我
+└── en/                     # 英文内容根目录
+``n
+## 🚀 快速开始 (Quick Start)
 
-4. Make your own local working copy of your new repo using git clone, replacing
-   https://github.com/me/example.git with your repo’s web URL:
+### 环境要求
 
-```bash
-git clone --depth 1 https://github.com/me/example.git
-```
+- **Hugo**: 需要安装 [Hugo Extended](https://gohugo.io/installation/) 版本 (v0.110.0+)。
+- **Node.js**: 用于安装 PostCSS 等前端依赖。
+- **Go**: 用于管理 Hugo Modules。
 
-Depending on your environment you may need to adjust the top-level `module`
-settings in your project's Hugo config file, for example, by adding a proxy to
-use when downloading remote modules. You can find details of what these
-configuration settings do in the
-[Hugo modules documentation](https://gohugo.io/hugo-modules/configuration/#module-config-top-level).
+### 本地运行
 
-Once your settings are adjusted, you can edit your own versions of the site’s
-source files.
+1. **克隆仓库**
 
-If you want to do SCSS edits and want to publish these, you need to install
-`PostCSS`
+   `ash
+   git clone https://github.com/autherlj/junge-site.git
+   cd junge-site
+   ``n
+2. **安装依赖**
 
-```bash
-npm install
-```
+   `ash
+   npm install
+   ``n
+3. **启动开发服务器**
 
-## Running the website locally
+   `ash
+   hugo server
+   ``n
+   打开浏览器访问 \http://localhost:1313\ 即可预览。
 
-Building and running the site locally requires a recent `extended` version of
-[Hugo](https://gohugo.io). You can find out more about how to install Hugo for
-your environment in our
-[Getting started](https://www.docsy.dev/docs/getting-started/#prerequisites-and-installation)
-guide.
+## 🛠️ 定制说明
 
-Once you've made your working copy of the site repo, from the repo root folder,
-run:
+本项目在 Docsy 主题基础上进行了以下关键定制：
 
-```bash
-hugo server
-```
+- **Layouts**:
+  - \layouts/lifestyle/list.html\: 定制的 Lifestyle 聚合页模板。
+  - \layouts/docs/library.html\: 数字图书馆看板模板。
+  - \layouts/partials/comments.html\: Giscus 评论组件封装。
+  - \layouts/partials/hooks/body-end.html\: 自动注入评论系统的 Hook 逻辑。
 
-## Running a container locally
+- **Configuration**:
+  - 核心配置位于 \hugo.yaml\。
+  - 样式定制位于 \ssets/scss/_styles_project.scss\。
 
-You can run docsy-example inside a [Docker](https://docs.docker.com/) container,
-the container runs with a volume bound to the `docsy-example` folder. This
-approach doesn't require you to install any dependencies other than
-[Docker Desktop](https://www.docker.com/products/docker-desktop) on Windows and
-Mac, and [Docker Compose](https://docs.docker.com/compose/install/) on Linux.
+## 🤝 参与贡献
 
-1. Build the docker image
+欢迎提交 Issue 或 Pull Request 来改进内容或代码。
 
-   ```bash
-   docker-compose build
-   ```
+## 📄 版权说明
 
-1. Run the built image
-
-   ```bash
-   docker-compose up
-   ```
-
-   > NOTE: You can run both commands at once with `docker-compose up --build`.
-
-1. Verify that the service is working.
-
-   Open your web browser and type `http://localhost:1313` in your navigation
-   bar, This opens a local instance of the docsy-example homepage. You can now
-   make changes to the docsy example and those changes will immediately show up
-   in your browser after you save.
-
-### Cleanup
-
-To stop Docker Compose, on your terminal window, press **Ctrl + C**.
-
-To remove the produced images run:
-
-```bash
-docker-compose rm
-```
-
-For more information see the [Docker Compose documentation][].
-
-## Using a local Docsy clone
-
-Make sure your installed go version is `1.18` or higher.
-
-Clone the latest version of the docsy theme into the parent folder of your
-project. The newly created repo should now reside in a sibling folder of your
-site's root folder.
-
-```shell
-cd root-of-your-site
-git clone --branch v0.12.0 https://github.com/google/docsy.git ../docsy
-```
-
-Now run:
-
-```shell
-HUGO_MODULE_WORKSPACE=docsy.work hugo server --ignoreVendorPaths "**"
-```
-
-or, when using npm, prepend `local` to the script you want to invoke, e.g.:
-
-```shell
-npm run local serve
-```
-
-By using the `HUGO_MODULE_WORKSPACE` directive (either directly or via prefix
-`local` when using npm), the server now watches all files and directories inside
-the sibling directory `../docsy` , too. Any changes inside the local `docsy`
-theme clone are now immediately picked up (hot reload), you can instantly see
-the effect of your local edits.
-
-In the command above, we used the environment variable `HUGO_MODULE_WORKSPACE`
-to tell hugo about the local workspace file `docsy.work`. Alternatively, you can
-declare the workspace file inside your settings file `hugo.toml`:
-
-```toml
-[module]
-  workspace = "docsy.work"
-```
-
-Your project's `hugo.toml` file already contains these lines, the directive for
-workspace assignment is commented out, however. Remove the two trailing comment
-characters '//' so that this line takes effect.
-
-## Troubleshooting
-
-As you run the website locally, you may run into the following error:
-
-```console
-$ hugo server
-WARN 2023/06/27 16:59:06 Module "project" is not compatible with this Hugo version; run "hugo mod graph" for more information.
-Start building sites …
-hugo v0.101.0-466fa43c16709b4483689930a4f9ac8add5c9f66+extended windows/amd64 BuildDate=2022-06-16T07:09:16Z VendorInfo=gohugoio
-Error: Error building site: "C:\Users\foo\path\to\docsy-example\content\en\_index.md:5:1": failed to extract shortcode: template for shortcode "blocks/cover" not found
-Built in 27 ms
-```
-
-This error occurs if you are running an outdated version of Hugo. As of docsy
-theme version `v0.12.0`, hugo version `0.146.0` or higher is required. See this
-[section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-hugo)
-of the user guide for instructions on how to install Hugo.
-
-Or you may be confronted with the following error:
-
-```console
-$ hugo server
-
-INFO 2021/01/21 21:07:55 Using config file:
-Building sites … INFO 2021/01/21 21:07:55 syncing static files to /
-Built in 288 ms
-Error: Error building site: TOCSS: failed to transform "scss/main.scss" (text/x-scss): resource "scss/scss/main.scss_9fadf33d895a46083cdd64396b57ef68" not found in file cache
-```
-
-This error occurs if you have not installed the extended version of Hugo. See
-this
-[section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-hugo)
-of the user guide for instructions on how to install Hugo.
-
-Or you may encounter the following error:
-
-```console
-$ hugo server
-
-Error: failed to download modules: binary with name "go" not found
-```
-
-This error occurs if the `go` programming language is not available on your
-system. See this
-[section](https://www.docsy.dev/docs/get-started/docsy-as-module/installation-prerequisites/#install-go-language)
-of the user guide for instructions on how to install `go`.
-
-[alternate dashboard]: https://app.netlify.com/sites/goldydocs/deploys
-[deploys]: https://app.netlify.com/sites/docsy-example/deploys
-[Docsy user guide]: https://docsy.dev/docs
-[Docsy]: https://github.com/google/docsy
-[example.docsy.dev]: https://example.docsy.dev
-[Hugo theme module]:
-  https://gohugo.io/hugo-modules/use-modules/#use-a-module-for-a-theme
-[Netlify]: https://netlify.com
-[Docker Compose documentation]: https://docs.docker.com/compose/gettingstarted/
+本站内容采用 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) 协议进行许可。
+基于 [Docsy](https://github.com/google/docsy) 主题二次开发。

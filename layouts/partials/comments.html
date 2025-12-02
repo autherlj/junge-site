@@ -1,0 +1,32 @@
+{{ if .Site.Params.giscus.repo }}
+<div id="giscus-container" class="giscus-wrapper mt-5 pt-4 border-top">
+    <!-- 简约风格标题，与 Docsy 默认风格保持一致 -->
+    <h4 class="mb-4 text-muted fw-bold">
+        <i class="far fa-comments me-2"></i>评论
+    </h4>
+    <div class="giscus"></div>
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="{{ .Site.Params.giscus.repo }}"
+        data-repo-id="{{ .Site.Params.giscus.repoId }}"
+        data-category="{{ .Site.Params.giscus.category }}"
+        data-category-id="{{ .Site.Params.giscus.categoryId }}"
+        data-mapping="{{ default "pathname" .Site.Params.giscus.mapping }}"
+        data-reactions-enabled="{{ default "0" .Site.Params.giscus.reactionsEnabled }}"
+        data-emit-metadata="{{ default "0" .Site.Params.giscus.emitMetadata }}"
+        data-input-position="{{ default "top" .Site.Params.giscus.inputPosition }}"
+        data-theme="{{ default "light" .Site.Params.giscus.theme }}"
+        data-lang="{{ default "zh-CN" .Site.Params.giscus.lang }}"
+        crossorigin="anonymous"
+        async>
+</script>
+<!-- 自定义样式微调 Giscus iframe -->
+<style>
+    .giscus-wrapper {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    /* 尝试通过 CSS 变量微调 Giscus (如果支持) */
+    /* 注意：iframe 内部样式受跨域限制无法直接修改，主要靠 data-theme 控制 */
+</style>
+{{ end }}
