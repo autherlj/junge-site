@@ -1,0 +1,148 @@
+{{ define "main" }}
+<div class="container-fluid p-0" style="background: #f8f9fa; min-height: 100vh;">
+    <!-- Hero Section -->
+    <div class="position-relative bg-white mb-5 shadow-sm" style="overflow: hidden;">
+        <div class="container py-5">
+            <div class="row align-items-center" style="min-height: 300px;">
+                <div class="col-md-8">
+                    <h1 class="display-3 fw-bold text-dark mb-3" style="letter-spacing: -2px;">LIFESTYLE<span class="text-primary">.</span></h1>
+                    <p class="lead text-muted mb-4">记录职场进阶、光影瞬间与生活Vlog。</p>
+                    <div class="d-flex gap-3">
+                        <a href="#photography" class="btn btn-outline-dark rounded-pill px-4">摄影</a>
+                        <a href="#vlog" class="btn btn-outline-dark rounded-pill px-4">Vlog</a>
+                        <a href="#workplace" class="btn btn-outline-dark rounded-pill px-4">职场</a>
+                    </div>
+                </div>
+                <div class="col-md-4 d-none d-md-block">
+                    <i class="fas fa-camera-retro fa-10x text-light" style="transform: rotate(-15deg);"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        
+        <!-- 1. Photography Section (Masonry/Grid Style) -->
+        <div id="photography" class="mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h2 class="fw-bold m-0"><i class="fas fa-camera me-2 text-primary"></i>摄影技巧</h2>
+                <a href="/zh/lifestyle/photography/" class="text-decoration-none text-muted small">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="row g-3">
+                {{ $photos := where .Site.RegularPages "Section" "lifestyle" }}
+                {{ $photos := where $photos "File.Dir" "in" (slice "zh/lifestyle/photography/" "lifestyle/photography/") }}
+                {{ range first 3 $photos }}
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden hover-zoom">
+                        <div class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 250px; background: linear-gradient(45deg, #1a1a1a, #4a4a4a);">
+                            <i class="far fa-image fa-3x opacity-50"></i>
+                        </div>
+                        <div class="card-img-overlay d-flex flex-column justify-content-end p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                            <h5 class="card-title text-white fw-bold">{{ .Title }}</h5>
+                            <p class="card-text text-white-50 small">{{ .Description }}</p>
+                        </div>
+                        <a href="{{ .RelPermalink }}" class="stretched-link"></a>
+                    </div>
+                </div>
+                {{ else }}
+                <div class="col-12"><p class="text-muted">暂无摄影内容，请添加。</p></div>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- 2. Vlog Section (Video Card Style) -->
+        <div id="vlog" class="mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h2 class="fw-bold m-0"><i class="fas fa-video me-2 text-danger"></i>Vlog 记录</h2>
+                <a href="/zh/lifestyle/vlog/" class="text-decoration-none text-muted small">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                {{ $vlogs := where .Site.RegularPages "Section" "lifestyle" }}
+                {{ $vlogs := where $vlogs "File.Dir" "in" (slice "zh/lifestyle/vlog/" "lifestyle/vlog/") }}
+                {{ range first 2 $vlogs }}
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                        <div class="row g-0 h-100">
+                            <div class="col-md-5 bg-black d-flex align-items-center justify-content-center position-relative">
+                                <i class="fas fa-play-circle fa-4x text-white opacity-75"></i>
+                                {{ with .Params.video_duration }}
+                                <span class="position-absolute bottom-0 end-0 badge bg-dark m-2">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                    <h4 class="card-title fw-bold mb-2">{{ .Title }}</h4>
+                                    <p class="card-text text-muted small mb-3">{{ .Description }}</p>
+                                    <div class="mt-auto">
+                                        <a href="{{ .RelPermalink }}" class="btn btn-sm btn-danger rounded-pill px-3">
+                                            <i class="fas fa-play me-1"></i> Watch Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{ else }}
+                <div class="col-12"><p class="text-muted">暂无 Vlog 内容。</p></div>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- 3. Workplace Section (List/Magazine Style) -->
+        <div id="workplace" class="mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h2 class="fw-bold m-0"><i class="fas fa-briefcase me-2 text-info"></i>职场生活</h2>
+                <a href="/zh/lifestyle/workplace/" class="text-decoration-none text-muted small">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="row">
+                {{ $works := where .Site.RegularPages "Section" "lifestyle" }}
+                {{ $works := where $works "File.Dir" "in" (slice "zh/lifestyle/workplace/" "lifestyle/workplace/") }}
+                
+                <div class="col-lg-8">
+                    <div class="list-group list-group-flush shadow-sm rounded-3 bg-white">
+                        {{ range first 4 $works }}
+                        <a href="{{ .RelPermalink }}" class="list-group-item list-group-item-action p-4 border-bottom">
+                            <div class="d-flex w-100 justify-content-between mb-1">
+                                <h5 class="mb-1 fw-bold text-dark">{{ .Title }}</h5>
+                                <small class="text-muted">{{ .Date.Format "Jan 02" }}</small>
+                            </div>
+                            <p class="mb-1 text-secondary">{{ .Description }}</p>
+                            <small class="text-primary">Read Article <i class="fas fa-arrow-right ms-1"></i></small>
+                        </a>
+                        {{ else }}
+                        <div class="p-4">暂无职场内容。</div>
+                        {{ end }}
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="card border-0 bg-info bg-opacity-10 h-100 p-4 rounded-3">
+                        <h4 class="fw-bold text-info mb-3">Featured Quote</h4>
+                        <blockquote class="blockquote mb-0">
+                            <p class="fst-italic fs-5">"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work."</p>
+                            <footer class="blockquote-footer mt-2">Steve Jobs</footer>
+                        </blockquote>
+                        <div class="mt-auto pt-4 text-center">
+                             <i class="fas fa-quote-right fa-3x text-info opacity-25"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+.hover-zoom img {
+    transition: transform 0.3s ease;
+}
+.hover-zoom:hover img {
+    transform: scale(1.05);
+}
+</style>
+{{ end }}

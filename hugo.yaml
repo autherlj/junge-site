@@ -123,9 +123,9 @@ params:
     feedback:
       enable: true
       'yes': >-
-        Glad to hear it!
+        很高兴对您有帮助！
       'no': >-
-        Sorry to hear that.
+        抱歉没能帮到您。
     readingtime:
       enable: true
 

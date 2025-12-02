@@ -11,10 +11,10 @@ title: 隽戈的科技生活馆
 {{< blocks/cover title="隽戈的科技生活馆" image_anchor="top" height="full" >}}
 <p class="lead mt-5">记录技术和生活</p>
 <div class="mx-auto">
-    <a class="btn btn-lg btn-primary me-3 mb-4" href="/blog/">
+    <a class="btn btn-lg btn-primary me-3 mb-4" href="/zh/blog/">
         阅读博客 <i class="fas fa-arrow-alt-circle-right ms-2"></i>
     </a>
-    <a class="btn btn-lg btn-primary me-3 mb-4" href="/lifestyle/">
+    <a class="btn btn-lg btn-primary me-3 mb-4" href="/zh/lifestyle/">
         分享生活 <i class="fas fa-arrow-alt-circle-right ms-2 "></i>
     </a>
 </div>
