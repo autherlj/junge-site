@@ -109,6 +109,19 @@ params:
   offlineSearch: true
   prism_syntax_highlighting: false
 
+  # Giscus Comments Config
+  giscus:
+    repo: "autherlj/junge-site" # 填写你的 GitHub 仓库，例如: autherlj/junge-site
+    repoId: "R_kgDOQdVXNg" # 填写仓库 ID (R_...)
+    category: "Announcements" # 填写 Discussion 分类
+    categoryId: "DIC_kwDOQdVXNs4CzSqm" # 填写分类 ID (DIC_...)
+    mapping: "pathname"
+    reactionsEnabled: "0" # Disable reactions to save space
+    emitMetadata: "0"
+    inputPosition: "top"
+    theme: "light" # Using standard light theme which matches Docsy well
+    lang: "zh-CN"
+
   copyright:
     authors: 隽戈 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) |
     from_year: 2024
@@ -121,7 +134,7 @@ params:
     sidebar_search_disable: false
     showLightDarkModeMenu: true
     feedback:
-      enable: true
+      enable: false
       'yes': >-
         很高兴对您有帮助！
       'no': >-

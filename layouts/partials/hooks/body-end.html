@@ -1,0 +1,39 @@
+{{/* Debug Info */}}
+<script>
+  console.log('[Giscus Hook] Loaded. Section: "{{ .Section }}", IsPage: {{ .IsPage }}, IsSection: {{ .IsSection }}');
+</script>
+
+{{/* Enable comments ONLY for regular content pages (articles).
+    SPECIAL CASE: For "docs", Hugo treats _index.md (like DeepSeek intro) as a SECTION, 
+    but we want comments there because it is actual content.
+*/}}
+{{ if or .IsPage (and .IsSection (eq .Section "docs") (ne .Kind "home")) }}
+  {{ partial "comments.html" . }}
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const giscusContainer = document.getElementById('giscus-container');
+      if (giscusContainer) {
+        console.log('[Giscus Hook] Container found.');
+        
+        // Priority of selectors to inject comments into
+        // 1. .td-content: Standard Docsy content wrapper (docs, blog)
+        // 2. .container-fluid: Custom full-width layouts (lifestyle)
+        // 3. main > .container: Fallback
+        // 4. article: Fallback
+        const contentWrapper = document.querySelector('.td-content') || 
+                               document.querySelector('main .container-fluid') ||
+                               document.querySelector('main > .container') || 
+                               document.querySelector('article');
+        
+        if (contentWrapper) {
+          console.log('[Giscus Hook] Moving to:', contentWrapper.className);
+          contentWrapper.appendChild(giscusContainer);
+        } else {
+          console.warn('[Giscus Hook] Could not find content wrapper.');
+        }
+      } else {
+        console.log('[Giscus Hook] Container NOT found in DOM (check partial rendering).');
+      }
+    });
+  </script>
+{{ end }}
