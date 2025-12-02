@@ -68,6 +68,9 @@ other = "本页内容对您有帮助吗？"
 other = "有帮助"
 
 
+[feedback_negative]
+other = "没有帮助"
+
 [post_posts_in]
 other = "发布于"
 
