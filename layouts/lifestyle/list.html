@@ -1,8 +1,12 @@
 {{ define "main" }}
 <div class="container-fluid p-0" style="background: #f8f9fa; min-height: 100vh;">
     <!-- Hero Section -->
-    <div class="position-relative bg-white mb-5 shadow-sm" style="overflow: hidden;">
-        <div class="container py-5">
+    <div class="position-relative mb-5 shadow-sm hero-section" style="overflow: hidden;">
+        <!-- Background Image with Overlay -->
+        <div class="hero-bg" style="background-image: url('/images/lifestyle-backgroud.png');"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="container py-5 position-relative">
             <div class="row align-items-center" style="min-height: 300px;">
                 <div class="col-md-8">
                     <h1 class="display-3 fw-bold text-dark mb-3" style="letter-spacing: -2px;">LIFESTYLE<span class="text-primary">.</span></h1>
@@ -134,10 +138,34 @@
             </div>
         </div>
 
-    </div>
-</div>
-
 <style>
+.hero-section {
+    position: relative;
+    background-color: #fff;
+}
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9; /* 调整背景图片透明度 */
+    z-index: 0;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+    z-index: 1;
+}
+.hero-section .container {
+    z-index: 2; /* 确保内容在背景之上 */
+}
 .hover-zoom img {
     transition: transform 0.3s ease;
 }

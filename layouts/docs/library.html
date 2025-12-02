@@ -2,8 +2,12 @@
 <div class="td-content p-0">
     
     <!-- 1. 统计看板 (Dashboard) -->
-    <div class="library-dashboard mb-5 p-4 bg-white rounded-3 shadow-sm border">
-        <div class="row align-items-center">
+    <div class="library-dashboard mb-5 p-4 bg-white rounded-3 shadow-sm border position-relative overflow-hidden">
+        <!-- Dashboard Background -->
+        <div class="dashboard-bg" style="background-image: url('/images/docs-backgroud.png');"></div>
+        <div class="dashboard-overlay"></div>
+        
+        <div class="row align-items-center position-relative" style="z-index: 2;">
             <div class="col-md-8">
                 <h1 class="display-5 fw-bold mb-3 text-dark">📚 数字图书馆</h1>
                 <p class="lead text-muted mb-0">这里收录了我整理的 {{ len .Sections }} 本技术书籍和 {{ len .RegularPagesRecursive }} 篇文档。</p>
@@ -19,7 +23,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <div class="icon-square bg-light text-success flex-shrink-0 me-3 rounded-3 p-3">
+                    <div class="icon-square bg-light text-danger flex-shrink-0 me-3 rounded-3 p-3">
                         <i class="fas fa-fire fa-2x"></i>
                     </div>
                     <div>
@@ -33,6 +37,28 @@
 
     <!-- 2. 书籍卡片列表 -->
     <style>
+    /* Dashboard Background Styles */
+    .dashboard-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.75; /* Subtle background */
+        z-index: 0;
+    }
+    .dashboard-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+        z-index: 1;
+    }
+
     /* 内联样式确保卡片效果 */
     .book-card {
         border: 1px solid #f3f4f6;
@@ -87,7 +113,6 @@
                             <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="w-100 h-100" style="object-fit: cover;">
                         </div>
                     {{ else }}
-                        {{/* 默认图标模式：保持原有内边距和渐变背景 */}}
                         <div class="book-card-header">
                             {{ with .Params.params.state }}
                             <span class="badge bg-primary position-absolute top-0 start-0 m-3 shadow-sm">{{ . }}</span>
