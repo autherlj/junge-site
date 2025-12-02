@@ -1,0 +1,60 @@
+{{ define "main" -}}
+
+<div class="td-content">
+<h1>{{ .Title }}</h1>
+{{ with .Content }}{{ . }}{{ end -}}
+</div>
+{{ if (and .Parent .Parent.IsHome) -}}
+  {{ $.Scratch.Set "blog-pages" (where .Site.RegularPages "Section" .Section) -}}
+{{ else -}}
+  {{$.Scratch.Set "blog-pages" .Pages -}}
+{{ end -}}
+
+{{ if .Pages -}}
+<div class="td-blog-posts">
+  {{ $pager := .Paginate (( $.Scratch.Get "blog-pages").GroupByDate "2006" ) -}}
+  {{ range $pager.PageGroups -}}
+  <div class="h2">{{ T "post_posts_in" }} {{ .Key }}</div>
+  <ul class="td-blog-posts-list list-unstyled">
+    {{ range .Pages -}}
+    <li class="td-blog-posts-list__item mb-5">
+      <div class="td-blog-posts-list__body">
+        <h3 class="mt-0 mb-2 fw-bold"><a href="{{ .RelPermalink }}" class="text-decoration-none text-dark">{{ .Title }}</a></h3>
+        <p class="mb-2 mb-md-3"><small class="text-muted">
+          {{- .Date.Format ($.Param "time_format_blog") }} {{ T "ui_in"}} {{ .CurrentSection.LinkTitle -}}
+        </small></p>
+        <header class="article-meta mb-3">
+          {{- partial "taxonomy_terms_article_wrapper.html" . -}}
+          {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) -}}
+            {{- partial "reading-time.html" . -}}
+          {{ end -}}
+        </header>
+        
+        <div class="d-md-flex align-items-start">
+             <div class="flex-shrink-0 me-4 d-none d-md-block">
+                {{- partial "featured-image.html" (dict "p" . "w" 250 "h" 140 "class" "rounded shadow-sm") -}}
+             </div>
+             
+             <div class="flex-grow-1">
+                 <div class="p-3 bg-light rounded border-start border-4 border-primary mb-3">
+                    <p class="mb-0 text-secondary fst-italic" style="line-height: 1.6;">
+                        {{ .Description | default (.Plain | truncate 200) }}
+                    </p>
+                 </div>
+                 <a href="{{ .RelPermalink }}" class="btn btn-sm btn-outline-primary" aria-label="{{ T "ui_read_more"}} - {{ .LinkTitle }}">
+                    {{ T "ui_read_more"}}
+                 </a>
+             </div>
+        </div>
+      </div>
+    </li>
+    <hr class="my-4 opacity-25">
+    {{ end -}}
+  </ul>
+  {{ end -}}
+</div>
+<div class="td-blog-posts__pagination">
+  {{ partial "pagination.html" . -}}
+</div>
+{{- end -}}
+{{ end -}}
