@@ -62,37 +62,48 @@
                 <a href="/zh/lifestyle/vlog/" class="text-decoration-none text-muted small">View All <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <div class="row g-4">
-                {{ $vlogs := where .Site.RegularPages "Section" "lifestyle" }}
-                {{ $vlogs := where $vlogs "File.Dir" "in" (slice "zh/lifestyle/vlog/" "lifestyle/vlog/") }}
-                {{ range first 2 $vlogs }}
-                <div class="col-md-6">
-                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
-                        <div class="row g-0 h-100">
-                            <div class="col-md-5 bg-black d-flex align-items-center justify-content-center position-relative">
-                                <i class="fas fa-play-circle fa-4x text-white opacity-75"></i>
-                                {{ with .Params.video_duration }}
-                                <span class="position-absolute bottom-0 end-0 badge bg-dark m-2">{{ . }}</span>
-                                {{ end }}
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-body d-flex flex-column h-100 justify-content-center">
-                                    <h4 class="card-title fw-bold mb-2">{{ .Title }}</h4>
-                                    <p class="card-text text-muted small mb-3">{{ .Description }}</p>
-                                    <div class="mt-auto">
-                                        <a href="{{ .RelPermalink }}" class="btn btn-sm btn-danger rounded-pill px-3">
-                                            <i class="fas fa-play me-1"></i> Watch Now
-                                        </a>
+            <!-- 尝试获取 Vlog Section 的页面对象 -->
+            {{ $vlogSection := .Site.GetPage "/lifestyle/vlog" }}
+            
+            <!-- 如果找到了页面且内容不为空，则渲染内容 -->
+            {{ if and $vlogSection (ne $vlogSection.Content "") }}
+                <div class="vlog-custom-content">
+                    {{ $vlogSection.Content }}
+                </div>
+            {{ else }}
+                <!-- 原有的列表逻辑 -->
+                <div class="row g-4">
+                    {{ $vlogs := where .Site.RegularPages "Section" "lifestyle" }}
+                    {{ $vlogs := where $vlogs "File.Dir" "in" (slice "zh/lifestyle/vlog/" "lifestyle/vlog/") }}
+                    {{ range first 2 $vlogs }}
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden">
+                            <div class="row g-0 h-100">
+                                <div class="col-md-5 bg-black d-flex align-items-center justify-content-center position-relative">
+                                    <i class="fas fa-play-circle fa-4x text-white opacity-75"></i>
+                                    {{ with .Params.video_duration }}
+                                    <span class="position-absolute bottom-0 end-0 badge bg-dark m-2">{{ . }}</span>
+                                    {{ end }}
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body d-flex flex-column h-100 justify-content-center">
+                                        <h4 class="card-title fw-bold mb-2">{{ .Title }}</h4>
+                                        <p class="card-text text-muted small mb-3">{{ .Description }}</p>
+                                        <div class="mt-auto">
+                                            <a href="{{ .RelPermalink }}" class="btn btn-sm btn-danger rounded-pill px-3">
+                                                <i class="fas fa-play me-1"></i> Watch Now
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {{ else }}
+                    <div class="col-12"><p class="text-muted">暂无 Vlog 内容。</p></div>
+                    {{ end }}
                 </div>
-                {{ else }}
-                <div class="col-12"><p class="text-muted">暂无 Vlog 内容。</p></div>
-                {{ end }}
-            </div>
+            {{ end }}
         </div>
 
         <!-- 3. Workplace Section (List/Magazine Style) -->
@@ -125,10 +136,10 @@
                 
                 <div class="col-lg-4 mt-4 mt-lg-0">
                     <div class="card border-0 bg-info bg-opacity-10 h-100 p-4 rounded-3">
-                        <h4 class="fw-bold text-info mb-3">Featured Quote</h4>
+                        <h4 class="fw-bold text-info mb-3">精选箴言</h4>
                         <blockquote class="blockquote mb-0">
-                            <p class="fst-italic fs-5">"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work."</p>
-                            <footer class="blockquote-footer mt-2">Steve Jobs</footer>
+                            <p class="fst-italic fs-5">"你的工作将占据人生的大半，而唯有投身于你心中认定的伟大事业，方能获得真正的满足。"</p>
+                            <footer class="blockquote-footer mt-2">史蒂夫·乔布斯</footer>
                         </blockquote>
                         <div class="mt-auto pt-4 text-center">
                              <i class="fas fa-quote-right fa-3x text-info opacity-25"></i>
