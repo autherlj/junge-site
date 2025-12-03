@@ -1,8 +1,6 @@
----
-title: Blog
-menu: { main: { weight: 30 } }
+﻿---
+title: 博客
+linkTitle: 博客
 ---
 
-This is the **blog** section. It has two categories: News and Releases.
-
-Files in these directories will be listed in reverse chronological order.
+这里是我分享技术文章的地方。

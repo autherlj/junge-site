@@ -1,9 +1,6 @@
 ﻿---
-title: Lifestyle
-linkTitle: Lifestyle
-menu:
-  main:
-    weight: 40
+title: 生活
+linkTitle: 生活
 ---
 
-Sharing my life moments, photography, and thoughts.
+这里记录我的生活点滴、摄影作品和个人感悟。
