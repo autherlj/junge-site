@@ -2,3 +2,6 @@
 Projects can override this file. For details, see:
 https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
 */
+
+// 增加内容区域的最大宽度，防止大屏下右侧留白过多
+$td-content-max-width: 100%;

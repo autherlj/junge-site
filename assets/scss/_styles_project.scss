@@ -7,3 +7,233 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
 @import 'td/color-adjustments-dark';
 @import 'td/code-dark';
 @import 'td/gcs-search-dark';
+
+// 调整 Blog 页面正文区域宽度，减少右侧留白
+.td-blog .td-content {
+    max-width: 100% !important;
+}
+
+// 全局调整内容区的最大宽度
+.td-content {
+    max-width: 100% !important;
+}
+
+/* ==========================================================================
+   Article Visual Optimization / 文章视觉优化
+   ========================================================================== */
+
+.td-content {
+    // 1. 基础排版优化
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 1.05rem; // 稍微增大字号
+    line-height: 1.8;   // 增加行高，提升可读性
+    color: #374151;     // 使用深灰色代替纯黑，更柔和 (Dark mode下会自动调整)
+
+    p {
+        margin-bottom: 1.5em;
+        letter-spacing: 0.01em;
+        text-align: justify; // 两端对齐
+    }
+
+    // 2. 标题样式增强
+    h2 {
+        margin-top: 2.5em;
+        margin-bottom: 1em;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid #e5e7eb;
+        font-weight: 700;
+        color: #111827;
+        position: relative;
+        
+        // 左侧装饰线
+        &::before {
+            content: '';
+            position: absolute;
+            left: -1rem;
+            top: 0.2em;
+            bottom: 0.7em;
+            width: 4px;
+            background: #3b82f6; // Docsy 默认蓝色
+            border-radius: 2px;
+            opacity: 0; // 默认隐藏，视情况开启，或者用 padding-left 代替
+        }
+    }
+
+    h3 {
+        margin-top: 2em;
+        margin-bottom: 0.75em;
+        font-weight: 600;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        
+        &::before {
+            content: '#';
+            margin-right: 0.5em;
+            color: #3b82f6;
+            font-weight: 400;
+            opacity: 0.6;
+        }
+    }
+
+    h4 {
+        margin-top: 1.5em;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    // 3. 表格美化 (Modern Tables)
+    table {
+        width: 100%;
+        margin: 2rem 0;
+        border-collapse: separate; // 允许圆角
+        border-spacing: 0;
+        border-radius: 8px;
+        overflow: hidden; // 裁剪圆角
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        border: 1px solid #e5e7eb;
+        font-size: 0.95rem;
+        
+        thead {
+            background-color: #f3f4f6;
+            
+            th {
+                padding: 1rem;
+                font-weight: 600;
+                color: #111827;
+                text-align: left;
+                border-bottom: 2px solid #e5e7eb;
+                white-space: nowrap; // 表头不换行
+            }
+        }
+
+        tbody {
+            tr {
+                transition: background-color 0.2s;
+                
+                &:nth-child(even) {
+                    background-color: #f9fafb; // 隔行变色
+                }
+                
+                &:hover {
+                    background-color: #eff6ff; // 悬停高亮 (浅蓝色)
+                }
+                
+                td {
+                    padding: 1rem;
+                    border-bottom: 1px solid #e5e7eb;
+                    color: #4b5563;
+                    vertical-align: top;
+                }
+                
+                &:last-child td {
+                    border-bottom: none; // 最后一行去边框
+                }
+            }
+        }
+    }
+
+    // 4. 引用块美化 (Blockquotes)
+    blockquote {
+        margin: 2rem 0;
+        padding: 1rem 1.5rem;
+        border-left: 4px solid #3b82f6;
+        background-color: #eff6ff; // 极浅的蓝色背景
+        border-radius: 0 8px 8px 0;
+        color: #1e3a8a;
+        font-style: normal; // 取消斜体
+        
+        p {
+            margin-bottom: 0;
+            &:first-child {
+                font-weight: 500;
+            }
+        }
+    }
+
+    // 5. 列表优化
+    ul, ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+        
+        li {
+            margin-bottom: 0.5em;
+            &::marker {
+                color: #6b7280;
+            }
+        }
+    }
+
+    // 6. 图片优化
+    img {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin: 1.5rem auto;
+        display: block;
+        max-width: 100%;
+    }
+    
+    // 7. 代码块微调
+    pre {
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    }
+    
+    // 行内代码
+    :not(pre) > code {
+        color: #ef4444; // 红色高亮
+        background-color: #f3f4f6;
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+}
+
+// 针对 Dark Mode 的适配覆盖
+@media (prefers-color-scheme: dark) {
+    .td-content {
+        color: #e5e7eb;
+        
+        h2 { 
+            color: #f3f4f6; 
+            border-bottom-color: #374151;
+        }
+        h3 { color: #e5e7eb; }
+        
+        table {
+            border-color: #374151;
+            box-shadow: none;
+            
+            thead {
+                background-color: #1f2937;
+                th {
+                    color: #f3f4f6;
+                    border-bottom-color: #4b5563;
+                }
+            }
+            
+            tbody {
+                tr {
+                    &:nth-child(even) { background-color: #1f2937; }
+                    &:hover { background-color: #374151; }
+                    
+                    td {
+                        border-bottom-color: #374151;
+                        color: #d1d5db;
+                    }
+                }
+            }
+        }
+        
+        blockquote {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #93c5fd;
+        }
+        
+        :not(pre) > code {
+            background-color: #374151;
+            color: #fca5a5;
+        }
+    }
+}
