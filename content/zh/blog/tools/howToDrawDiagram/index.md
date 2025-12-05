@@ -67,7 +67,7 @@ description: "告别繁琐的绘图工具，利用 Claude/Gemini 与特定提示
 3.  **获取代码**：AI 会输出一段 SVG 或 HTML 代码。
 4.  **渲染保存**：Cherry Studio 会自动渲染预览，直接截图或保存即可。
 
-### 🪄 核心提示词 (Prompt)
+### 核心提示词 (Prompt)
 
 复制以下 Prompt，将 `<此处替换为系统描述>` 替换为你实际的业务内容：
 
@@ -106,7 +106,8 @@ Cherry Studio示例：
 
 如果你用**Cherry Studio**可以直接**复制**/**下载**图片用于 PPT 汇报绝对吸睛！
 
-![alt text](image-5.png)
+![复制下载](image-5.png)
+
 ---
 
 ## 💡 总结
