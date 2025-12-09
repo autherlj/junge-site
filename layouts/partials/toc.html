@@ -1,6 +1,7 @@
 {{ if .Params.toc | default true }}
 <div class="td-toc">
-  <!-- 页面信息模块 (模仿 Jimmy Song 样式) -->
+
+  {{ if and .IsPage (not .IsSection) }}
   <div class="td-page-meta ms-2 pb-3 mb-3 border-bottom">
     <h5 class="mb-3 text-primary fw-bold"><i class="far fa-list-alt me-2"></i>页面信息</h5>
     <ul class="list-unstyled text-muted" style="font-size: 0.9rem; line-height: 1.8;">
@@ -30,6 +31,7 @@
       {{ end }}
     </ul>
   </div>
+  {{ end }}
 
   <!-- 原生目录导航 -->
   <div class="td-toc-content">

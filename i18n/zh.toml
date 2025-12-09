@@ -89,3 +89,6 @@ other = "收录于"
 
 [post_reading_time]
 other = "分钟阅读"
+
+[toc_on_this_page]
+other = "内容导航"
