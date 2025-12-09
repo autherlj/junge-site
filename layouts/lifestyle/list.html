@@ -2,23 +2,20 @@
 <div class="container-fluid p-0" style="background: #f8f9fa; min-height: 100vh;">
     <!-- Hero Section -->
     <div class="position-relative mb-5 shadow-sm hero-section" style="overflow: hidden;">
-        <!-- Background Image with Overlay -->
-        <div class="hero-bg" style="background-image: url('/images/lifestyle-backgroud.png');"></div>
+        <!-- Background Image with Overlay (Lazy Loaded) -->
+        <div class="hero-bg lazy-bg" data-bg-src="/images/lifestyle-backgroud.png"></div>
         <div class="hero-overlay"></div>
         
         <div class="container py-5 position-relative">
-            <div class="row align-items-center" style="min-height: 300px;">
-                <div class="col-md-8">
+            <div class="row align-items-center justify-content-center" style="min-height: 300px;">
+                <div class="col-12 text-center">
                     <h1 class="display-3 fw-bold text-dark mb-3" style="letter-spacing: -2px;">LIFESTYLE<span class="text-primary">.</span></h1>
                     <p class="lead text-muted mb-4">记录职场进阶、光影瞬间与生活Vlog。</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex gap-3 justify-content-center">
                         <a href="#photography" class="btn btn-outline-dark rounded-pill px-4">摄影</a>
                         <a href="#vlog" class="btn btn-outline-dark rounded-pill px-4">Vlog</a>
                         <a href="#workplace" class="btn btn-outline-dark rounded-pill px-4">职场</a>
                     </div>
-                </div>
-                <div class="col-md-4 d-none d-md-block">
-                    <i class="fas fa-camera-retro fa-10x text-light" style="transform: rotate(-15deg);"></i>
                 </div>
             </div>
         </div>
@@ -184,4 +181,31 @@
     transform: scale(1.05);
 }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyBackgrounds = [].slice.call(document.querySelectorAll(".lazy-bg"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyBackgroundObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyBackground = entry.target;
+                    lazyBackground.style.backgroundImage = 'url(' + lazyBackground.dataset.bgSrc + ')';
+                    lazyBackgroundObserver.unobserve(lazyBackground);
+                }
+            });
+        });
+
+        lazyBackgrounds.forEach(function(lazyBackground) {
+            lazyBackgroundObserver.observe(lazyBackground);
+        });
+    } else {
+        // Fallback for older browsers
+        lazyBackgrounds.forEach(function(lazyBackground) {
+             lazyBackground.style.backgroundImage = 'url(' + lazyBackground.dataset.bgSrc + ')';
+        });
+    }
+});
+</script>
 {{ end }}

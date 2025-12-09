@@ -1,0 +1,108 @@
+<footer class="bg-light text-secondary py-5 d-print-none border-top" style="font-size: 0.9rem;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- Column 1: Navigation -->
+      <div class="col-6 col-md-2 mb-4">
+        <h6 class="fw-bold text-dark mb-3 text-uppercase"><i class="fas fa-compass me-2 text-primary"></i>导航</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{{ "about/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">关于我</a></li>
+          <li class="mb-2"><a href="{{ "docs/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">图书</a></li>
+          <li class="mb-2"><a href="{{ "blog/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">博客</a></li>
+          <li class="mb-2"><a href="{{ "lifestyle/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">生活</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Active Communities -->
+      <div class="col-6 col-md-2 mb-4">
+        <h6 class="fw-bold text-dark mb-3 text-uppercase"><i class="fas fa-users me-2 text-success"></i>活跃社区</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary hover-primary">高效运维社区</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary hover-primary">HAMI 社区</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary hover-primary">Xinference 社区</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary hover-primary">CNCF 云原生西南</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-secondary hover-primary">ArkSphere AI 社区</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Featured Content -->
+      <div class="col-6 col-md-3 mb-4">
+        <h6 class="fw-bold text-dark mb-3 text-uppercase"><i class="fas fa-star me-2 text-warning"></i>精选内容</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="{{ "docs/datacenter-arch/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">数据中心-架构演进</a></li>
+          <li class="mb-2"><a href="{{ "blog/tech/GPUandASIC/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">AI 赋能架构图生成</a></li>
+          <li class="mb-2"><a href="{{ "blog/tech/vllmOnK8s/" | relLangURL }}" class="text-decoration-none text-secondary hover-primary">K8s 部署 vLLM</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Build Tech -->
+      <div class="col-6 col-md-2 mb-4">
+        <h6 class="fw-bold text-dark mb-3 text-uppercase"><i class="fas fa-bolt me-2 text-info"></i>构建技术</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <a href="https://codeium.com/windsurf" target="_blank" class="text-decoration-none text-secondary hover-primary">
+              Windsurf
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://github.com/" target="_blank" class="text-decoration-none text-secondary hover-primary">
+              GitHub
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://gohugo.io/" target="_blank" class="text-decoration-none text-secondary hover-primary">
+              Hugo
+            </a>
+          </li>
+          <li class="mb-2">
+            <a href="https://www.cloudflare.com/" target="_blank" class="text-decoration-none text-secondary hover-primary">
+              Cloudflare
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Follow Me -->
+      <div class="col-12 col-md-3 mb-4 text-md-start">
+        <h6 class="fw-bold text-dark mb-3 text-uppercase"><i class="fas fa-heart me-2 text-danger"></i>关注我</h6>
+        <div class="d-flex align-items-center align-items-md-start flex-column">
+            <span class="mb-2 small">微信公众号</span>
+            <div class="bg-white p-1 border rounded">
+                <img src="/images/mycode.png" alt="WeChat QR Code" width="100" height="100" class="d-block">
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Copyright Section -->
+    <div class="row mt-4 pt-4 border-top text-center text-muted small">
+       <div class="col-12">
+            <p class="mb-2">
+              {{ with .Site.Params.copyright }}
+                {{ .authors | markdownify }} 
+                {{ if .from_year }}
+                  &copy; {{ .from_year }}-{{ now.Format "2006" }}
+                {{ else }}
+                  &copy; {{ now.Format "2006" }}
+                {{ end }}
+              {{ end }}
+            </p>
+            <p class="mb-0">
+              {{ with .Site.Params.privacy_policy }}
+                <a class="text-decoration-none text-muted hover-primary" href="{{ . }}" target="_blank">{{ T "footer_privacy_policy" }}</a>
+              {{ end }}
+              {{ if .Site.Params.ui.feedback.enable }}
+                 <span class="mx-2">|</span> <a class="text-decoration-none text-muted hover-primary" href="mailto:{{ .Site.Params.links.user.email }}?subject=Feedback">反馈</a>
+              {{ end }}
+              <span class="mx-2">|</span> 内容遵循 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" class="text-decoration-none text-muted hover-primary">CC BY 4.0</a>
+            </p>
+       </div>
+    </div>
+  </div>
+  
+  <style>
+    .hover-primary:hover {
+        color: #0d6efd !important;
+        text-decoration: underline !important;
+    }
+  </style>
+</footer>
