@@ -37,3 +37,19 @@
     });
   </script>
 {{ end }}
+
+{{/* Image Zoom Effect (Medium Zoom) */}}
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Select images in content areas, excluding those inside links
+    const images = document.querySelectorAll('.td-content img:not(a img), .blog-post img:not(a img), main img:not(a img)');
+    
+    // Initialize medium-zoom
+    mediumZoom(images, {
+      margin: 24,
+      background: 'rgba(0, 0, 0, 0.8)', // Dark background for better focus
+      scrollOffset: 0
+    });
+  });
+</script>
