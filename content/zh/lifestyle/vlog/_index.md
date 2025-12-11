@@ -112,7 +112,7 @@ type: "lifestyle"
   <div class="vlog-card">
     <div class="vlog-image-wrapper">
       <!-- 使用绝对路径确保图片加载正确，假设 content/zh 映射到 /zh -->
-      <img src="/zh/lifestyle/vlog/images1.png" alt="Vlog 1封面">
+      <img src="/zh/lifestyle/vlog/images1.webp" alt="Vlog 1封面">
     </div>
     <div class="vlog-content">
       <h3 class="vlog-title">云原生社区成都站</h3>
@@ -123,7 +123,7 @@ type: "lifestyle"
   <!-- 卡片 2 -->
   <div class="vlog-card">
     <div class="vlog-image-wrapper">
-      <img src="/zh/lifestyle/vlog/images2.png" alt="Vlog 2封面">
+      <img src="/zh/lifestyle/vlog/images2.webp" alt="Vlog 2封面">
     </div>
     <div class="vlog-content">
       <h3 class="vlog-title">CICD Meeting in Singapore</h3>
@@ -134,7 +134,7 @@ type: "lifestyle"
   <!-- 卡片 3 -->
   <div class="vlog-card">
     <div class="vlog-image-wrapper">
-      <img src="/zh/lifestyle/vlog/images3.png" alt="Vlog 3封面">
+      <img src="/zh/lifestyle/vlog/images3.webp" alt="Vlog 3封面">
     </div>
     <div class="vlog-content">
       <h3 class="vlog-title">XCOPS智能运维 广州</h3>
