@@ -1,5 +1,6 @@
 ---
 title: "Kubernetes上部署vLLM"
+slug: "vllmOnK8s"
 date: 2025-12-01
 description: "vLLM是一个专为大语言模型推理设计的高性能服务框架，其核心优势在于创新的PagedAttention技术，能够显著提升GPU内存利用率和推理吞吐量。通过Docker容器化封装，vLLM实现了环境标准化和依赖隔离，而Kubernetes部署则进一步带来了..."
 ---

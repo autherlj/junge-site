@@ -1,5 +1,6 @@
 ---
 title: "AI 赋能：如何用 Claude 瞬间生成专业级系统架构图"
+slug: "howToDrawDiagram"
 date: 2025-12-05T14:33:10+08:00
 description: "告别繁琐的绘图工具，利用 Claude/Gemini 与特定提示词，一键生成美观、专业的系统架构 SVG/HTML 图表，让技术汇报与架构设计事半功倍。"
 ---

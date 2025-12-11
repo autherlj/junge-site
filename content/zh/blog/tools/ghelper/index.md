@@ -1,5 +1,6 @@
 ---
 title: "Ghelper 使用流程指导"
+slug: "ghelper"
 date: 2025-12-01
 description: "Ghelper 是一个专门为科研、外贸、开发人员服务的上网加速工具，本文介绍其安装和使用流程。"
 ---
