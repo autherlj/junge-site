@@ -1,11 +1,11 @@
 ---
-title: "DeepSeek 与 AI 幻觉"
-linkTitle: "DeepSeek-幻觉局限性"
+title: "金融行业Agent百景图"
+linkTitle: "金融行业Agent百景图"
 weight: 14
-description: "清华大学第五弹：深入理解大模型的局限性与 AI 幻觉。"
-date: 2024-02-05
+description: "阿里云100个金融场景Agent百景图"
+date: 2025-11-04
 params:
-  author: "清华大学"
+  author: "阿里云-张翅"
   state: "PDF 电子书"
   cover_icon: "fas fa-exclamation-triangle"
 toc: false
@@ -139,9 +139,9 @@ nav[aria-label="breadcrumb"] .breadcrumb {
 </style>
 
 {{< pdf-reader 
-    title="DeepSeek 与 AI 幻觉" 
-    desc="清华大学出品 · 第五弹" 
-    file="/books/清华大学第五弹：DeepSeek与AI幻觉.pdf" 
+    title="金融行业Agent百景图" 
+    desc="阿里出品 · 金融行业Agent百景图" 
+    file="/books/金融行业Agent百景图.pdf" 
     icon="fas fa-exclamation-triangle" 
     iconColor="text-warning" 
 >}}

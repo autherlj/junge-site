@@ -137,21 +137,10 @@ nav[aria-label="breadcrumb"] .breadcrumb {
 }
 </style>
 
-<div class="alert alert-light border shadow-sm mb-4">
-    <div class="d-flex align-items-center">
-        <div class="flex-shrink-0 text-primary me-3">
-            <i class="fas fa-briefcase fa-3x"></i>
-        </div>
-        <div class="flex-grow-1">
-            <h5 class="alert-heading fw-bold mb-1">DeepSeek 赋能职场</h5>
-            <p class="mb-0 text-muted small">清华大学出品 · 第二弹</p>
-        </div>
-        <div class="flex-shrink-0 ms-3">
-            <a href="/books/清华大学第二弹：DeepSeek赋能职场.pdf" class="btn btn-primary" target="_blank" download>
-                <i class="fas fa-download me-2"></i>下载 PDF
-            </a>
-        </div>
-    </div>
-</div>
-
-<embed src="/books/清华大学第二弹：DeepSeek赋能职场.pdf" type="application/pdf" width="100%" height="1000px" class="border rounded shadow-sm" />
+{{< pdf-reader 
+    title="DeepSeek 赋能职场" 
+    desc="清华大学出品 · 第二弹" 
+    file="/books/清华大学第二弹：DeepSeek赋能职场.pdf" 
+    icon="fas fa-briefcase" 
+    iconColor="text-primary" 
+>}}

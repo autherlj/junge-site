@@ -138,21 +138,10 @@ nav[aria-label="breadcrumb"] .breadcrumb {
 }
 </style>
 
-<div class="alert alert-light border shadow-sm mb-4">
-    <div class="d-flex align-items-center">
-        <div class="flex-shrink-0 text-warning me-3">
-            <i class="fas fa-exclamation-triangle fa-3x"></i>
-        </div>
-        <div class="flex-grow-1">
-            <h5 class="alert-heading fw-bold mb-1">DeepSeek 与 AI 幻觉</h5>
-            <p class="mb-0 text-muted small">清华大学出品 · 第五弹</p>
-        </div>
-        <div class="flex-shrink-0 ms-3">
-            <a href="/books/清华大学第五弹：DeepSeek与AI幻觉.pdf" class="btn btn-primary" target="_blank" download>
-                <i class="fas fa-download me-2"></i>下载 PDF
-            </a>
-        </div>
-    </div>
-</div>
-
-<embed src="/books/清华大学第五弹：DeepSeek与AI幻觉.pdf" type="application/pdf" width="100%" height="1000px" class="border rounded shadow-sm" />
+{{< pdf-reader 
+    title="DeepSeek 与 AI 幻觉" 
+    desc="清华大学出品 · 第五弹" 
+    file="/books/清华大学第五弹：DeepSeek与AI幻觉.pdf" 
+    icon="fas fa-exclamation-triangle" 
+    iconColor="text-warning" 
+>}}

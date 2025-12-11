@@ -138,21 +138,10 @@ nav[aria-label="breadcrumb"] .breadcrumb {
 }
 </style>
 
-<div class="alert alert-light border shadow-sm mb-4">
-    <div class="d-flex align-items-center">
-        <div class="flex-shrink-0 text-success me-3">
-            <i class="fas fa-chart-line fa-3x"></i>
-        </div>
-        <div class="flex-grow-1">
-            <h5 class="alert-heading fw-bold mb-1">普通人如何抓住 DeepSeek 红利</h5>
-            <p class="mb-0 text-muted small">清华大学出品 · 第三弹</p>
-        </div>
-        <div class="flex-shrink-0 ms-3">
-            <a href="/books/清华大学第三弹：普通人如何抓住DeepSeek红利.pdf" class="btn btn-primary" target="_blank" download>
-                <i class="fas fa-download me-2"></i>下载 PDF
-            </a>
-        </div>
-    </div>
-</div>
-
-<embed src="/books/清华大学第三弹：普通人如何抓住DeepSeek红利.pdf" type="application/pdf" width="100%" height="1000px" class="border rounded shadow-sm" />
+{{< pdf-reader 
+    title="普通人如何抓住 DeepSeek 红利" 
+    desc="清华大学出品 · 第三弹" 
+    file="/books/清华大学第三弹：普通人如何抓住DeepSeek红利.pdf" 
+    icon="fas fa-chart-line" 
+    iconColor="text-success" 
+>}}

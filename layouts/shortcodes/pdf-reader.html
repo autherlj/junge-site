@@ -1,0 +1,65 @@
+{{ $file := .Get "file" }}
+{{ $title := .Get "title" }}
+{{ $desc := .Get "desc" }}
+{{ $icon := .Get "icon" | default "fas fa-file-pdf" }}
+{{ $iconColor := .Get "iconColor" | default "text-danger" }}
+
+<div class="pdf-reader-container mb-5">
+    <!-- Header/Download Card -->
+    <div class="alert alert-light border shadow-sm mb-4">
+        <div class="d-flex align-items-center">
+            <div class="flex-shrink-0 {{ $iconColor }} me-3">
+                <i class="{{ $icon }} fa-3x"></i>
+            </div>
+            <div class="flex-grow-1">
+                <h5 class="alert-heading fw-bold mb-1">{{ $title }}</h5>
+                <p class="mb-0 text-muted small">{{ $desc }}</p>
+            </div>
+            <div class="flex-shrink-0 ms-3">
+                <a href="{{ $file }}" class="btn btn-primary" target="_blank" download>
+                    <i class="fas fa-download me-2"></i>下载 PDF
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lazy Load Container -->
+    <!-- We use a unique ID based on a random number or just rely on `this` in the handler -->
+    <div class="pdf-viewer-placeholder border rounded shadow-sm d-flex justify-content-center align-items-center bg-light" 
+         style="height: 600px; cursor: pointer; transition: all 0.2s ease;"
+         onmouseover="this.style.backgroundColor='#f8f9fa'"
+         onmouseout="this.style.backgroundColor='#fff'"
+         onclick="loadPdf(this, '{{ $file }}')">
+        <div class="text-center">
+            <div class="mb-3 text-primary">
+                <i class="fas fa-book-reader fa-4x opacity-50"></i>
+            </div>
+            <h4 class="text-dark fw-bold">点击在线阅读</h4>
+            <p class="text-muted mb-4">文件较大，点击加载预览</p>
+            <button class="btn btn-outline-primary px-4 rounded-pill">
+                <i class="fas fa-eye me-2"></i>立即加载
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+if (typeof window.loadPdf !== 'function') {
+    window.loadPdf = function(element, url) {
+        // Create the embed element
+        var embed = document.createElement('embed');
+        embed.src = url;
+        embed.type = 'application/pdf';
+        embed.width = '100%';
+        embed.height = '1000px';
+        embed.className = 'border rounded shadow-sm';
+        
+        // Optional: Add loading spinner while embed loads? 
+        // PDF embeds are tricky to hook into for "onload", 
+        // so we just replace immediately.
+        
+        // Replace the placeholder
+        element.replaceWith(embed);
+    }
+}
+</script>
