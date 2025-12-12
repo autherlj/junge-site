@@ -141,7 +141,7 @@ nav[aria-label="breadcrumb"] .breadcrumb {
 {{< pdf-reader 
     title="金融行业Agent百景图" 
     desc="阿里出品 · 金融行业Agent百景图" 
-    file="/books/金融行业Agent百景图.pdf" 
+    file="/books/金融行业Agent百景图_compressed.pdf" 
     icon="fas fa-exclamation-triangle" 
     iconColor="text-warning" 
 >}}
