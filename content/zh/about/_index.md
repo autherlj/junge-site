@@ -295,9 +295,9 @@ text-align: left;
 
 <div class="mb-4">
 <h5 class="fw-bold">下一代智能运维体系 (AIOps)</h5>
-<div class="text-muted mb-2 small">Dify / LLM Application / Intelligent Operations</div>
+<div class="text-muted mb-2 small">Dify / OpenClaw / n8n / LLM Application / Intelligent Operations</div>
 <p class="project-item">
-探索 <strong>LLM</strong> 在运维领域的深度应用，基于 <strong>Dify</strong> 框架落地智能运维场景。实现了日志智能归因分析、系统故障自动诊断及自助式运维客服，构建了从被动响应到主动治理的 <strong>AIOps</strong> 闭环体系，有效降低了运维人力成本。
+探索 <strong>LLM</strong> 在运维领域的深度应用，基于 <strong>Dify</strong> + <strong>OpenClaw</strong> + <strong>n8n</strong> 框架落地智能运维场景。实现了日志智能归因分析、系统故障自动诊断及自助式运维客服，构建了从被动响应到主动治理的 <strong>AIOps</strong> 闭环体系，有效降低了运维人力成本。
 </p>
 </div>
 </div>
