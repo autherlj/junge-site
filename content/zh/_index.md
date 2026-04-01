@@ -20,7 +20,7 @@ title: 隽戈的科技生活馆
 </div>
 {{< blocks/link-down color="info" >}} {{< /blocks/cover >}}
 
-{{</* visitor-counter */>}}
+<div id="visitor-counter" style="text-align:center;padding:14px 0;font-size:1.1rem;color:rgba(255,255,255,0.85);background:rgba(0,0,0,0.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin:0;letter-spacing:0.5px"><span id="counter-text">🚀 正在加载访问数据...</span></div><script>!function(){var xhr=new XMLHttpRequest();xhr.open('GET','https://junge-visitor-counter.liangjun349.workers.dev',true);xhr.onreadystatechange=function(){if(4===xhr.readyState&&200===xhr.status){try{var d=JSON.parse(xhr.responseText);document.getElementById('counter-text').textContent='🚀 已陪伴 '+d.formatted+' 位访客走过旅途'}catch(e){document.getElementById('counter-text').textContent='🚀 记录每一次相遇'}}else if(4===xhr.readyState&&200!==xhr.status){document.getElementById('counter-text').textContent='🚀 记录每一次相遇'}};xhr.send()}();</script>
 
 {{% blocks/lead color="primary" %}}
 欢迎来到隽戈的科技生活馆！这里是我记录技术探索、生活点滴和思考感悟的地方。
