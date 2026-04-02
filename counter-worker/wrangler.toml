@@ -1,0 +1,7 @@
+name = "junge-visitor-counter"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+# Umami Cloud API 配置
+UMAMI_WEBSITE_ID = "8ed4ed3c-7767-4476-8311-1c82fc83e5de"

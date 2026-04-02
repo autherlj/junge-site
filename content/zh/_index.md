@@ -20,6 +20,10 @@ title: 隽戈的科技生活馆
 </div>
 {{< blocks/link-down color="info" >}} {{< /blocks/cover >}}
 
+<div style="text-align:center; margin: 24px 0;">
+{{< visitor-counter >}}
+</div>
+
 {{% blocks/lead color="primary" %}}
 欢迎来到隽戈的科技生活馆！这里是我记录技术探索、生活点滴和思考感悟的地方。
 希望这里的内容能对你有所启发。

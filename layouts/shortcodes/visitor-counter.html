@@ -1,0 +1,114 @@
+<!-- 访客计数器徽章 -->
+<style>
+.visitor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: rgba(255,255,255,0.9);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  margin: 16px 0;
+}
+
+.visitor-badge .icon {
+  font-size: 1.4em;
+}
+
+.visitor-badge .count {
+  font-size: 1.3em;
+  font-weight: 600;
+  background: linear-gradient(90deg, #00d4aa, #00a8cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.visitor-badge .label {
+  font-size: 0.95em;
+  opacity: 0.85;
+  letter-spacing: 0.3px;
+}
+
+.visitor-badge.loading .count {
+  background: rgba(255,255,255,0.3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.visitor-badge.error {
+  opacity: 0.7;
+}
+
+.visitor-badge .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 576px) {
+  .visitor-badge {
+    padding: 10px 18px;
+    font-size: 0.9em;
+  }
+}
+</style>
+
+<div class="visitor-badge loading" id="visitor-counter">
+  <span class="icon">🚀</span>
+  <span class="count"><span class="spinner"></span></span>
+  <span class="label">位访客已到访</span>
+</div>
+
+<script>
+(function() {
+  var COUNTER_API = 'https://junge-visitor-counter.liangjun349.workers.dev';
+
+  function updateCounter() {
+    var badge = document.getElementById('visitor-counter');
+    
+    fetch(COUNTER_API)
+      .then(function(response) {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(function(data) {
+        badge.classList.remove('loading');
+        var countEl = badge.querySelector('.count');
+        countEl.textContent = data.formatted || '0';
+        
+        var labelEl = badge.querySelector('.label');
+        if (data.visitors > 0) {
+          labelEl.textContent = '位访客已到访';
+        } else {
+          labelEl.textContent = '位访客已到访';
+        }
+      })
+      .catch(function(error) {
+        badge.classList.remove('loading');
+        badge.classList.add('error');
+        var countEl = badge.querySelector('.count');
+        countEl.textContent = '—';
+        console.log('Visitor counter error:', error);
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateCounter);
+  } else {
+    updateCounter();
+  }
+})();
+</script>
