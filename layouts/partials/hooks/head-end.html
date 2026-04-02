@@ -6,7 +6,120 @@ a[href*="/print/"],
 a[href*="print"] {
     display: none !important;
 }
+
+/* 访客计数器徽章样式 */
+.visitor-badge-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  margin-left: 12px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  vertical-align: middle;
+}
+
+.visitor-badge-nav .icon {
+  font-size: 1em;
+}
+
+.visitor-badge-nav .count {
+  font-weight: 600;
+  color: #00d4aa;
+}
+
+.visitor-badge-nav.loading .count {
+  color: rgba(255,255,255,0.5);
+}
+
+.visitor-badge-nav .spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-top-color: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .visitor-badge-nav {
+    display: none;
+  }
+}
 </style>
+
+<!-- 访客计数器 - 注入到 Navbar -->
+<script>
+(function() {
+  var UMAMI_API = 'https://api.umami.is/v1/websites/8ed4ed3c-7767-4476-8311-1c82fc83e5de/stats';
+  var UMAMI_API_KEY = 'api_UQ6xvEKIl4MVN965fmtRSQFZckKS4Re7';
+
+  function createBadge() {
+    var badge = document.createElement('span');
+    badge.className = 'visitor-badge-nav loading';
+    badge.id = 'visitor-counter-nav';
+    badge.innerHTML = '' +
+      '<span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">' +
+        '<circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/>' +
+        '<path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>' +
+      '</svg></span>' +
+      '<span class="count"><span class="spinner"></span></span>' +
+    '';
+    return badge;
+  }
+
+  function updateCounter() {
+    var navbarBrand = document.querySelector('.navbar-brand__name');
+    if (!navbarBrand) return;
+    
+    var badge = document.getElementById('visitor-counter-nav');
+    if (!badge) {
+      badge = createBadge();
+      navbarBrand.appendChild(badge);
+    }
+
+    fetch(UMAMI_API + '?startAt=1577836800000&endAt=1900000000000', {
+      headers: {
+        'Accept': 'application/json',
+        'x-umami-api-key': UMAMI_API_KEY
+      }
+    })
+      .then(function(response) {
+        if (!response.ok) throw new Error('API error');
+        return response.json();
+      })
+      .then(function(data) {
+        badge.classList.remove('loading');
+        var countEl = badge.querySelector('.count');
+        if (countEl) {
+          countEl.textContent = data.visitors || 0;
+        }
+      })
+      .catch(function(error) {
+        badge.classList.remove('loading');
+        var countEl = badge.querySelector('.count');
+        if (countEl) {
+          countEl.textContent = '—';
+        }
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateCounter);
+  } else {
+    updateCounter();
+  }
+})();
+</script>
 
 <!-- Umami Analytics -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="8ed4ed3c-7767-4476-8311-1c82fc83e5de"></script>
