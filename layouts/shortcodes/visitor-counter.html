@@ -1,4 +1,4 @@
-<!-- 访客计数器徽章 -->
+<!-- 访客计数器徽章 - 直连 Umami API -->
 <style>
 .visitor-badge {
   display: inline-flex;
@@ -74,12 +74,19 @@
 
 <script>
 (function() {
-  var COUNTER_API = 'https://junge-visitor-counter.liangjun349.workers.dev';
+  // Umami Cloud API 配置
+  var UMAMI_API = 'https://api.umami.is/v1/websites/8ed4ed3c-7767-4476-8311-1c82fc83e5de/stats';
+  var UMAMI_API_KEY = 'api_UQ6xvEKIl4MVN965fmtRSQFZckKS4Re7';
 
   function updateCounter() {
     var badge = document.getElementById('visitor-counter');
     
-    fetch(COUNTER_API)
+    fetch(UMAMI_API + '?startAt=1577836800000&endAt=1900000000000', {
+      headers: {
+        'Accept': 'application/json',
+        'x-umami-api-key': UMAMI_API_KEY
+      }
+    })
       .then(function(response) {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
@@ -87,14 +94,7 @@
       .then(function(data) {
         badge.classList.remove('loading');
         var countEl = badge.querySelector('.count');
-        countEl.textContent = data.formatted || '0';
-        
-        var labelEl = badge.querySelector('.label');
-        if (data.visitors > 0) {
-          labelEl.textContent = '位访客已到访';
-        } else {
-          labelEl.textContent = '位访客已到访';
-        }
+        countEl.textContent = (data.visitors || 0).toLocaleString("zh-CN");
       })
       .catch(function(error) {
         badge.classList.remove('loading');
