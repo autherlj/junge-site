@@ -141,4 +141,15 @@ type: "lifestyle"
       <p class="vlog-desc">于花城点亮运维新视野，让智能驱动稳定，用科技守护每一次高效交付。</p>
     </div>
   </div>
+
+  <!-- 卡片 4 -->
+  <div class="vlog-card">
+    <div class="vlog-image-wrapper">
+      <img src="/zh/lifestyle/vlog/images4.webp" alt="Vlog 4封面">
+    </div>
+    <div class="vlog-content">
+      <h3 class="vlog-title">海光交流学习</h3>
+      <p class="vlog-desc">参加海光认证培训以及考试</p>
+    </div>
+  </div>
 </div>
