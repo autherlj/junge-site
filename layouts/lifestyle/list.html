@@ -36,10 +36,14 @@
                 {{ range first 3 $photos }}
                 <div class="col-md-4">
                     <div class="card border-0 shadow-sm h-100 overflow-hidden hover-zoom">
+                        {{ if .Params.cover }}
+                        <img src="{{ .Params.cover }}" alt="{{ .Title }}" class="w-100" style="height: 250px; object-fit: cover;">
+                        {{ else }}
                         <div class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 250px; background: linear-gradient(45deg, #1a1a1a, #4a4a4a);">
                             <i class="far fa-image fa-3x opacity-50"></i>
                         </div>
-                        <div class="card-img-overlay d-flex flex-column justify-content-end p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                        {{ end }}
+                        <div class="card-img-overlay d-flex flex-column justify-content-end p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
                             <h5 class="card-title text-white fw-bold">{{ .Title }}</h5>
                             <p class="card-text text-white-50 small">{{ .Description }}</p>
                         </div>
