@@ -1,0 +1,68 @@
+{{ define "main" }}
+<div class="container-fluid p-0" style="background: #f8f9fa; min-height: 100vh;">
+    
+    {{ if .Params.cover }}
+    <!-- Hero Section with Cover Image -->
+    <div class="position-relative mb-4 shadow-sm" style="overflow: hidden; min-height: 350px;">
+        <img src="{{ .Params.cover }}" alt="{{ .Title }}" class="w-100 h-100" style="object-fit: cover; position: absolute; top: 0; left: 0;">
+        <div class="position-absolute w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); top: 0; left: 0;"></div>
+        <div class="container py-5 position-relative" style="z-index: 2;">
+            <div class="row align-items-end" style="min-height: 350px;">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/zh/lifestyle/" class="text-white-50">生活</a></li>
+                            <li class="breadcrumb-item"><a href="/zh/lifestyle/workplace/" class="text-white-50">职场</a></li>
+                            <li class="breadcrumb-item text-white" aria-current="page">{{ .Title }}</li>
+                        </ol>
+                    </nav>
+                    <h1 class="fw-bold text-white mb-3" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">{{ .Title }}</h1>
+                    <p class="lead text-white mb-0" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">{{ .Description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <article class="article-container">
+                    {{ .Content }}
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.article-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.article-container h1, .article-container h2, .article-container h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+.article-container p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+.article-container ul, .article-container ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+.article-container li {
+    margin-bottom: 0.5rem;
+}
+.article-container blockquote {
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #666;
+}
+</style>
+{{ end }}
