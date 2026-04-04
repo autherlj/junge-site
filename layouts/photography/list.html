@@ -1,0 +1,85 @@
+{{ define "main" }}
+<div class="container-fluid p-0" style="background: #f8f9fa; min-height: 100vh;">
+    <!-- Hero Section with Cover Image -->
+    <div class="position-relative mb-5 shadow-sm hero-section" style="overflow: hidden;">
+        {{ if .Params.cover }}
+        <div class="hero-bg lazy-bg" data-bg-src="{{ .Params.cover }}" style="background-size: cover; background-position: center;"></div>
+        {{ else }}
+        <div class="hero-bg lazy-bg" data-bg-src="/images/lifestyle-backgroud.webp"></div>
+        {{ end }}
+        <div class="hero-overlay"></div>
+        
+        <div class="container py-5 position-relative">
+            <div class="row align-items-center justify-content-center" style="min-height: 400px;">
+                <div class="col-12 text-center">
+                    <h1 class="display-3 fw-bold text-dark mb-3" style="letter-spacing: -2px;">{{ .Title }}<span class="text-primary">.</span></h1>
+                    <p class="lead text-muted mb-4">{{ .Description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <div class="row g-3">
+            {{ $photos := where .Site.RegularPages "Section" "lifestyle" }}
+            {{ $photos := where $photos "File.Dir" "in" (slice "zh/lifestyle/photography/" "lifestyle/photography/") }}
+            {{ range $photos }}
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 overflow-hidden hover-zoom">
+                    {{ if .Params.cover }}
+                    <img src="{{ .Params.cover }}" alt="{{ .Title }}" class="w-100" style="height: 280px; object-fit: cover;">
+                    {{ else }}
+                    <div class="bg-dark text-white d-flex align-items-center justify-content-center" style="height: 280px;">
+                        <i class="far fa-image fa-3x opacity-50"></i>
+                    </div>
+                    {{ end }}
+                    <div class="card-img-overlay d-flex flex-column justify-content-end p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);">
+                        <h5 class="card-title text-white fw-bold">{{ .Title }}</h5>
+                        <p class="card-text text-white-50 small">{{ .Description }}</p>
+                    </div>
+                    <a href="{{ .RelPermalink }}" class="stretched-link"></a>
+                </div>
+            </div>
+            {{ else }}
+            <div class="col-12"><p class="text-muted">暂无摄影内容。</p></div>
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+<style>
+.hero-section {
+    position: relative;
+    background-color: #fff;
+}
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    z-index: 0;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
+    z-index: 1;
+}
+.hero-section .container {
+    z-index: 2;
+}
+.hover-zoom img {
+    transition: transform 0.3s ease;
+}
+.hover-zoom:hover img {
+    transform: scale(1.05);
+}
+</style>
+{{ end }}
