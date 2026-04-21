@@ -86,6 +86,8 @@ markup:
         block: true
     renderer:
       unsafe: true
+    extensions:
+      linkify: true
   highlight:
     style: tango
 

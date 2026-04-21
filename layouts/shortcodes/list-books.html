@@ -9,7 +9,16 @@
           {{ end }}
           <i class="fas fa-star book-star"></i>
           <div class="my-3">
-            <i class="{{ .Params.cover_icon | default "fas fa-book" }} fa-3x text-primary"></i>
+            {{ with .Params.cover_image }}
+              {{ $img := $.Page.Resources.GetMatch . }}
+              {{ if $img }}
+                <img src="{{ $img.RelPermalink }}" alt="{{ $.LinkTitle | default $.Title }}" class="book-cover-img" />
+              {{ else }}
+                <img src="{{ . | relURL }}" alt="{{ $.LinkTitle | default $.Title }}" class="book-cover-img" />
+              {{ end }}
+            {{ else }}
+              <i class="{{ .Params.cover_icon | default "fas fa-book" }} fa-3x text-primary"></i>
+            {{ end }}
           </div>
           <h3 class="book-title">{{ .LinkTitle | default .Title }}</h3>
         </div>
@@ -72,6 +81,12 @@
     text-align: center;
     position: relative;
     border-bottom: 1px solid #e5e7eb;
+}
+.book-cover-img {
+    max-height: 48px;
+    max-width: 80%;
+    width: auto;
+    object-fit: contain;
 }
 .book-tag {
     position: absolute;

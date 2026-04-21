@@ -100,26 +100,64 @@
                     {{/* 1. 获取封面图片 */}}
                     {{ $cover := .Resources.GetMatch "cover*" }}
                     {{ if not $cover }}{{ $cover = .Resources.GetMatch "*featured*" }}{{ end }}
-                    {{ if .Params.params.cover_image }}
-                        {{ $cover = .Resources.GetMatch .Params.params.cover_image }}
+                    {{ if .Params.cover_image }}
+                        {{ $cover = .Resources.GetMatch .Params.cover_image }}
                     {{ end }}
 
                     {{ if $cover }}
-                        {{/* 图片封面模式：填满整个头部，无内边距 */}}
-                        <div class="book-card-header p-0 overflow-hidden position-relative" style="background: #f8f9fa; height: 200px;">
-                            {{ with .Params.params.state }}
-                            <span class="badge bg-primary position-absolute top-0 start-0 m-3 shadow-sm" style="z-index: 10;">{{ . }}</span>
-                            {{ end }}
-                            <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="w-100 h-100" style="object-fit: cover;">
-                        </div>
+                        {{ $mode := .Params.cover_mode | default "cover" }}
+                        {{ if eq $mode "book" }}
+                            {{/* 书籍封面模式：纯 CSS 品牌文字封面 */}}
+                            <div class="book-card-header p-0 overflow-hidden position-relative" style="height: 200px; background: #0f172a; border-bottom: none; display: flex;">
+                                {{/* 书脊 */}}
+                                <div style="width: 22px; background: #e84a28; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                                    <span style="writing-mode: vertical-rl; color: #fff; font-size: 0.5rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; transform: rotate(180deg);">OpenClaw</span>
+                                </div>
+                                {{/* 封面主体 */}}
+                                <div style="flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.75rem; overflow: hidden;">
+                                    {{/* 装饰大字水印 */}}
+                                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; overflow: hidden;">
+                                        <span style="font-size: 5.5rem; font-weight: 900; color: rgba(255,255,255,0.04); letter-spacing: -0.04em; white-space: nowrap; user-select: none;">OPENCLAW</span>
+                                    </div>
+                                    {{/* 品牌文字 */}}
+                                    <div style="position: relative; z-index: 1; text-align: center; line-height: 1;">
+                                        <span style="font-size: 2rem; font-weight: 900; color: #ffffff; letter-spacing: -0.03em;">OPEN</span><span style="font-size: 2rem; font-weight: 900; color: #e84a28; letter-spacing: -0.03em;">CLAW</span>
+                                    </div>
+                                    {{/* 分隔线 */}}
+                                    <div style="position: relative; z-index: 1; width: 40px; height: 2px; background: #e84a28; margin: 0.5rem 0;"></div>
+                                    {{/* 副标题 */}}
+                                    <div style="position: relative; z-index: 1; color: rgba(255,255,255,0.55); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: center;">官方中文文档导览</div>
+                                    {{/* 标签 */}}
+                                    {{ with .Params.state }}
+                                    <span style="position: absolute; bottom: 8px; right: 8px; background: #e84a28; color: #fff; font-size: 0.6rem; font-weight: 700; padding: 2px 7px; border-radius: 3px; z-index: 10; letter-spacing: 0.04em;">{{ . }}</span>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        {{ else if eq $mode "logo" }}
+                            {{/* Logo 模式：居中显示，保持完整比例，不裁剪 */}}
+                            <div class="book-card-header p-0 overflow-hidden position-relative d-flex align-items-center justify-content-center" style="background: #ffffff; height: 200px;">
+                                {{ with .Params.state }}
+                                <span class="badge bg-primary position-absolute top-0 start-0 m-3 shadow-sm" style="z-index: 10;">{{ . }}</span>
+                                {{ end }}
+                                <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" style="max-width: 75%; max-height: 65%; object-fit: contain;">
+                            </div>
+                        {{ else }}
+                            {{/* 图片封面模式：填满整个头部，无内边距 */}}
+                            <div class="book-card-header p-0 overflow-hidden position-relative" style="background: #f8f9fa; height: 200px;">
+                                {{ with .Params.state }}
+                                <span class="badge bg-primary position-absolute top-0 start-0 m-3 shadow-sm" style="z-index: 10;">{{ . }}</span>
+                                {{ end }}
+                                <img src="{{ $cover.RelPermalink }}" alt="{{ .Title }}" class="w-100 h-100" style="object-fit: cover;">
+                            </div>
+                        {{ end }}
                     {{ else }}
                         <div class="book-card-header">
-                            {{ with .Params.params.state }}
+                            {{ with .Params.state }}
                             <span class="badge bg-primary position-absolute top-0 start-0 m-3 shadow-sm">{{ . }}</span>
                             {{ end }}
                             
                             <div class="my-2">
-                                <i class="{{ .Params.params.cover_icon | default "fas fa-book" }} fa-4x text-primary opacity-75"></i>
+                                <i class="{{ .Params.cover_icon | default "fas fa-book" }} fa-4x text-primary opacity-75"></i>
                             </div>
                         </div>
                     {{ end }}
@@ -130,7 +168,7 @@
                         
                         <div class="small text-muted mb-3 d-flex align-items-center justify-content-center">
                             {{ with .Date }}<i class="far fa-calendar-alt me-1"></i> {{ .Format "2006-01" }}{{ end }}
-                            {{ with .Params.params.author }}<span class="mx-2">·</span><i class="far fa-user me-1"></i> {{ . }}{{ end }}
+                            {{ with .Params.author }}<span class="mx-2">·</span><i class="far fa-user me-1"></i> {{ . }}{{ end }}
                         </div>
                         <p class="card-text text-secondary small mb-0 flex-grow-1 text-center" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
                             {{ .Description | default "暂无简介" }}
