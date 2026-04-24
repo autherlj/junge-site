@@ -6,9 +6,9 @@ linkTitle: 关于我
 <style>
 /* 简历风格样式 */
 .resume-container {
-max-width: 1200px; /* 增加宽度以适应侧边栏布局 */
+max-width: 1200px;
 margin: 0 auto;
-padding-top: 100px; /* 增加顶部内边距，防止被顶部导航栏遮挡 */
+padding-top: 100px;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 color: #334155;
 }
@@ -22,7 +22,7 @@ position: relative;
 font-size: 1.25rem;
 font-weight: 600;
 color: #1e293b;
-margin-bottom: 1rem;
+margin-bottom: 1.25rem;
 padding-left: 0.75rem;
 border-left: 3px solid #38bdf8;
 }
@@ -38,7 +38,7 @@ transition: all 0.3s ease;
 
 .info-card:hover {
 transform: translateY(-2px);
-box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 border-color: #38bdf8;
 }
 
@@ -63,30 +63,61 @@ font-weight: 500;
 .profile-intro {
 font-size: 0.95rem;
 color: #475569;
-line-height: 1.6;
+line-height: 1.7;
 margin-bottom: 1.5rem;
 text-align: left;
 }
 
 .skill-tag {
 display: inline-block;
-padding: 0.35rem 0.8rem;
-margin: 0 0.5rem 0.5rem 0;
+padding: 0.35rem 0.75rem;
+margin: 0.25rem 0.3rem 0.25rem 0;
 background: #fff;
 border: 1px solid #cbd5e1;
 border-radius: 6px;
-font-size: 0.85rem;
+font-size: 0.8rem;
 color: #475569;
+transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+background: #e0f2fe;
+border-color: #7dd3fc;
+color: #0284c7;
 }
 
 .skill-tag.highlight {
 background: #e0f2fe;
 border-color: #7dd3fc;
 color: #0284c7;
+font-weight: 500;
+}
+
+.skill-tag.core {
+background: #fef3c7;
+border-color: #fcd34d;
+color: #b45309;
+}
+
+.skill-category {
+margin-bottom: 1.25rem;
+}
+
+.skill-category:last-child {
+margin-bottom: 0;
+}
+
+.skill-category-title {
+font-size: 0.85rem;
+font-weight: 600;
+color: #64748b;
+margin-bottom: 0.5rem;
+text-transform: uppercase;
+letter-spacing: 0.5px;
 }
 
 .project-item {
-margin-bottom: 1rem;
+margin-bottom: 1.25rem;
 padding-left: 1rem;
 border-left: 2px solid #cbd5e1;
 }
@@ -164,6 +195,60 @@ from, to { border-color: transparent }
 50% { border-color: #38bdf8 }
 }
 
+/* 能力雷达标签 */
+.capability-tag {
+display: inline-flex;
+align-items: center;
+gap: 0.35rem;
+padding: 0.4rem 0.75rem;
+margin: 0.2rem 0.25rem 0.2rem 0;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: #fff;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 500;
+}
+
+.capability-tag.sre {
+background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.capability-tag.cloud {
+background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.capability-tag.data {
+background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.capability-tag.ml {
+background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* 链路流程样式 */
+.pipeline-flow {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: 0.5rem;
+margin: 0.75rem 0;
+}
+
+.pipeline-step {
+padding: 0.35rem 0.65rem;
+background: #fff;
+border: 1px solid #e2e8f0;
+border-radius: 6px;
+font-size: 0.8rem;
+color: #475569;
+}
+
+.pipeline-arrow {
+color: #38bdf8;
+font-weight: bold;
+font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
 .tech-typing-text {
 font-size: 1.5rem;
@@ -171,13 +256,20 @@ font-size: 1.5rem;
 .section-title {
 text-align: left;
 }
+.pipeline-flow {
+flex-direction: column;
+align-items: flex-start;
+}
+.pipeline-arrow {
+transform: rotate(90deg);
+}
 }
 </style>
 
 <div class="resume-container">
 
 <div class="row">
-<!-- 左侧栏：个人信息、技术与社区 -->
+<!-- 左侧栏：个人信息、能力雷达、技术栈 -->
 <div class="col-lg-4">
 
 <!-- 个人概况卡片 -->
@@ -187,9 +279,9 @@ text-align: left;
 <img src="me.gif" alt="隽戈" width="160" height="160" class="rounded-circle" style="border: 4px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); object-fit: cover;">
 </div>
 <h1 class="profile-name">隽戈</h1>
-<div class="profile-role">云原生架构师 / 技术博主</div>
+<div class="profile-role">云原生架构师 / SRE 工程师 / 技术博主</div>
 <div class="profile-intro">
-资深云原生技术专家，专注于大规模基础设施工程与平台架构。在金融级场景下，致力于通过 AIOps 与异构算力调度（AI Infra）推动技术栈的智能化演进，实现从传统虚拟化到云原生及大模型底座的全面转型。
+具备 <strong>SRE、云原生、可观测性、数据工程、机器学习</strong> 与平台研发的复合背景。长期专注于大规模分布式系统稳定性治理和 AIOps 平台建设，拥有较强的平台工程能力，能够独立完成 AIOps 系统的架构设计、核心模块研发与稳定性保障。
 </div>
 <div class="social-links">
 <a href="https://github.com/autherlj" target="_blank" class="btn btn-outline-dark btn-sm me-2 mb-2">
@@ -202,25 +294,82 @@ text-align: left;
 </div>
 </div>
 
-<!-- 技能栈 -->
+<!-- 核心能力雷达 -->
+<div class="resume-section">
+<h3 class="section-title">核心能力</h3>
+<div class="info-card">
+<div class="mb-3">
+<span class="capability-tag sre">🛡️ SRE 稳定性治理</span>
+<span class="capability-tag cloud">☁️ 云原生架构</span>
+</div>
+<div class="mb-3">
+<span class="capability-tag" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #5c5470;">📊 可观测性平台</span>
+<span class="capability-tag data">📐 数据工程</span>
+</div>
+<div>
+<span class="capability-tag ml">🤖 机器学习应用</span>
+<span class="capability-tag" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #5c5470;">🔧 平台研发</span>
+</div>
+</div>
+</div>
+
+<!-- 完整技术栈 -->
 <div class="resume-section">
 <h3 class="section-title">技术栈</h3>
 <div class="info-card">
-<h6 class="fw-bold mb-3">编程语言</h6>
-<div class="mb-4">
+
+<!-- 编程语言 -->
+<div class="skill-category">
+<div class="skill-category-title">编程语言</div>
 <span class="skill-tag highlight">Python</span>
-<span class="skill-tag highlight">Java</span>
-<span class="skill-tag">HTML</span>
+<span class="skill-tag highlight">Golang</span>
+<span class="skill-tag">Java</span>
 <span class="skill-tag">JavaScript</span>
+<span class="skill-tag">Terraform</span>
+<span class="skill-tag">Ansible</span>
 </div>
 
-<h6 class="fw-bold mb-3">核心领域</h6>
-<div>
-<span class="skill-tag">Kubernetes</span>
-<span class="skill-tag">AIOps</span>
-<span class="skill-tag">AI Infrastructure</span>
-<span class="skill-tag">Platform Engineering</span>
+<!-- 核心领域 -->
+<div class="skill-category">
+<div class="skill-category-title">核心领域</div>
+<span class="skill-tag core">Kubernetes</span>
+<span class="skill-tag core">AIOps</span>
+<span class="skill-tag">Prometheus</span>
+<span class="skill-tag">OpenTelemetry</span>
+<span class="skill-tag">Grafana</span>
+<span class="skill-tag">平台工程</span>
 </div>
+
+<!-- 可观测性技术 -->
+<div class="skill-category">
+<div class="skill-category-title">可观测性技术</div>
+<span class="skill-tag">Metric</span>
+<span class="skill-tag">Log</span>
+<span class="skill-tag">Trace</span>
+<span class="skill-tag">Event</span>
+<span class="skill-tag">ELK</span>
+<span class="skill-tag">Skywalking</span>
+</div>
+
+<!-- 数据与消息 -->
+<div class="skill-category">
+<div class="skill-category-title">数据与消息</div>
+<span class="skill-tag">Kafka</span>
+<span class="skill-tag">Flink</span>
+<span class="skill-tag">ClickHouse</span>
+<span class="skill-tag">Elasticsearch</span>
+</div>
+
+<!-- 工程化工具 -->
+<div class="skill-category">
+<div class="skill-category-title">工程化工具</div>
+<span class="skill-tag">Jenkins</span>
+<span class="skill-tag">GitLab CI</span>
+<span class="skill-tag">ArgoCD</span>
+<span class="skill-tag">Helm</span>
+<span class="skill-tag">Kustomize</span>
+</div>
+
 </div>
 </div>
 
@@ -245,6 +394,7 @@ text-align: left;
 <span class="skill-tag">vllm</span>
 <span class="skill-tag">sglang</span>
 <span class="skill-tag">xinference</span>
+<span class="skill-tag">OpenKruise</span>
 </div>
 </div>
 </div>
@@ -257,6 +407,34 @@ text-align: left;
 <div class="tech-header-container">
 <div class="tech-typing-wrapper">
 <div class="tech-typing-text">你好，我是隽戈。</div>
+</div>
+</div>
+
+<!-- AIOps 完整链路 -->
+<div class="resume-section">
+<h3 class="section-title">AIOps 能力链路</h3>
+<div class="info-card" style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);">
+<p class="mb-3">熟悉从多源数据接入到智能运维闭环的完整链路：</p>
+<div class="pipeline-flow">
+<span class="pipeline-step">📥 Metric / Log / Trace / Event</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">🔔 告警收敛</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">🔍 异常检测</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">🎯 根因分析</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">📈 容量预测</span>
+</div>
+<div class="pipeline-flow">
+<span class="pipeline-step">⚡ 自动化处置</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">📖 智能 Runbook</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">🧠 运维知识库</span>
+<span class="pipeline-arrow">→</span>
+<span class="pipeline-step">✅ 告警闭环</span>
+</div>
 </div>
 </div>
 
@@ -300,6 +478,15 @@ text-align: left;
 探索 <strong>LLM</strong> 在运维领域的深度应用，基于 <strong>Dify</strong> + <strong>OpenClaw</strong> + <strong>n8n</strong> 框架落地智能运维场景。实现了日志智能归因分析、系统故障自动诊断及自助式运维客服，构建了从被动响应到主动治理的 <strong>AIOps</strong> 闭环体系，有效降低了运维人力成本。
 </p>
 </div>
+
+<div class="mb-4">
+<h5 class="fw-bold">大规模可观测性平台建设</h5>
+<div class="text-muted mb-2 small">Prometheus / OpenTelemetry / Grafana / ELK / Kafka / Flink</div>
+<p class="project-item">
+主导设计并落地多租户 <strong>Prometheus + OpenTelemetry</strong> 可观测性平台，覆盖 <strong>Metric / Log / Trace / Event</strong> 全链路数据采集与分析。基于 <strong>Kafka + Flink</strong> 构建实时告警流处理引擎，实现告警收敛、异常检测与根因分析的自动化，支撑日均数十亿级指标数据的实时分析需求。
+</p>
+</div>
+
 </div>
 
 <!-- 个人兴趣 -->
