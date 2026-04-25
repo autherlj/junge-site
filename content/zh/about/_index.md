@@ -281,7 +281,9 @@ transform: rotate(90deg);
 <h1 class="profile-name">隽戈</h1>
 <div class="profile-role">云原生架构师 / SRE 工程师 / 技术博主</div>
 <div class="profile-intro">
-具备 <strong>SRE、云原生、可观测性、数据工程、机器学习</strong> 与平台研发的复合背景。长期专注于大规模分布式系统稳定性治理和 AIOps 平台建设，拥有较强的平台工程能力，能够独立完成 AIOps 系统的架构设计、核心模块研发与稳定性保障。
+具备 <strong>SRE、云原生、可观测性、数据工程、机器学习与平台研发</strong> 的复合背景。长期专注于<strong>大规模分布式系统稳定性治理</strong>和 <strong>AIOps 平台建设</strong>，熟悉从 <strong>Metric / Log / Trace / Event</strong> 多源数据接入，到<strong>告警收敛、异常检测、根因分析、容量预测、自动化处置、智能 Runbook 和运维知识库</strong>的完整链路。
+<br><br>
+拥有较强的<strong>平台工程能力</strong>，能够独立完成 AIOps 系统的<strong>架构设计、核心模块研发、数据链路建设、模型服务化、告警闭环和稳定性保障</strong>。热爱技术沉淀与分享，致力于通过影像创作与系统化知识库推动云原生与 AI 技术的普及传播。
 </div>
 <div class="social-links">
 <a href="https://github.com/autherlj" target="_blank" class="btn btn-outline-dark btn-sm me-2 mb-2">
@@ -301,14 +303,15 @@ transform: rotate(90deg);
 <div class="mb-3">
 <span class="capability-tag sre">🛡️ SRE 稳定性治理</span>
 <span class="capability-tag cloud">☁️ 云原生架构</span>
+<span class="capability-tag" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #5c5470;">📊 可观测性工程</span>
 </div>
 <div class="mb-3">
-<span class="capability-tag" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #5c5470;">📊 可观测性平台</span>
 <span class="capability-tag data">📐 数据工程</span>
-</div>
-<div>
 <span class="capability-tag ml">🤖 机器学习应用</span>
-<span class="capability-tag" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #5c5470;">🔧 平台研发</span>
+<span class="capability-tag" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); color: #5c5470;">🔧 平台工程</span>
+</div>
+<div class="mt-3 pt-3 border-top">
+<small class="text-muted">全链路 AIOps 能力覆盖：数据采集 → 智能分析 → 自动处置 → 知识沉淀</small>
 </div>
 </div>
 </div>
@@ -318,56 +321,66 @@ transform: rotate(90deg);
 <h3 class="section-title">技术栈</h3>
 <div class="info-card">
 
+<!-- 核心平台能力 -->
+<div class="skill-category">
+<div class="skill-category-title">平台工程能力</div>
+<span class="skill-tag core">AIOps 架构设计</span>
+<span class="skill-tag core">数据链路建设</span>
+<span class="skill-tag core">模型服务化</span>
+<span class="skill-tag">告警闭环</span>
+<span class="skill-tag">稳定性保障</span>
+</div>
+
+<!-- 云原生技术栈 -->
+<div class="skill-category">
+<div class="skill-category-title">云原生技术栈</div>
+<span class="skill-tag core">Kubernetes</span>
+<span class="skill-tag core">Docker</span>
+<span class="skill-tag">Helm</span>
+<span class="skill-tag">Kustomize</span>
+<span class="skill-tag">ArgoCD</span>
+<span class="skill-tag">Istio</span>
+</div>
+
+<!-- 可观测性技术 -->
+<div class="skill-category">
+<div class="skill-category-title">可观测性技术</div>
+<span class="skill-tag highlight">Prometheus</span>
+<span class="skill-tag highlight">OpenTelemetry</span>
+<span class="skill-tag highlight">Grafana</span>
+<span class="skill-tag">ELK / EFK</span>
+<span class="skill-tag">Skywalking</span>
+<span class="skill-tag">Jaeger</span>
+</div>
+
+<!-- 数据工程 -->
+<div class="skill-category">
+<div class="skill-category-title">数据工程</div>
+<span class="skill-tag core">Kafka</span>
+<span class="skill-tag core">Flink</span>
+<span class="skill-tag core">ClickHouse</span>
+<span class="skill-tag">Elasticsearch</span>
+<span class="skill-tag">Spark</span>
+</div>
+
 <!-- 编程语言 -->
 <div class="skill-category">
 <div class="skill-category-title">编程语言</div>
 <span class="skill-tag highlight">Python</span>
 <span class="skill-tag highlight">Golang</span>
 <span class="skill-tag">Java</span>
-<span class="skill-tag">JavaScript</span>
+<span class="skill-tag">Rust</span>
+</div>
+
+<!-- IaC & 自动化 -->
+<div class="skill-category">
+<div class="skill-category-title">IaC & 自动化</div>
 <span class="skill-tag">Terraform</span>
 <span class="skill-tag">Ansible</span>
-</div>
-
-<!-- 核心领域 -->
-<div class="skill-category">
-<div class="skill-category-title">核心领域</div>
-<span class="skill-tag core">Kubernetes</span>
-<span class="skill-tag core">AIOps</span>
-<span class="skill-tag">Prometheus</span>
-<span class="skill-tag">OpenTelemetry</span>
-<span class="skill-tag">Grafana</span>
-<span class="skill-tag">平台工程</span>
-</div>
-
-<!-- 可观测性技术 -->
-<div class="skill-category">
-<div class="skill-category-title">可观测性技术</div>
-<span class="skill-tag">Metric</span>
-<span class="skill-tag">Log</span>
-<span class="skill-tag">Trace</span>
-<span class="skill-tag">Event</span>
-<span class="skill-tag">ELK</span>
-<span class="skill-tag">Skywalking</span>
-</div>
-
-<!-- 数据与消息 -->
-<div class="skill-category">
-<div class="skill-category-title">数据与消息</div>
-<span class="skill-tag">Kafka</span>
-<span class="skill-tag">Flink</span>
-<span class="skill-tag">ClickHouse</span>
-<span class="skill-tag">Elasticsearch</span>
-</div>
-
-<!-- 工程化工具 -->
-<div class="skill-category">
-<div class="skill-category-title">工程化工具</div>
+<span class="skill-tag">Pulumi</span>
 <span class="skill-tag">Jenkins</span>
 <span class="skill-tag">GitLab CI</span>
-<span class="skill-tag">ArgoCD</span>
-<span class="skill-tag">Helm</span>
-<span class="skill-tag">Kustomize</span>
+<span class="skill-tag">GitHub Actions</span>
 </div>
 
 </div>
@@ -412,28 +425,14 @@ transform: rotate(90deg);
 
 <!-- AIOps 完整链路 -->
 <div class="resume-section">
-<h3 class="section-title">AIOps 能力链路</h3>
-<div class="info-card" style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);">
-<p class="mb-3">熟悉从多源数据接入到智能运维闭环的完整链路：</p>
-<div class="pipeline-flow">
-<span class="pipeline-step">📥 Metric / Log / Trace / Event</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🔔 告警收敛</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🔍 异常检测</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🎯 根因分析</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">📈 容量预测</span>
+<h3 class="section-title">AIOps 全链路能力</h3>
+<div class="info-card" style="background: #f8fafc;">
+<p class="mb-3 text-center text-muted">从多源数据接入到智能运维闭环的完整技术链路</p>
+<div class="text-center">
+<img src="aiops.png" alt="AIOps 全链路能力架构图" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
 </div>
-<div class="pipeline-flow">
-<span class="pipeline-step">⚡ 自动化处置</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">📖 智能 Runbook</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🧠 运维知识库</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">✅ 告警闭环</span>
+<div class="mt-3 pt-3 border-top text-center">
+<span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 0.5rem 1rem; border-radius: 20px;">✅ Metric / Log / Trace / Event 多源数据 → 告警闭环与稳定性保障</span>
 </div>
 </div>
 </div>
