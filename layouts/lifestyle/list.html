@@ -2,8 +2,12 @@
 <div class="container-fluid p-0" style="background: #f8f9fa; min-height: 100vh;">
     <!-- Hero Section -->
     <div class="position-relative mb-5 shadow-sm hero-section" style="overflow: hidden;">
-        <!-- Background Image with Overlay (Lazy Loaded) -->
-        <div class="hero-bg lazy-bg" data-bg-src="/images/lifestyle-backgroud.webp"></div>
+        <div class="featured-back featured-back--hologram">
+            <canvas class="featured-back__canvas" aria-hidden="true"></canvas>
+            <div class="featured-back__aurora"></div>
+            <div class="featured-back__mesh"></div>
+            <div class="featured-back__scan"></div>
+        </div>
         <div class="hero-overlay"></div>
         
         <div class="container py-5 position-relative">
@@ -153,30 +157,93 @@
 <style>
 .hero-section {
     position: relative;
-    background-color: #fff;
+    background-color: #f8fafc;
 }
-.hero-bg {
+.featured-back {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.9; /* 调整背景图片透明度 */
+    overflow: hidden;
     z-index: 0;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(232, 74, 40, 0.36), transparent 30%),
+        radial-gradient(circle at 78% 22%, rgba(37, 99, 235, 0.38), transparent 34%),
+        radial-gradient(circle at 52% 74%, rgba(14, 165, 233, 0.24), transparent 34%),
+        linear-gradient(135deg, #f6f9ff 0%, #e5edff 44%, #fff3ed 100%);
+}
+.featured-back::before,
+.featured-back::after {
+    content: "";
+    position: absolute;
+    inset: -35%;
+    pointer-events: none;
+}
+.featured-back::before {
+    background:
+        conic-gradient(from 120deg at 50% 50%, transparent 0deg, rgba(232, 74, 40, 0.22) 58deg, transparent 116deg, rgba(47, 129, 247, 0.26) 190deg, transparent 270deg);
+    filter: blur(24px);
+    opacity: 0.95;
+    animation: hologram-drift 18s ease-in-out infinite alternate;
+}
+.featured-back::after {
+    background-image:
+        linear-gradient(rgba(15, 23, 42, 0.075) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(circle at 50% 45%, #000 0%, transparent 72%);
+    opacity: 0.95;
+}
+.featured-back__canvas,
+.featured-back__aurora,
+.featured-back__mesh,
+.featured-back__scan {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.featured-back__canvas {
+    z-index: 2;
+    opacity: 1;
+}
+.featured-back__aurora {
+    z-index: 1;
+    background:
+        radial-gradient(ellipse at 30% 48%, rgba(232, 74, 40, 0.32), transparent 36%),
+        radial-gradient(ellipse at 68% 54%, rgba(14, 165, 233, 0.3), transparent 40%);
+    mix-blend-mode: multiply;
+    animation: aurora-pulse 9s ease-in-out infinite alternate;
+}
+.featured-back__mesh {
+    z-index: 3;
+    background:
+        linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.72) 42%, transparent 47%),
+        repeating-linear-gradient(100deg, transparent 0 18px, rgba(37, 99, 235, 0.09) 19px, transparent 21px);
+    opacity: 0.72;
+    transform: translateX(-18%);
+    animation: prism-sweep 11s cubic-bezier(.45, 0, .2, 1) infinite;
+}
+.featured-back__scan {
+    z-index: 4;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.78) 50%, transparent 100%);
+    height: 34%;
+    opacity: 0.5;
+    transform: translateY(-120%);
+    animation: scan-fall 7s ease-in-out infinite;
 }
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,0.18), transparent 40%),
+        linear-gradient(to bottom, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
     z-index: 1;
 }
 .hero-section .container {
-    z-index: 2; /* 确保内容在背景之上 */
+    z-index: 5;
 }
 .hover-zoom img {
     transition: transform 0.3s ease;
@@ -184,32 +251,176 @@
 .hover-zoom:hover img {
     transform: scale(1.05);
 }
+@keyframes hologram-drift {
+    from {
+        transform: rotate(-8deg) scale(1);
+    }
+    to {
+        transform: rotate(8deg) scale(1.12);
+    }
+}
+@keyframes aurora-pulse {
+    from {
+        transform: translate3d(-2%, 1%, 0) scale(1);
+        opacity: 0.68;
+    }
+    to {
+        transform: translate3d(2%, -1%, 0) scale(1.08);
+        opacity: 0.92;
+    }
+}
+@keyframes prism-sweep {
+    0%, 18% {
+        transform: translateX(-38%) skewX(-12deg);
+        opacity: 0;
+    }
+    46% {
+        opacity: 0.5;
+    }
+    72%, 100% {
+        transform: translateX(42%) skewX(-12deg);
+        opacity: 0;
+    }
+}
+@keyframes scan-fall {
+    0%, 35% {
+        transform: translateY(-130%);
+        opacity: 0;
+    }
+    52% {
+        opacity: 0.38;
+    }
+    82%, 100% {
+        transform: translateY(310%);
+        opacity: 0;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .featured-back::before,
+    .featured-back__aurora,
+    .featured-back__mesh,
+    .featured-back__scan {
+        animation: none;
+    }
+}
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    var lazyBackgrounds = [].slice.call(document.querySelectorAll(".lazy-bg"));
+    var canvas = document.querySelector(".featured-back__canvas");
+    var hero = document.querySelector(".featured-back");
 
-    if ("IntersectionObserver" in window) {
-        let lazyBackgroundObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    let lazyBackground = entry.target;
-                    lazyBackground.style.backgroundImage = 'url(' + lazyBackground.dataset.bgSrc + ')';
-                    lazyBackgroundObserver.unobserve(lazyBackground);
-                }
-            });
-        });
-
-        lazyBackgrounds.forEach(function(lazyBackground) {
-            lazyBackgroundObserver.observe(lazyBackground);
-        });
-    } else {
-        // Fallback for older browsers
-        lazyBackgrounds.forEach(function(lazyBackground) {
-             lazyBackground.style.backgroundImage = 'url(' + lazyBackground.dataset.bgSrc + ')';
-        });
+    if (!canvas || !hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
     }
+
+    var ctx = canvas.getContext("2d");
+    var pointer = { x: 0.5, y: 0.5, active: false };
+    var time = 0;
+    var width = 0;
+    var height = 0;
+    var dpr = 1;
+    var animationFrame = null;
+
+    function resize() {
+        var rect = hero.getBoundingClientRect();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = Math.max(1, rect.width);
+        height = Math.max(1, rect.height);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function field(x, y, phase) {
+        var nx = x / width - 0.5;
+        var ny = y / height - 0.5;
+        var dx = nx - (pointer.x - 0.5);
+        var dy = ny - (pointer.y - 0.5);
+        var magnetic = pointer.active ? Math.exp(-(dx * dx + dy * dy) * 9) : 0;
+
+        return Math.sin(nx * 9.5 + phase)
+            + Math.cos(ny * 8.2 - phase * 0.82)
+            + Math.sin((nx + ny) * 7.4 + phase * 0.55)
+            + magnetic * 1.8;
+    }
+
+    function drawRibbon(level, color, lineWidth, phaseOffset) {
+        var steps = 92;
+        var lines = 9;
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+
+        for (var row = 0; row < lines; row++) {
+            var yBase = height * (0.18 + row * 0.085);
+            var amplitude = height * (0.028 + row * 0.002);
+
+            ctx.beginPath();
+            for (var i = 0; i <= steps; i++) {
+                var x = width * (i / steps);
+                var f = field(x, yBase, time + phaseOffset + row * 0.24);
+                var y = yBase + (f - level) * amplitude;
+                var tilt = Math.sin(i * 0.18 + time + row) * 10;
+
+                if (i === 0) {
+                    ctx.moveTo(x, y + tilt);
+                } else {
+                    ctx.lineTo(x, y + tilt);
+                }
+            }
+            ctx.stroke();
+        }
+    }
+
+    function render() {
+        time += 0.006;
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = "source-over";
+
+        var glow = ctx.createRadialGradient(width * pointer.x, height * pointer.y, 0, width * pointer.x, height * pointer.y, width * 0.48);
+        glow.addColorStop(0, "rgba(232, 74, 40, 0.24)");
+        glow.addColorStop(0.44, "rgba(47, 129, 247, 0.16)");
+        glow.addColorStop(1, "rgba(255, 255, 255, 0)");
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.globalCompositeOperation = "multiply";
+        drawRibbon(0.15, "rgba(232, 74, 40, 0.56)", 1.45, 0);
+        drawRibbon(0.65, "rgba(37, 99, 235, 0.42)", 1.25, 1.6);
+        drawRibbon(-0.35, "rgba(15, 23, 42, 0.2)", 0.95, 3.1);
+
+        ctx.globalCompositeOperation = "screen";
+        drawRibbon(0.95, "rgba(255, 255, 255, 0.72)", 0.75, 4.2);
+
+        animationFrame = window.requestAnimationFrame(render);
+    }
+
+    hero.addEventListener("pointermove", function(event) {
+        var rect = hero.getBoundingClientRect();
+        pointer.x = (event.clientX - rect.left) / rect.width;
+        pointer.y = (event.clientY - rect.top) / rect.height;
+        pointer.active = true;
+    });
+
+    hero.addEventListener("pointerleave", function() {
+        pointer.active = false;
+    });
+
+    window.addEventListener("resize", resize);
+    resize();
+    render();
+
+    document.addEventListener("visibilitychange", function() {
+        if (document.hidden && animationFrame) {
+            window.cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+        } else if (!document.hidden && !animationFrame) {
+            render();
+        }
+    });
 });
 </script>
 {{ end }}
