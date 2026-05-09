@@ -1,5 +1,6 @@
 ---
 title: "AIOps探索：分享10个运维领域的Agent Skills"
+slug: "aiops-10agent-skills"
 date: 2026-05-09
 description: "研究AIOps大半年后，整理了10个最具实战价值的运维Agent Skills，覆盖Docker、K8s、Terraform、Ansible、CI/CD到SRE和故障复盘"
 categories: ["技术", "AI实践"]

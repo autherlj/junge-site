@@ -1,5 +1,6 @@
 ---
 title: "让AI帮你写技术博客：我摸索出的最佳实践"
+slug: "ai-blogging-workflow"
 date: 2026-04-04
 description: "通过OpenClaw SKILL系统，展示如何用AI工作流提升博客发布效率"
 categories: ["技术", "效率工具"]

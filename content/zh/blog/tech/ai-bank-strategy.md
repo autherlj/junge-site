@@ -1,5 +1,6 @@
 ---
 title: "微众银行的AI原生银行战略：800+智能体背后，基础设施才是隐形战场"
+slug: "ai-bank-strategy-800-agents"
 date: 2026-04-05
 description: "为什么大多数银行的AI战略合作只停留在PR稿？差距不在AI本身，在基础设施。"
 categories: ["技术", "AI实践"]
