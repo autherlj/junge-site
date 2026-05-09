@@ -96,6 +96,8 @@ cover: "/images/blog/aiops-10agent-skills-cover.jpg"
 
 今天这篇文章给大家整理了 10 个运维领域里非常实用的 Skills。
 
+![10个运维 Agent Skills 概览](article-header.jpg)
+
 ---
 
 ## 一、Docker
@@ -116,6 +118,8 @@ cover: "/images/blog/aiops-10agent-skills-cover.jpg"
 
 <div class="highlight-box">
 **用法示例：** "这是我的 Node.js 项目结构，请帮我写一个生产可用的 Dockerfile，并解释每一行作用。" 或者 "这个 Dockerfile 构建太慢，帮我优化一下，要求镜像尽量小、不要用 root 用户运行。"
+
+![Docker Agent Skill 界面示意](docker-screenshot.png)
 </div>
 
 ---
