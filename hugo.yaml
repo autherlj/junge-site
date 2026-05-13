@@ -1,6 +1,8 @@
 baseURL: /
 title: 隽戈的科技生活馆
 
+timezone: Asia/Shanghai
+
 # Language settings
 defaultContentLanguage: zh
 defaultContentLanguageInSubdir: true
