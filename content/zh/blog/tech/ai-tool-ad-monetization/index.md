@@ -256,6 +256,8 @@ cover: "/images/blog/ai-tool-ad-monetization-cover.jpg"
 
 这是独立开发者圈子里一个被反复验证的模式。过去你至少需要掌握 HTML/CSS/JavaScript 和服务器部署才能起步，现在有了 AI 编程助手，门槛被压缩到了"会打字就行"。本文从技术实践角度，拆解从 0 到 1 的完整链路。
 
+![AI工具+广告变现的模式概念图](ai-tool-ad-concept.jpg)
+
 <div class="section-divider">
   <span class="dot"></span>
   <span class="line"></span>
@@ -310,6 +312,8 @@ cover: "/images/blog/ai-tool-ad-monetization-cover.jpg"
 | **通义灵码** | 阿里云 | 中文支持好，深度集成 VS Code/JetBrains | 有一定基础后进阶 |
 | **腾讯云 AI 代码助手** | 腾讯 | 与微信小程序开发无缝衔接 | 想做小程序版本时 |
 
+![AI编程的隐藏代价——效率与成长的权衡](ai-coding-infographic.jpg)
+
 ### 实操演示：做一个文字转语音工具
 
 打开 MarsCode，用中文直接提需求：
@@ -351,6 +355,8 @@ HTML 在本地只是文件，放到公网上才是产品。
 | **腾讯云 CloudBase** | 有免费额度 | ✅ 快 | 国内用户为主，推荐首选 |
 | **GitHub Pages + Cloudflare** | 完全免费 | ⚠️ 需备案 | 练手/海外用户 |
 | **微信小程序** | 个人免费注册 | ✅ 流量池大 | 已验证网页版后复制 |
+
+![腾讯云 CloudBase 静态网站托管示意](cloudbase-deploy.jpg)
 
 ### 腾讯云 CloudBase 部署流程
 
