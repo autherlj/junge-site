@@ -287,7 +287,7 @@ Mesos、Docker Swarm 逐渐退场，不是因为它们的技术不好，而是�
 
 所以 **vLLM、Ray、TensorRT-LLM、SGLang、Triton** 正在崛起。它们解决的问题，已经不是传统 Kubernetes 最擅长的问题。
 
-![基础设施演进](infra-evolution.jpg)
+![IT 基础设施全景架构](infra-architecture-overview.jpg)
 
 <div class="section-divider">
   <span class="line"></span>
