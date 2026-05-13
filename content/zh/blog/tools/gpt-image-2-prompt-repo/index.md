@@ -1,5 +1,5 @@
 ---
-title: "GPT Image 2 提示词仓库，我只推荐这一个"
+title: "1.8k Star 的 GPT Image 2 提示词仓库，7 个能直接抄的 prompt"
 slug: "gpt-image-2-prompt-repo"
 date: 2026-05-13
 description: "GitHub 上一个 1.8k Star 的 GPT Image 2 提示词仓库，每条 prompt 都是能直接交稿的水平。附 7 个精选 prompt 案例与改造思路。"
