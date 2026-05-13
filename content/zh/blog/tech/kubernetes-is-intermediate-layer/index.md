@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes 是时代中间层，不是最终答案"
+title: "Web Infra vs AI Infra：K8s 擅长的事正在被重新定义"
 slug: "kubernetes-is-intermediate-layer"
 date: 2026-05-13
 description: "从基础设施演进脉络看，Kubernetes 更像是虚拟化到 AI Native 之间的过渡层。AI Infra 正在打破 K8s Everything 的格局，未来的增长点在 AI Gateway、GPU Scheduler、Inference Fabric 之上。"
