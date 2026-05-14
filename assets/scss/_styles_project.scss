@@ -366,6 +366,97 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
             }
         }
     }
+
+    .td-content,
+    .td-main,
+    .td-blog-posts,
+    .td-sidebar,
+    main {
+        color: #e5e7eb;
+    }
+
+    .td-content .text-dark,
+    .td-main .text-dark,
+    .td-blog-posts .text-dark,
+    main .text-dark {
+        color: #f8fafc !important;
+    }
+
+    .td-content .text-muted,
+    .td-main .text-muted,
+    .td-blog-posts .text-muted,
+    main .text-muted {
+        color: #cbd5e1 !important;
+    }
+
+    .td-content .text-secondary,
+    .td-main .text-secondary,
+    .td-blog-posts .text-secondary,
+    main .text-secondary {
+        color: #d1d5db !important;
+    }
+
+    .td-content .bg-white,
+    .td-content .bg-light,
+    .td-main .bg-white,
+    .td-main .bg-light,
+    .td-blog-posts .bg-white,
+    .td-blog-posts .bg-light,
+    main .bg-white,
+    main .bg-light {
+        background-color: #1f2937 !important;
+        color: #e5e7eb;
+    }
+
+    .td-content .card,
+    .td-main .card,
+    .td-blog-posts .card,
+    main .card,
+    .td-content .list-group,
+    .td-main .list-group,
+    main .list-group,
+    .td-content .list-group-item,
+    .td-main .list-group-item,
+    main .list-group-item,
+    .book-card,
+    .library-dashboard {
+        background-color: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #e5e7eb;
+    }
+
+    .card-body,
+    .list-group-item,
+    .book-card,
+    .library-dashboard,
+    .td-blog-posts-list__body {
+        color: #e5e7eb;
+    }
+
+    .book-title,
+    .card-title,
+    .list-group-item h1,
+    .list-group-item h2,
+    .list-group-item h3,
+    .list-group-item h4,
+    .list-group-item h5,
+    .list-group-item h6 {
+        color: #f8fafc !important;
+    }
+
+    .book-card-header {
+        background: linear-gradient(to bottom right, #111827, #1f2937) !important;
+        border-bottom-color: #374151 !important;
+    }
+
+    .dashboard-overlay {
+        background: linear-gradient(to right, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.72)) !important;
+    }
+
+    .lead-quote {
+        color: #ffffff;
+    }
+
 }
 
 // 响应式设计
@@ -392,3 +483,106 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
         }
     }
 }
+
+html[data-bs-theme="dark"],
+body[data-bs-theme="dark"],
+[data-bs-theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+.td-dark {
+    .td-content,
+    .td-content p,
+    .td-content li,
+    .td-content td,
+    .td-content blockquote,
+    .td-main,
+    .td-main p,
+    .td-main li,
+    .td-blog-posts,
+    .td-blog-posts p,
+    .td-sidebar,
+    main,
+    main p,
+    main li {
+        color: #e5e7eb !important;
+    }
+
+    .td-content h1,
+    .td-content h2,
+    .td-content h3,
+    .td-content h4,
+    .td-content h5,
+    .td-content h6,
+    .td-main h1,
+    .td-main h2,
+    .td-main h3,
+    .td-main h4,
+    .td-main h5,
+    .td-main h6,
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+        color: #f8fafc !important;
+    }
+
+    .text-dark,
+    .text-muted,
+    .text-secondary {
+        color: #dbeafe !important;
+    }
+
+    .td-content .bg-white,
+    .td-content .bg-light,
+    .td-main .bg-white,
+    .td-main .bg-light,
+    .td-blog-posts .bg-white,
+    .td-blog-posts .bg-light,
+    main .bg-white,
+    main .bg-light,
+    .card,
+    .list-group,
+    .list-group-item,
+    .book-card,
+    .library-dashboard {
+        background-color: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #e5e7eb !important;
+    }
+
+    .article-meta,
+    .td-content .lead,
+    .td-content .small,
+    .td-blog-posts small,
+    .card-text,
+    .card-body,
+    .list-group-item,
+    .book-card,
+    .library-dashboard,
+    .td-blog-posts-list__body {
+        color: #d1d5db !important;
+    }
+
+    .book-title,
+    .card-title,
+    .list-group-item h1,
+    .list-group-item h2,
+    .list-group-item h3,
+    .list-group-item h4,
+    .list-group-item h5,
+    .list-group-item h6 {
+        color: #f8fafc !important;
+    }
+
+    .book-card-header {
+        background: linear-gradient(to bottom right, #111827, #1f2937) !important;
+        border-bottom-color: #374151 !important;
+    }
+
+    .dashboard-overlay {
+        background: linear-gradient(to right, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.72)) !important;
+    }
+}
+
