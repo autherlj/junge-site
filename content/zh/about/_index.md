@@ -281,9 +281,13 @@ transform: rotate(90deg);
 <h1 class="profile-name">隽戈</h1>
 <div class="profile-role">云原生架构师 / SRE 工程师 / 技术博主</div>
 <div class="profile-intro">
-具备 <strong>SRE、云原生、可观测性、数据工程、机器学习与平台研发</strong> 的复合背景。长期专注于<strong>大规模分布式系统稳定性治理</strong>和 <strong>AIOps 平台建设</strong>，熟悉从 <strong>Metric / Log / Trace / Event</strong> 多源数据接入，到<strong>告警收敛、异常检测、根因分析、容量预测、自动化处置、智能 Runbook 和运维知识库</strong>的完整链路。
+AI 让写代码变快了，但代码从来没变得更便宜。这是我在 AI 时代做工程最深的体会。
 <br><br>
-拥有较强的<strong>平台工程能力</strong>，能够独立完成 AIOps 系统的<strong>架构设计、核心模块研发、数据链路建设、模型服务化、告警闭环和稳定性保障</strong>。热爱技术沉淀与分享，致力于通过影像创作与系统化知识库推动云原生与 AI 技术的普及传播。
+我是 <strong>隽戈</strong>，具备 <strong>SRE、云原生、可观测性、数据工程、机器学习与平台研发</strong> 的复合背景。我的核心工程价值不在于会多少工具，而在于有能力<strong>做战略性的架构决策</strong>——在代码被廉价生成的时代，决定<strong>怎么组织模块、怎么定义概念、怎么切分任务</strong>，才是工程师不可替代的部分。
+<br><br>
+长期专注于<strong>大规模分布式系统稳定性治理</strong>和 <strong>AIOps 平台建设</strong>，熟悉从 <strong>Metric / Log / Trace / Event</strong> 多源数据接入，到<strong>告警收敛、异常检测、根因分析、容量预测、自动化处置、智能 Runbook 和运维知识库</strong>的完整链路。
+<br><br>
+我的工程哲学：任何经过我手的系统，都会变得更清晰、更可维护、更容易被下一个工程师理解。
 </div>
 <div class="social-links">
 <a href="https://github.com/autherlj" target="_blank" class="btn btn-outline-dark btn-sm me-2 mb-2">
@@ -423,6 +427,58 @@ transform: rotate(90deg);
 </div>
 </div>
 
+<!-- 工程哲学 -->
+<div class="resume-section">
+<h3 class="section-title">我的工程哲学</h3>
+<div class="info-card" style="background: #f8fafc;">
+<p class="mb-3" style="color: #475569; line-height: 1.7;">
+在 AI 时代，开发者的角色从写代码的人变成了做<strong>战略设计</strong>的人。
+AI 是你的战术执行者——它写代码、跑测试、做重构——但<strong>战略层面的决策</strong>必须由人来定。
+以下四条原则是我做工程决策的底层逻辑：
+</p>
+<div class="row g-3">
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我设计，不堆积</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+功能丰富但接口简单的 <strong>Deep Module</strong>，好过一片又浅又碎的代码碎片。
+把复杂性封装在背后，让每次交互只需要理解接口，而不是全部细节。
+</p>
+</div>
+</div>
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我统一，不猜测</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+人、代码、AI 说同一套术语。<strong>统一语言</strong>不是文档，是消除歧义的工程纪律。
+在 AI 时代，这个价值被放大了十倍。
+</p>
+</div>
+</div>
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我先想，再动手</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+写代码前让设计先被拷问清楚。<strong>依赖关系、边界条件、数据模型</strong>——
+AI 不会帮你做决策，它只会加速你已经做出的决策。如果你没想清楚，AI 加速的只是混乱。
+</p>
+</div>
+</div>
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我验证，才交付</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+每一步都是可验证的。在 AI 生成几百行代码的时代，<strong>TDD 的角色从质量保障变成了过程控制</strong>——确保每一步都在可控范围内，发现偏差立刻修正。
+</p>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-top" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">
+这些原则不是新发明——它们来自《领域驱动设计》《软件设计的哲学》和极限编程。在 AI 时代，它们没有被淘汰，而是变得更重要了。
+</div>
+</div>
+</div>
+
 <!-- AIOps 完整链路 -->
 <div class="resume-section">
 <h3 class="section-title">AIOps 全链路能力</h3>
@@ -442,10 +498,10 @@ transform: rotate(90deg);
 <h3 class="section-title">职业背景</h3>
 <div class="mb-4">
 <p>
-拥有 <strong>新加坡电信智慧城市项目</strong> 的核心项目管理经验，作为技术骨干，主导了基础设施从早期 <strong>Mesos</strong> 到现代 <strong>Kubernetes</strong> 云原生体系的完整技术演进与架构升级。
+拥有 <strong>新加坡电信智慧城市项目</strong> 的核心项目管理经验，作为技术骨干，主导了基础设施从早期 <strong>Mesos</strong> 到现代 <strong>Kubernetes</strong> 云原生体系的完整技术演进与架构升级。在这个过程中，我学到最重要的一课是：<strong>好的架构不是设计出来的，是在约束条件下迭代出来的。</strong>
 </p>
 <p>
-在 <strong>蚂蚁金服</strong> 及头部互联网银行任职期间，深度参与金融级核心系统的云原生化转型。重点聚焦底层基础设施的高可用性建设与平台工程化能力，在保障金融级稳定性的前提下，显著提升了研发交付效率与系统弹性。
+在 <strong>蚂蚁金服</strong> 及头部互联网银行任职期间，深度参与金融级核心系统的云原生化转型。金融场景对稳定性的极致要求让我深刻理解：<strong>系统弹性不是靠加副本实现的，是靠对故障模式的理解和治理。</strong>重点聚焦底层基础设施的高可用性建设与平台工程化能力，在保障金融级稳定性的前提下，显著提升了研发交付效率与系统弹性。
 </p>
 </div>
 </div>
@@ -491,7 +547,7 @@ transform: rotate(90deg);
 <!-- 个人兴趣 -->
 <div class="resume-section">
 <h3 class="section-title">个人愿景</h3>
-<p>工作之余，致力于通过 <strong>影像创作</strong> 与技术分享连接社区。持续制作高质量技术 Vlog，以可视化、系统化的方式复盘实战经验，推动云原生与 AI 技术的普及与传播。</p>
+<p>我坚信：<strong>工程价值的核心不是写了多少代码，而是让多少系统变得更好了。</strong>工作之余，致力于通过 <strong>影像创作</strong> 与技术分享连接社区。持续制作高质量技术 Vlog，以可视化、系统化的方式复盘实战经验，推动云原生与 AI 技术的普及与传播。</p>
 <div class="mt-3">
 <ul class="list-inline mt-2">
 <li class="list-inline-item me-3">📚 <strong>沉淀：</strong> 构建系统化技术知识库</li>
