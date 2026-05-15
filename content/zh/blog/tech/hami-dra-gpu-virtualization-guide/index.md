@@ -278,8 +278,6 @@ spec:
   nodeName: ecs-a10-sh
 ```
 
-![ResourceSlice 详情截图](/images/blog/hami-dra-gpu-virtualization-guide/resourceslice.png)
-
 ---
 
 ## 使用：两种模式实战
