@@ -283,6 +283,8 @@ spec:
   nodeName: ecs-a10-sh
 ```
 
+![ResourceSlice 详情截图](/images/blog/hami-dra-gpu-virtualization-guide/resourceslice.png)
+
 ---
 
 ## 使用：两种模式实战
@@ -365,6 +367,8 @@ status:
 
 显存从物理的 23028Mi 限制到了申请的 10240Mi——**HAMi 生效了**。
 
+![原生 DRA 模式 nvidia-smi 输出](/images/blog/hami-dra-gpu-virtualization-guide/native-nvidia-smi.jpg)
+
 ### DevicePlugin 兼容模式
 
 原生 DRA 模式需要手动创建 ResourceClaim，对存量业务不够友好。为了便于迁移，HAMi 提供了兼容模式：
@@ -407,6 +411,8 @@ Webhook 转换的映射关系：
 | `nvidia.com/gpucores: 50` | `cores: "50"` |
 
 Pod 中执行 `nvidia-smi`，结果同样显示显存为 10240M——兼容模式也正常生效了。
+
+![兼容模式 nvidia-smi 输出](/images/blog/hami-dra-gpu-virtualization-guide/compatible-nvidia-smi.jpg)
 
 ---
 
