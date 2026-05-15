@@ -242,14 +242,9 @@ hami-hami-dra-webhook-64bfdc6b86-d4nlr        1/1     Running   0          22m
 kubectl get resourceslice
 ```
 
-输出示例：
+![通过 ResourceSlice 确认 GPU 资源已注册到集群](/images/blog/hami-dra-gpu-virtualization-guide/resourceslice.png)
 
-```
-NAME                                              NODE        DRIVER                           POOL          AGE
-ecs-a10-sh-hami-core-gpu.project-hami.io-hnn6d    ecs-a10-sh  hami-core-gpu.project-hami.io    ecs-a10-sh    119s
-```
-
-ResourceSlice 的详情中会记录 GPU 的架构、型号、显存等信息：
+ResourceSlice 的详情中记录了 GPU 的架构、型号、显存等信息，用 `-oyaml` 查看完整字段：
 
 ```yaml
 apiVersion: resource.k8s.io/v1
@@ -355,19 +350,9 @@ status:
 
 进入 Pod 执行 `nvidia-smi`，可以看到显存限制为我们申请的 10G：
 
-```
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 550.144.03                 Driver Version: 550.144.03             |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name            P-M     | Bus-Id        Disp.A | Volatile Uncorr. ECC |
-|  0  NVIDIA A10        On     | 00000000:65:01.0 Off |                    0 |
-|  0%   32C    P8    22W / 150W|      0MiB /  10240MiB |      0%      Default |
-+-------------------------------+----------------------+----------------------+
-```
+![原生 DRA 模式：显存已从物理 23028Mi 限制到申请的 10240Mi](/images/blog/hami-dra-gpu-virtualization-guide/native-nvidia-smi.jpg)
 
 显存从物理的 23028Mi 限制到了申请的 10240Mi——**HAMi 生效了**。
-
-![原生 DRA 模式 nvidia-smi 输出](/images/blog/hami-dra-gpu-virtualization-guide/native-nvidia-smi.jpg)
 
 ### DevicePlugin 兼容模式
 
@@ -410,9 +395,11 @@ Webhook 转换的映射关系：
 | `nvidia.com/gpumem: 10240` | `memory: "10737418240"` (10Gi 的字节值) |
 | `nvidia.com/gpucores: 50` | `cores: "50"` |
 
-Pod 中执行 `nvidia-smi`，结果同样显示显存为 10240M——兼容模式也正常生效了。
+Pod 中执行 `nvidia-smi`，同样验证显存限制生效：
 
-![兼容模式 nvidia-smi 输出](/images/blog/hami-dra-gpu-virtualization-guide/compatible-nvidia-smi.jpg)
+![兼容模式：同样限制到 10240Mi，无需手动创建 ResourceClaim](/images/blog/hami-dra-gpu-virtualization-guide/compatible-nvidia-smi.jpg)
+
+兼容模式也正常生效了，存量业务零改造即可迁移。
 
 ---
 
