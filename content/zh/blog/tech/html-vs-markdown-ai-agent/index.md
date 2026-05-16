@@ -1,5 +1,5 @@
 ---
-title: "HTML 要火了：为什么 Claude Code 团队开始从 Markdown 转向 HTML"
+title: "Markdown → HTML：AI 输出正在从"文档"进化成"界面""
 slug: "html-vs-markdown-ai-agent"
 date: 2026-05-16
 description: "AI Agent 的表达能力已经超过 Markdown 这个容器。Claude Code 团队开始集体转向 HTML，因为 HTML 是目前最强的信息表达协议——不只是网页，而是 Agent 时代的原生输出格式。"
