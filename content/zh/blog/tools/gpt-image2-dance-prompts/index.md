@@ -358,8 +358,6 @@ GPT Image 2 在处理复杂构图方面相比前代有了质的飞跃。它不�
 * 写实、华美、敦煌感强、文化识别度高
 ```
 
-![敦煌反弹琵琶舞提示词](dunhuang-dance-prompt.jpg)
-
 ### 视频生成提示词
 
 同样的分镜还可以直接用来生成 **视频**。以下是与上述分镜配套的视频生成提示词：
@@ -375,8 +373,6 @@ GPT Image 2 在处理复杂构图方面相比前代有了质的飞跃。它不�
 
 灯光：暖金余晖、洞窟暖光、壁画反射光和少量光尘。整体色调赭石、土红、青绿、矿物蓝、金色。干净通透，高级自然。
 ```
-
-![视频生成提示词](video-prompt.jpg)
 
 <div class="section-divider">
   <span class="line"></span>
@@ -456,8 +452,6 @@ GPT Image 2 在处理复杂构图方面相比前代有了质的飞跃。它不�
 * 写实与梦幻相结合，东方美学风格
 * 所有动作真人可完成
 ```
-
-![洛神水舞提示词](luoshen-water-prompt.jpg)
 
 <div class="section-divider">
   <span class="line"></span>
@@ -540,8 +534,6 @@ GPT Image 2 在处理复杂构图方面相比前代有了质的飞跃。它不�
 * 场景有民族氛围但不喧宾夺主
 * 所有动作真人可完成
 ```
-
-![苗族银饰舞提示词](miao-silver-prompt.jpg)
 
 <div class="section-divider">
   <span class="line"></span>
