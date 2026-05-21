@@ -274,9 +274,9 @@ mattpocock/skills，一个仓库，**78,943 颗星**，单日涨了 3,392 颗。
 
 不是一个项目。是同一个时间点，好几个。
 
-![mattpocock/skills GitHub 仓库截图](pocock-skills-github.jpg)
+![mattpocock/skills GitHub 仓库截图](/images/blog/agent-skills-eating-software-dev/pocock-skills-github.jpg)
 
-![GitHub Trending 上的 Agent 相关项目](github-trending-agent-skills.jpg)
+![GitHub Trending 上的 Agent 相关项目](/images/blog/agent-skills-eating-software-dev/github-trending-agent-skills.jpg)
 
 我盯着这些数字看了很久。一个问题反复出现：**为什么是现在？**
 
@@ -297,11 +297,11 @@ pocock、obra、danielmiessler 他们做的事则是：**把常用的 skill 标�
 
 pocock 的 skills 库里有什么？比如"用 TypeScript 写类型安全的 API""处理 React 状态管理""写可测试的单元测试"。每一段都是他从自己的 CLAUDE.md 里抽象出来的。
 
-![mattpocock/skills 方法论图解](skills-infographic.jpg)
+![mattpocock/skills 方法论图解](/images/blog/agent-skills-eating-software-dev/skills-infographic.jpg)
 
 obra 的 superpowers 更进一步——它不仅定义了 skills，还定义了一套"如何用 skills 做软件工程"的完整方法论。
 
-![obra/superpowers 三层架构](superpowers-architecture.jpg)
+![obra/superpowers 三层架构](/images/blog/agent-skills-eating-software-dev/superpowers-architecture.jpg)
 
 <div class="info-box">
 如果你觉得这听起来和 npm 有点像——确实。不只是像，逻辑几乎一模一样。
@@ -371,9 +371,9 @@ pocock 不是一个"技术布道师"，他是个真正的程序员——TypeScri
 | **基础设施层** | agentmemory, danielmiessler/Personal_AI_Infrastructure | 持久化记忆、Agent 运行基础设施 |
 | **市场层** | **尚未出现** | Agent Skills 的 npmjs.com 在哪里？ |
 
-![Personal AI Infrastructure 项目截图](personal-ai-infrastructure.jpg)
+![Personal AI Infrastructure 项目截图](/images/blog/agent-skills-eating-software-dev/personal-ai-infrastructure.jpg)
 
-![scientific-agent-skills 项目截图](scientific-agent-skills.jpg)
+![scientific-agent-skills 项目截图](/images/blog/agent-skills-eating-software-dev/scientific-agent-skills.jpg)
 
 ### 框架层
 
@@ -421,7 +421,7 @@ pocock 的仓库之所以爆炸，不只是因为他写了好的 CLAUDE.md，而
 
 我在做 AIOps 平台时，团队内部也在做类似的事：把运维专家的知识编码成可复用的"skill"，Agent 在执行运维操作时自动调用。比如 K8s 集群故障诊断 skill、GPU 健康检查 skill、日志归因分析 skill。这些 skill 的价值在于：**它们让 Agent 在特定场景下的表现，从"随机正确"变成了"确定性可靠"。**
 
-![mattpocock/skills 工作流方法论](pocock-skills-workflow.jpg)
+![mattpocock/skills 工作流方法论](/images/blog/agent-skills-eating-software-dev/pocock-skills-workflow.jpg)
 
 <div class="section-divider">
   <span class="line"></span>
