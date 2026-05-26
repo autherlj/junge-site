@@ -1,9 +1,105 @@
 {{ define "main" -}}
 
-<div class="td-content">
-<h1>{{ .Title }}</h1>
-{{ with .Content }}{{ . }}{{ end -}}
+{{/* ==================== 博客统计看板 / Blog Dashboard ==================== */ -}}
+{{ $allPosts := .RegularPagesRecursive -}}
+{{ $postCount := len $allPosts -}}
+{{ $sectionCount := len .Sections -}}
+{{/* 收集当前范围下所有 tag，去重计数 */ -}}
+{{ $tagSet := dict -}}
+{{ range $allPosts -}}
+  {{ range .Params.tags -}}
+    {{ $tagSet = merge $tagSet (dict (string .) true) -}}
+  {{ end -}}
+{{ end -}}
+{{ $tagCount := len $tagSet -}}
+{{/* 累计阅读时长（与文章页保持同口径，使用 Hugo 内建 .ReadingTime） */ -}}
+{{ $readMinutes := 0 -}}
+{{ range $allPosts -}}
+  {{ $readMinutes = add $readMinutes .ReadingTime -}}
+{{ end -}}
+{{/* 最近更新时间 */ -}}
+{{ $latest := "" -}}
+{{ with ($allPosts.ByLastmod.Reverse | first 1) -}}
+  {{ with index . 0 -}}
+    {{ $latest = .Lastmod.Format ($.Site.Params.time_format_default | default "2006-01-02") -}}
+  {{ end -}}
+{{ end -}}
+
+<div class="blog-dashboard mb-5 p-4 bg-white rounded-3 shadow-sm border position-relative overflow-hidden">
+    <div class="dashboard-overlay blog-dashboard-overlay"></div>
+    <div class="row align-items-center position-relative" style="z-index: 2;">
+        <div class="col-md-7">
+            <h1 class="display-5 fw-bold mb-3 text-dark">📝 {{ .Title }}</h1>
+            {{ with .Content }}<div class="lead text-muted mb-0">{{ . }}</div>{{ end -}}
+            {{ if $latest }}<p class="small text-muted mt-3 mb-0"><i class="far fa-clock me-1"></i>最近更新于 {{ $latest }}</p>{{ end -}}
+        </div>
+        <div class="col-md-5 border-start ps-md-5 mt-4 mt-md-0">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-square bg-light text-primary flex-shrink-0 me-2 rounded-3 p-2">
+                            <i class="fas fa-file-alt fa-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">{{ $postCount }}</h4>
+                            <small class="text-muted text-uppercase">文章</small>
+                        </div>
+                    </div>
+                </div>
+                {{ if gt $sectionCount 0 -}}
+                <div class="col-6">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-square bg-light text-success flex-shrink-0 me-2 rounded-3 p-2">
+                            <i class="fas fa-folder fa-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">{{ $sectionCount }}</h4>
+                            <small class="text-muted text-uppercase">分类</small>
+                        </div>
+                    </div>
+                </div>
+                {{ end -}}
+                <div class="col-6">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-square bg-light text-warning flex-shrink-0 me-2 rounded-3 p-2">
+                            <i class="fas fa-tags fa-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">{{ $tagCount }}</h4>
+                            <small class="text-muted text-uppercase">标签</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-square bg-light text-danger flex-shrink-0 me-2 rounded-3 p-2">
+                            <i class="fas fa-book-reader fa-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">{{ $readMinutes }}</h4>
+                            <small class="text-muted text-uppercase">分钟阅读</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<style>
+.blog-dashboard-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(255,255,255,0) 60%);
+    z-index: 1;
+}
+.blog-dashboard .icon-square {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+}
+</style>
+
 {{ if (and .Parent .Parent.IsHome) -}}
   {{ $.Scratch.Set "blog-pages" (where .Site.RegularPages "Section" .Section) -}}
 {{ else -}}
