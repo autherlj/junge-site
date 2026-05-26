@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 源码深度拆解：Fork Subagent & Prompt Cache——把成本降到 10% 的工程智慧"
 slug: "fork-subagent-prompt-cache"
-date: "2026-05-26"
+date: 2026-05-26
 description: "getSystemPrompt() 返回空字符串——这不是 bug，而是围绕 Prompt Cache 字节级对齐的极致成本博弈。深度拆解 Fork Subagent 如何让 Multi-Agent 成本降到 10%。"
 categories: ["技术", "AI实践"]
 tags: ["Claude Code", "AI Agent", "Fork Subagent", "Prompt Cache", "成本优化", "源码分析"]

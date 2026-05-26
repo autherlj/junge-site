@@ -1,7 +1,7 @@
 ---
 title: "Claude Code 源码深度拆解：Multi-Agent 的实现机制"
 slug: "claude-code-multi-agent-mechanism"
-date: "2026-05-24"
+date: 2026-05-24
 description: "从源码层面拆解 Claude Code 的多 Agent 实现机制，涵盖 subagent 隔离体系、消息驱动的父子通信、Fork Subagent 缓存优化以及 Coordinator 并行模式，提炼 5 条可直接落地的 Multi-Agent 设计原则。"
 categories: ["技术", "AI"]
 tags: ["Claude Code", "Multi-Agent", "AI Agent", "源码分析", "系统设计"]
