@@ -692,4 +692,4 @@ KAIROS 的回答是：<strong>Tick 驱动但不抢占、观察但不唠叨、行
   <span class="line"></span>
 </div>
 
-**下一篇预告：Claude Code 源码深度拆解完结篇：工程哲学总集。** 我会把三条拆解路线汇聚到一起，从软件工程、产品设计和系统架构三个维度，提炼 Claude Code 留给 Agent 工程界的最终遗产。
+**下一篇预告：Fork Subagent & Prompt Cache——把成本降到 10% 的工程智慧。** 当 Multi-Agent 把计算分散到多台机器时，Anthropic 做了一个反直觉的设计——getSystemPrompt() 返回空字符串。这不是 bug，而是一场围绕 Prompt Cache 字节级对齐的极致成本博弈。
