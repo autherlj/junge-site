@@ -137,8 +137,6 @@ Anthropic 工程师 Thariq 的解释非常到位：**"实现代码需要本地�
 
 这个拆分的背后有一个更深的洞察：**规划是"尴尬并行"（embarrassingly parallelizable）的**。它不涉及文件系统，不涉及编译错误，纯粹是阅读和推理。而**实现是天然串行的**，需要本地环境一步步来。
 
-ULTRAPLAN 的云端规划流程：
-
 {{< figure src="ultraplan-flow.png" alt="ULTRAPLAN 云端规划流程图" class="content-image" caption="ULTRAPLAN 云端规划流程图" >}}
 
 ### 浏览器审批流：不只是"看一眼再执行"
@@ -192,31 +190,6 @@ Swarm 不一样。
 Swarm 是**去中心化团队协议**。每个队友都是一个独立的 Agent，有自己的终端面板，队友之间可以直接发消息，团队有自己的配置文件（TeamFile），有颜色编码，有独立的 worktree。
 
 中心化 vs 去中心化的核心区别：
-
-```text
-Coordinator 模式：
-  ┌─────────┐      ┌────────┐
-  │  User   │◄────►│Coord.  │
-  └─────────┘      └───┬────┘
-                      ┌─┼─┐
-                    ┌─┘ │ └─┐
-                    ▼   ▼   ▼
-                  W1   W2   W3  （W互不通信）
-
-Swarm 模式：
-  ┌─────────┐
-  │  User   │
-  └────┬────┘
-       │
-    ┌──▼──┐
-    │Lead │←──── 可互发消息 ────→┐
-    └──┬──┘                     │
-    ┌──┼──┐                   ┌─┴──┐
-    │  │  │                   │Team│
-    ▼  ▼  ▼                   │File│
-    A1 A2 A3                  └────┘
-    （队友可互发消息）
-```
 
 {{< figure src="swarm-vs-coordinator.png" alt="Swarm vs Coordinator 对比图" class="content-image" caption="Swarm vs Coordinator 对比图" >}}
 
