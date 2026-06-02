@@ -249,6 +249,20 @@ font-weight: bold;
 font-size: 0.9rem;
 }
 
+.aiops-badge {
+display: inline-block;
+max-width: 100%;
+white-space: normal;
+word-break: break-word;
+line-height: 1.6;
+text-align: center;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: #fff;
+padding: 0.5rem 1rem;
+border-radius: 20px;
+font-size: 0.85rem;
+}
+
 @media (max-width: 768px) {
 .tech-typing-text {
 font-size: 1.5rem;
@@ -262,6 +276,12 @@ align-items: flex-start;
 }
 .pipeline-arrow {
 transform: rotate(90deg);
+}
+.aiops-badge {
+display: block;
+font-size: 0.78rem;
+padding: 0.5rem 0.75rem;
+border-radius: 14px;
 }
 }
 </style>
@@ -488,7 +508,7 @@ AI 不会帮你做决策，它只会加速你已经做出的决策。如果你�
 <img src="aiops.png" alt="AIOps 全链路能力架构图" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
 </div>
 <div class="mt-3 pt-3 border-top text-center">
-<span class="badge" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; padding: 0.5rem 1rem; border-radius: 20px;">✅ Metric / Log / Trace / Event 多源数据 → 告警闭环与稳定性保障</span>
+<span class="badge aiops-badge">✅ Metric / Log / Trace / Event 多源数据 → 告警闭环与稳定性保障</span>
 </div>
 </div>
 </div>
@@ -524,6 +544,9 @@ AI 不会帮你做决策，它只会加速你已经做出的决策。如果你�
 <p class="project-item">
 构建基于 <strong>HAMi + Kubernetes</strong> 的高性能异构算力平台，实现 vGPU 资源的池化管理与动态弹性调度。成功落地基于 <strong>vLLM / sglang</strong> 的大模型容器化部署方案，为企业内部多场景推理任务提供了统一、高效、可扩展的算力底座。
 </p>
+<div class="text-center mt-3">
+<img src="aiinfra.webp" alt="AI 异构算力底座架构图" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+</div>
 </div>
 
 <div class="mb-4">
