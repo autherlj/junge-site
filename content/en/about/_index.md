@@ -410,30 +410,54 @@ A <strong>hybrid profile</strong> combining <strong>SRE, Cloud-Native, Observabi
 </div>
 </div>
 
-<!-- AIOps Pipeline -->
+<!-- Engineering Philosophy -->
 <div class="resume-section">
-<h3 class="section-title">AIOps Capability Pipeline</h3>
-<div class="info-card" style="background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);">
-<p class="mb-3">Familiar with the complete pipeline from multi-source data ingestion to intelligent operations closure:</p>
-<div class="pipeline-flow">
-<span class="pipeline-step">📥 Metric / Log / Trace / Event</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🔔 Alert Deduplication</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🔍 Anomaly Detection</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🎯 Root Cause Analysis</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">📈 Capacity Planning</span>
+<h3 class="section-title">My Engineering Philosophy</h3>
+<div class="info-card" style="background: #f8fafc;">
+<p class="mb-3" style="color: #475569; line-height: 1.7;">
+In the AI era, a developer's role shifts from writing code to making <strong>strategic design</strong> decisions.
+AI is your tactical executor—it writes code, runs tests, and refactors—but <strong>strategic-level decisions</strong> must be made by humans.
+The following four principles are the underlying logic behind my engineering decisions:
+</p>
+<div class="row g-3">
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 I Design, Not Pile Up</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+A <strong>Deep Module</strong>—rich in functionality but simple in interface—beats a sea of shallow, fragmented code.
+Encapsulate complexity behind the interface, so each interaction only requires understanding the interface, not every detail.
+</p>
 </div>
-<div class="pipeline-flow">
-<span class="pipeline-step">⚡ Automated Remediation</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">📖 Intelligent Runbook</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">🧠 Ops Knowledge Base</span>
-<span class="pipeline-arrow">→</span>
-<span class="pipeline-step">✅ Alert Closure</span>
+</div>
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 I Unify, Not Guess</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+People, code, and AI speak the same vocabulary. A <strong>Ubiquitous Language</strong> isn't documentation—it's the engineering discipline of eliminating ambiguity.
+In the AI era, this value is amplified tenfold.
+</p>
+</div>
+</div>
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 I Think First, Then Act</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+Let the design be interrogated before writing code. <strong>Dependencies, edge cases, data models</strong>—
+AI won't make decisions for you; it only accelerates the decisions you've already made. If you haven't thought it through, AI only accelerates the chaos.
+</p>
+</div>
+</div>
+<div class="col-md-6">
+<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
+<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 I Verify, Then Deliver</h6>
+<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+Every step is verifiable. In an era where AI generates hundreds of lines of code, <strong>TDD's role shifts from quality assurance to process control</strong>—keeping every step within control and correcting deviations the moment they appear.
+</p>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-top" style="font-size: 0.85rem; color: #94a3b8; text-align: center;">
+These principles aren't new inventions—they come from <em>Domain-Driven Design</em>, <em>A Philosophy of Software Design</em>, and Extreme Programming. In the AI era, they haven't been made obsolete—they've become more important.
 </div>
 </div>
 </div>
@@ -461,6 +485,9 @@ During tenure at <strong>Ant Group</strong> and leading internet banks, deeply i
 <p class="project-item">
 Built enterprise-class private R&D workflow platform from scratch based on <strong>GitOps + CI/CD + Kubernetes</strong>. Standardized pipelines and automated delivery systems significantly shortened development cycles. Led platform to achieve <strong>DevOps Level 3 Certification</strong>, establishing industry-leading engineering standards.
 </p>
+<div class="text-center mt-3">
+<img src="cicd.webp" alt="Enterprise DevOps Platform architecture diagram" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+</div>
 </div>
 
 <div class="mb-4">
@@ -469,21 +496,27 @@ Built enterprise-class private R&D workflow platform from scratch based on <stro
 <p class="project-item">
 Built high-performance heterogeneous computing platform based on <strong>HAMi + Kubernetes</strong>, achieving vGPU resource pooling and dynamic elastic scheduling. Successfully deployed <strong>vLLM / sglang</strong> LLM containerization solutions, providing unified, efficient, and scalable computing infrastructure for multi-scenario inference tasks.
 </p>
+<div class="text-center mt-3">
+<img src="aiinfra.webp" alt="AI Heterogeneous Computing Infrastructure architecture diagram" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+</div>
 </div>
 
 <div class="mb-4">
 <h5 class="fw-bold">Next-Gen AIOps System</h5>
-<div class="text-muted mb-2 small">Dify / OpenClaw / n8n / LLM Application</div>
+<div class="text-muted mb-2 small">Dify / OpenClaw / Harness / n8n / LLM Application</div>
 <p class="project-item">
-Explored deep LLM applications in operations domain using <strong>Dify</strong> + <strong>OpenClaw</strong> + <strong>n8n</strong> framework. Implemented intelligent log attribution analysis, automated fault diagnosis, and self-service ops chatbot, building an AIOps closed-loop system from reactive response to proactive governance.
+Explored deep LLM applications in operations domain using <strong>Dify</strong> / <strong>OpenClaw</strong> / <strong>Harness</strong> / <strong>n8n</strong> framework. Implemented intelligent log attribution analysis, automated fault diagnosis, and self-service ops chatbot, building an AIOps closed-loop system from reactive response to proactive governance.
 </p>
+<div class="text-center mt-3">
+<img src="aiopsinfra.webp" alt="Next-Gen AIOps System architecture diagram" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+</div>
 </div>
 
 <div class="mb-4">
-<h5 class="fw-bold">Large-Scale Observability Platform</h5>
-<div class="text-muted mb-2 small">Prometheus / OpenTelemetry / Grafana / ELK / Kafka / Flink</div>
+<h5 class="fw-bold">Data Center Equipment Management System (Vibe Coding)</h5>
+<div class="text-muted mb-2 small">Codex / Claude Code / Windsurf / Redfish / DCIM</div>
 <p class="project-item">
-Led design and implementation of multi-tenant <strong>Prometheus + OpenTelemetry</strong> observability platform covering <strong>Metric / Log / Trace / Event</strong> full链路 data collection and analysis. Built real-time alert stream processing engine with <strong>Kafka + Flink</strong> for automated alert deduplication, anomaly detection, and root cause analysis, supporting billions of metrics daily.
+Using <strong>Vibe Coding</strong> (AI-assisted development with <strong>Codex / Claude Code / Windsurf</strong>), built a Data Center Infrastructure Management (DCIM) system from scratch. It covers full-category <strong>asset management</strong>—unified multi-brand management of rack equipment, security appliances, storage devices, and network devices; integrates <strong>out-of-band BMC</strong> data via the standard <strong>Redfish</strong> protocol and automated crawlers for automated collection and ops workflow optimization; and provides <strong>data-center rack topology visualization</strong>, combined with <strong>MAC address</strong>-based automatic network link tracing, significantly improving asset visibility and operational efficiency.
 </p>
 </div>
 
