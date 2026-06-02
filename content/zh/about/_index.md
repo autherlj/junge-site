@@ -499,20 +499,6 @@ AI 不会帮你做决策，它只会加速你已经做出的决策。如果你�
 </div>
 </div>
 
-<!-- AIOps 完整链路 -->
-<div class="resume-section">
-<h3 class="section-title">AIOps 全链路能力</h3>
-<div class="info-card" style="background: #f8fafc;">
-<p class="mb-3 text-center text-muted">从多源数据接入到智能运维闭环的完整技术链路</p>
-<div class="text-center">
-<img src="aiops.png" alt="AIOps 全链路能力架构图" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
-</div>
-<div class="mt-3 pt-3 border-top text-center">
-<span class="badge aiops-badge">✅ Metric / Log / Trace / Event 多源数据 → 告警闭环与稳定性保障</span>
-</div>
-</div>
-</div>
-
 <!-- 职业背景 -->
 <div class="resume-section">
 <h3 class="section-title">职业背景</h3>
@@ -536,6 +522,9 @@ AI 不会帮你做决策，它只会加速你已经做出的决策。如果你�
 <p class="project-item">
 基于 <strong>GitOps + CI/CD + Kubernetes</strong> 理念，从 0 到 1 构建企业级私有化研发流程平台。通过标准化流水线与自动化交付体系，大幅缩短研发周期，并主导平台通过 <strong>DevOps 三级认证</strong>，确立了行业领先的工程化标准。
 </p>
+<div class="text-center mt-3">
+<img src="cicd.webp" alt="企业级研运一体化平台 (DevOps Platform) 架构图" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+</div>
 </div>
 
 <div class="mb-4">
@@ -553,15 +542,18 @@ AI 不会帮你做决策，它只会加速你已经做出的决策。如果你�
 <h5 class="fw-bold">下一代智能运维体系 (AIOps)</h5>
 <div class="text-muted mb-2 small">Dify / OpenClaw / n8n / LLM Application / Intelligent Operations</div>
 <p class="project-item">
-探索 <strong>LLM</strong> 在运维领域的深度应用，基于 <strong>Dify</strong> + <strong>OpenClaw</strong> + <strong>n8n</strong> 框架落地智能运维场景。实现了日志智能归因分析、系统故障自动诊断及自助式运维客服，构建了从被动响应到主动治理的 <strong>AIOps</strong> 闭环体系，有效降低了运维人力成本。
+探索 <strong>LLM</strong> 在运维领域的深度应用，基于 <strong>Dify</strong> / <strong>OpenClaw</strong> / <strong>Harness</strong> / <strong>n8n</strong> 框架落地智能运维场景。实现了日志智能归因分析、系统故障自动诊断及自助式运维客服，构建了从被动响应到主动治理的 <strong>AIOps</strong> 闭环体系，有效降低了运维人力成本。
 </p>
+<div class="text-center mt-3">
+<img src="aiopsinfra.webp" alt="下一代智能运维体系 (AIOps) 架构图" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+</div>
 </div>
 
 <div class="mb-4">
-<h5 class="fw-bold">大规模可观测性平台建设</h5>
-<div class="text-muted mb-2 small">Prometheus / OpenTelemetry / Grafana / ELK / Kafka / Flink</div>
+<h5 class="fw-bold">数据中心设备管理体系建设 (Vibe Coding)</h5>
+<div class="text-muted mb-2 small">Codex / Claude Code / Windsurf / Redfish / DCIM</div>
 <p class="project-item">
-主导设计并落地多租户 <strong>Prometheus + OpenTelemetry</strong> 可观测性平台，覆盖 <strong>Metric / Log / Trace / Event</strong> 全链路数据采集与分析。基于 <strong>Kafka + Flink</strong> 构建实时告警流处理引擎，实现告警收敛、异常检测与根因分析的自动化，支撑日均数十亿级指标数据的实时分析需求。
+以 <strong>Vibe Coding</strong>（基于 <strong>Codex / Claude Code / Windsurf</strong> 的 AI 辅助开发）模式，从 0 到 1 构建数据中心设备管理体系（DCIM）。覆盖全品类<strong>资产设备管理</strong>——机架设备、安全设备、存储设备、网络设备的多品牌统一纳管；通过标准 <strong>Redfish</strong> 协议与爬虫自动采集打通<strong>带外 BMC</strong> 数据，实现设备信息的自动化采集与运维流程优化；并构建<strong>机房机架拓扑可视化</strong>，结合 <strong>MAC 地址</strong>实现网络线路的自动回溯与链路追踪，显著提升了数据中心的资产可视性与运维效率。
 </p>
 </div>
 
