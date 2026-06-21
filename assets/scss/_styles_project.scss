@@ -586,3 +586,27 @@ body[data-theme="dark"],
     }
 }
 
+.blog-section-accordion__item {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.blog-section-accordion__summary {
+    background: #f8fafc;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 1rem 1.25rem;
+}
+
+.blog-section-accordion__content {
+    padding: 1.25rem;
+}
+
+.blog-section-accordion__meta {
+    color: #6b7280;
+    float: right;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
