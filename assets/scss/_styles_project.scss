@@ -369,14 +369,8 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
         }
     }
 
-    .td-content,
-    .td-main,
-    .td-blog-posts,
-    .td-sidebar,
-    main {
-        color: #e5e7eb;
-    }
-
+    // 说明：正文/卡片/背景等通用暗色覆盖统一在下方带 !important 的块中定义，
+    // 此处仅保留特异性更高、需在正文区优先生效的 text-* 规则与面包屑、引言框。
     .td-content .text-dark,
     .td-main .text-dark,
     .td-blog-posts .text-dark,
@@ -396,63 +390,6 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
     .td-blog-posts .text-secondary,
     main .text-secondary {
         color: #d1d5db !important;
-    }
-
-    .td-content .bg-white,
-    .td-content .bg-light,
-    .td-main .bg-white,
-    .td-main .bg-light,
-    .td-blog-posts .bg-white,
-    .td-blog-posts .bg-light,
-    main .bg-white,
-    main .bg-light {
-        background-color: #1f2937 !important;
-        color: #e5e7eb;
-    }
-
-    .td-content .card,
-    .td-main .card,
-    .td-blog-posts .card,
-    main .card,
-    .td-content .list-group,
-    .td-main .list-group,
-    main .list-group,
-    .td-content .list-group-item,
-    .td-main .list-group-item,
-    main .list-group-item,
-    .book-card,
-    .library-dashboard {
-        background-color: #1f2937 !important;
-        border-color: #374151 !important;
-        color: #e5e7eb;
-    }
-
-    .card-body,
-    .list-group-item,
-    .book-card,
-    .library-dashboard,
-    .td-blog-posts-list__body {
-        color: #e5e7eb;
-    }
-
-    .book-title,
-    .card-title,
-    .list-group-item h1,
-    .list-group-item h2,
-    .list-group-item h3,
-    .list-group-item h4,
-    .list-group-item h5,
-    .list-group-item h6 {
-        color: #f8fafc !important;
-    }
-
-    .book-card-header {
-        background: linear-gradient(to bottom right, #111827, #1f2937) !important;
-        border-bottom-color: #374151 !important;
-    }
-
-    .dashboard-overlay {
-        background: linear-gradient(to right, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.72)) !important;
     }
 
     .lead-quote {
@@ -486,12 +423,8 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
     }
 }
 
-html[data-bs-theme="dark"],
-body[data-bs-theme="dark"],
-[data-bs-theme="dark"],
-html[data-theme="dark"],
-body[data-theme="dark"],
-.td-dark {
+// 通用暗色覆盖（带 !important，确保覆盖 Docsy/Bootstrap 基础样式）
+[data-bs-theme="dark"] {
     .td-content,
     .td-content p,
     .td-content li,
