@@ -561,3 +561,22 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
         color: #9ca3af;
     }
 }
+
+// 页脚 - 暗色适配
+// footer 使用 Bootstrap 的 .bg-light 且位于 .td-content/main 之外，
+// 不会被上方的通用 .bg-light 暗色规则命中，需单独覆盖，避免浅色字压浅色底。
+[data-bs-theme="dark"] {
+    footer.bg-light {
+        background-color: #111827 !important;
+        border-top-color: #374151 !important;
+        color: #cbd5e1 !important;
+    }
+
+    footer.bg-light a {
+        color: #93c5fd;
+
+        &:hover {
+            color: #bfdbfe;
+        }
+    }
+}
