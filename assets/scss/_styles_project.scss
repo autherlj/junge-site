@@ -32,7 +32,7 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
     p {
         margin-bottom: 1.5em;
         letter-spacing: 0.01em;
-        text-align: justify; // 两端对齐
+        text-align: left; // 中文段落左对齐，避免两端对齐造成的不均匀字间距
     }
 
     // 2. 标题样式增强
@@ -191,7 +191,9 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
 }
 
 // 针对 Dark Mode 的适配覆盖
-@media (prefers-color-scheme: dark) {
+// 统一使用 Docsy 的 data-bs-theme 属性（手动切换与跟随系统的 auto 模式都会设置它），
+// 避免仅依赖 prefers-color-scheme 导致手动切到暗色时样式不生效。
+[data-bs-theme="dark"] {
     .td-content {
         color: #e5e7eb;
         
@@ -339,8 +341,8 @@ https://www.docsy.dev/docs/content/lookandfeel/#project-style-files
     }
 }
 
-// Dark Mode 适配
-@media (prefers-color-scheme: dark) {
+// Dark Mode 适配（面包屑 / 引言框 / 卡片）
+[data-bs-theme="dark"] {
     .td-breadcrumbs {
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         border-color: #334155;
@@ -609,4 +611,20 @@ body[data-theme="dark"],
     float: right;
     font-size: 0.875rem;
     font-weight: 400;
+}
+
+// 博客分类手风琴 - 暗色适配
+[data-bs-theme="dark"] {
+    .blog-section-accordion__item {
+        border-color: #374151;
+    }
+
+    .blog-section-accordion__summary {
+        background: #1f2937;
+        color: #f3f4f6;
+    }
+
+    .blog-section-accordion__meta {
+        color: #9ca3af;
+    }
 }

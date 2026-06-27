@@ -8,7 +8,7 @@ linkTitle: 关于我
 .resume-container {
 max-width: 1200px;
 margin: 0 auto;
-padding-top: 100px;
+padding-top: 2rem;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 color: #334155;
 }
@@ -284,6 +284,140 @@ padding: 0.5rem 0.75rem;
 border-radius: 14px;
 }
 }
+
+/* ===== 暗色模式适配（跟随 Docsy 的 data-bs-theme 切换）===== */
+[data-bs-theme="dark"] .resume-container {
+color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .section-title {
+color: #f1f5f9;
+}
+
+[data-bs-theme="dark"] .info-card {
+background: #1f2937;
+border-color: #374151;
+}
+
+[data-bs-theme="dark"] .info-card:hover {
+border-color: #38bdf8;
+box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+[data-bs-theme="dark"] .profile-name {
+color: #f1f5f9;
+}
+
+[data-bs-theme="dark"] .profile-role {
+color: #94a3b8;
+}
+
+[data-bs-theme="dark"] .profile-intro {
+color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .skill-category-title {
+color: #94a3b8;
+}
+
+[data-bs-theme="dark"] .skill-tag {
+background: #334155;
+border-color: #475569;
+color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .skill-tag:hover {
+background: rgba(56, 189, 248, 0.15);
+border-color: #38bdf8;
+color: #7dd3fc;
+}
+
+[data-bs-theme="dark"] .skill-tag.highlight {
+background: rgba(56, 189, 248, 0.15);
+border-color: #38bdf8;
+color: #7dd3fc;
+}
+
+[data-bs-theme="dark"] .skill-tag.core {
+background: rgba(252, 211, 77, 0.15);
+border-color: #fcd34d;
+color: #fcd34d;
+}
+
+[data-bs-theme="dark"] .project-item {
+border-left-color: #475569;
+}
+
+[data-bs-theme="dark"] .pipeline-step {
+background: #334155;
+border-color: #475569;
+color: #cbd5e1;
+}
+
+/* 工程哲学卡片 */
+.philosophy-intro {
+color: #475569;
+line-height: 1.7;
+}
+
+.philosophy-card {
+background: #fff;
+border: 1px solid #e2e8f0;
+border-radius: 8px;
+padding: 1rem;
+height: 100%;
+transition: all 0.3s ease;
+}
+
+.philosophy-card:hover {
+border-color: #38bdf8;
+transform: translateY(-2px);
+}
+
+.philosophy-card__title {
+color: #1e293b;
+font-weight: 700;
+margin-bottom: 0.5rem;
+}
+
+.philosophy-card__desc {
+font-size: 0.85rem;
+color: #64748b;
+margin-bottom: 0;
+line-height: 1.6;
+}
+
+[data-bs-theme="dark"] .philosophy-intro {
+color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .philosophy-card {
+background: #243044;
+border-color: #374151;
+}
+
+[data-bs-theme="dark"] .philosophy-card:hover {
+border-color: #38bdf8;
+}
+
+[data-bs-theme="dark"] .philosophy-card__title {
+color: #f1f5f9;
+}
+
+[data-bs-theme="dark"] .philosophy-card__desc {
+color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .social-links .btn-outline-dark {
+color: #e2e8f0;
+border-color: #475569;
+}
+
+[data-bs-theme="dark"] .social-links .btn-outline-dark:hover {
+background: #475569;
+color: #f8fafc;
+border-color: #475569;
+}
 </style>
 
 <div class="resume-container">
@@ -450,44 +584,44 @@ AI 让写代码变快了，但代码从来没变得更便宜。这是我在 AI �
 <!-- 工程哲学 -->
 <div class="resume-section">
 <h3 class="section-title">我的工程哲学</h3>
-<div class="info-card" style="background: #f8fafc;">
-<p class="mb-3" style="color: #475569; line-height: 1.7;">
+<div class="info-card">
+<p class="mb-3 philosophy-intro">
 在 AI 时代，开发者的角色从写代码的人变成了做<strong>战略设计</strong>的人。
 AI 是你的战术执行者——它写代码、跑测试、做重构——但<strong>战略层面的决策</strong>必须由人来定。
 以下四条原则是我做工程决策的底层逻辑：
 </p>
 <div class="row g-3">
 <div class="col-md-6">
-<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
-<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我设计，不堆积</h6>
-<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+<div class="philosophy-card">
+<h6 class="philosophy-card__title">🔷 我设计，不堆积</h6>
+<p class="philosophy-card__desc">
 功能丰富但接口简单的 <strong>Deep Module</strong>，好过一片又浅又碎的代码碎片。
 把复杂性封装在背后，让每次交互只需要理解接口，而不是全部细节。
 </p>
 </div>
 </div>
 <div class="col-md-6">
-<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
-<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我统一，不猜测</h6>
-<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+<div class="philosophy-card">
+<h6 class="philosophy-card__title">🔷 我统一，不猜测</h6>
+<p class="philosophy-card__desc">
 人、代码、AI 说同一套术语。<strong>统一语言</strong>不是文档，是消除歧义的工程纪律。
 在 AI 时代，这个价值被放大了十倍。
 </p>
 </div>
 </div>
 <div class="col-md-6">
-<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
-<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我先想，再动手</h6>
-<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+<div class="philosophy-card">
+<h6 class="philosophy-card__title">🔷 我先想，再动手</h6>
+<p class="philosophy-card__desc">
 写代码前让设计先被拷问清楚。<strong>依赖关系、边界条件、数据模型</strong>——
 AI 不会帮你做决策，它只会加速你已经做出的决策。如果你没想清楚，AI 加速的只是混乱。
 </p>
 </div>
 </div>
 <div class="col-md-6">
-<div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; height: 100%; transition: all 0.3s ease;" onmouseover="this.style.borderColor='#38bdf8';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='translateY(0)'">
-<h6 style="color: #1e293b; font-weight: 700; margin-bottom: 0.5rem;">🔷 我验证，才交付</h6>
-<p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0; line-height: 1.6;">
+<div class="philosophy-card">
+<h6 class="philosophy-card__title">🔷 我验证，才交付</h6>
+<p class="philosophy-card__desc">
 每一步都是可验证的。在 AI 生成几百行代码的时代，<strong>TDD 的角色从质量保障变成了过程控制</strong>——确保每一步都在可控范围内，发现偏差立刻修正。
 </p>
 </div>
